@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xdl.Internship.Offers.Models", "Xdl.Internship.Offers.Models\Xdl.Internship.Offers.Models.csproj", "{2EC6CB45-B893-4EA7-AD82-12F461E8C282}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xdl.Internship.Offers.DataAccess", "Xdl.Internship.Offers.DataAccess\Xdl.Internship.Offers.DataAccess.csproj", "{794A2668-6282-4B2A-A096-95CACD4C6AA0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xdl.Internship.Offers.Handlers", "Xdl.Internship.Offers.Handlers\Xdl.Internship.Offers.Handlers.csproj", "{425BCA54-9075-4082-89F8-3C0067F2AAE3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xdl.Internship.Offers.ServiceHost", "Xdl.Internship.Offers.ServiceHost\Xdl.Internship.Offers.ServiceHost.csproj", "{6ED72477-B89E-410E-9315-5F805AEE646E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xdl.Internship.Offers.SDK", "Xdl.Internship.Offers.SDK\Xdl.Internship.Offers.SDK.csproj", "{6EEDB43D-0ACD-4F47-9F87-53DB23A7B9CB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2EC6CB45-B893-4EA7-AD82-12F461E8C282}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EC6CB45-B893-4EA7-AD82-12F461E8C282}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EC6CB45-B893-4EA7-AD82-12F461E8C282}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EC6CB45-B893-4EA7-AD82-12F461E8C282}.Release|Any CPU.Build.0 = Release|Any CPU
+		{794A2668-6282-4B2A-A096-95CACD4C6AA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{794A2668-6282-4B2A-A096-95CACD4C6AA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{794A2668-6282-4B2A-A096-95CACD4C6AA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{794A2668-6282-4B2A-A096-95CACD4C6AA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{425BCA54-9075-4082-89F8-3C0067F2AAE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{425BCA54-9075-4082-89F8-3C0067F2AAE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{425BCA54-9075-4082-89F8-3C0067F2AAE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{425BCA54-9075-4082-89F8-3C0067F2AAE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6ED72477-B89E-410E-9315-5F805AEE646E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6ED72477-B89E-410E-9315-5F805AEE646E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6ED72477-B89E-410E-9315-5F805AEE646E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6ED72477-B89E-410E-9315-5F805AEE646E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EEDB43D-0ACD-4F47-9F87-53DB23A7B9CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EEDB43D-0ACD-4F47-9F87-53DB23A7B9CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EEDB43D-0ACD-4F47-9F87-53DB23A7B9CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EEDB43D-0ACD-4F47-9F87-53DB23A7B9CB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {037188B5-8A22-4CF5-95E2-BED08CF4DE34}
+	EndGlobalSection
+EndGlobal
