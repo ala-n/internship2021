@@ -6,13 +6,10 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    class TagModel : BaseModel
+    public class Tag : BaseModel
     {
         public string Name { get; set; }
         public int UsesByUser { get; set; }
         public int UsesByVendor { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime UpdatedAt { get; set; }
-        public bool IsDeleted { get; set; }
     }
 }
