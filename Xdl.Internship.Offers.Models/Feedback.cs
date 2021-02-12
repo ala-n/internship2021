@@ -7,11 +7,10 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    class FeedbackModel : BaseModel
+    public class Feedback : BaseModel
     {
         public ObjectId OfferId { get; set; }
         public ObjectId UserId { get; set; }
         public int Rate { get; set; }
-        public DateTime CreatedAt { get; set; }
     }
 }
