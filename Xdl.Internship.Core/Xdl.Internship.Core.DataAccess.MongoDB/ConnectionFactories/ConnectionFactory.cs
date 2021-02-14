@@ -2,7 +2,7 @@
 using System.Threading;
 using MongoDB.Driver;
 
-namespace Xdl.Internship.Core.DataAccess.MongoDB
+namespace Xdl.Internship.Core.DataAccess.MongoDB.ConnectionFactories
 {
     public class DefaultConnectionFactory : IConnectionFactory
     {

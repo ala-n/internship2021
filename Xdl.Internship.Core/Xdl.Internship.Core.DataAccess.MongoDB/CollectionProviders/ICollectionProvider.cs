@@ -1,6 +1,6 @@
 ﻿using MongoDB.Driver;
 
-namespace Xdl.Internship.Core.DataAccess.MongoDB
+namespace Xdl.Internship.Core.DataAccess.MongoDB.CollectionProviders
 {
     public interface ICollectionProvider
     {

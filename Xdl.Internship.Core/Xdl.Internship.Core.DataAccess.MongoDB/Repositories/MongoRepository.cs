@@ -6,8 +6,9 @@ using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
 using Xdl.Internship.Core.Models.MongoDB;
+using Xdl.Internship.Core.DataAccess.MongoDB.CollectionProviders;
 
-namespace Xdl.Internship.Core.DataAccess.MongoDB
+namespace Xdl.Internship.Core.DataAccess.MongoDB.Repositories
 {
     public class MongoRepository<TDocument> : IMongoRepository<TDocument> where TDocument : ModelBase
     {

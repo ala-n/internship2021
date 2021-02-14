@@ -1,7 +1,8 @@
 ﻿using System;
 using MongoDB.Driver;
+using Xdl.Internship.Core.DataAccess.MongoDB.ConnectionFactories;
 
-namespace Xdl.Internship.Core.DataAccess.MongoDB
+namespace Xdl.Internship.Core.DataAccess.MongoDB.CollectionProviders
 {
     public class DefaultCollectionProvider : ICollectionProvider
     {

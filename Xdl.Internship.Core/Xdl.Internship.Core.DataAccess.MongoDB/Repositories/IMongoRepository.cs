@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Xdl.Internship.Core.Models.MongoDB;
 
-namespace Xdl.Internship.Core.DataAccess.MongoDB
+namespace Xdl.Internship.Core.DataAccess.MongoDB.Repositories
 {
     public interface IMongoRepository<TDocument> where TDocument : IModelBase
     {
