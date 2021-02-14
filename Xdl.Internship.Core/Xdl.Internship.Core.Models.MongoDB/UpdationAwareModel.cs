@@ -10,7 +10,7 @@ namespace Xdl.Internship.Core.Models.MongoDB
         DateTimeOffset UpdatedAt { get; set; }
     }
 
-    class UpdationAwareModel : IUpdationAwareModel
+    public class UpdationAwareModel : IUpdationAwareModel
     {
         public ObjectId UpdatedBy { get; set; }
 

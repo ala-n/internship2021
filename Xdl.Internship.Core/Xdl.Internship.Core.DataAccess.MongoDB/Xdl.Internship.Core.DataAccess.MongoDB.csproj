@@ -2,11 +2,19 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
+    <EnableNETAnalyzers>false</EnableNETAnalyzers>
+    <EnforceCodeStyleInBuild>false</EnforceCodeStyleInBuild>
+    <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
+    <CodeAnalysisRuleSet>../intership2021.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Options" Version="5.0.0" />
     <PackageReference Include="MongoDB.Driver" Version="2.11.6" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>

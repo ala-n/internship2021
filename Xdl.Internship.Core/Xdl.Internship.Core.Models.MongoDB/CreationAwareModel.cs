@@ -10,7 +10,7 @@ namespace Xdl.Internship.Core.Models.MongoDB
         DateTimeOffset CreatedAt { get; set; }
     }
 
-    class CreationAwareModel : ICreationAwareModel
+    public class CreationAwareModel : ICreationAwareModel
     {
         public ObjectId CreatedBy { get; set; }
 

@@ -14,7 +14,8 @@ namespace Xdl.Internship.Core.DataAccess.MongoDB.CollectionProviders
             _connectionFactory = connectionFactory ?? throw new ArgumentNullException(nameof(connectionFactory));
         }
 
-        public IMongoCollection<TDocument> GetCollection<TDocument>(string name = null) where TDocument : IModelBase
+        public IMongoCollection<TDocument> GetCollection<TDocument>(string name = null)
+            where TDocument : IModelBase
         {
             if (string.IsNullOrEmpty(name))
             {
