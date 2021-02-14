@@ -1,7 +1,7 @@
 ﻿using System;
 using MongoDB.Bson;
 
-namespace Xdl.Internship.Core.Models.MongoDb
+namespace Xdl.Internship.Core.Models.MongoDB
 {
     public interface IUpdationAwareModel
     {

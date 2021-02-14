@@ -9,43 +9,22 @@ using Xdl.Internship.Core.Models.MongoDB;
 
 namespace Xdl.Internship.Core.DataAccess.MongoDB
 {
-    public class MongoRepository<TDocument> : IMongoRepository<TDocument> where TDocument : IModelBase
+    public class MongoRepository<TDocument> : IMongoRepository<TDocument> where TDocument : ModelBase
     {
+        private readonly ICollectionProvider collectionProvider;
         private readonly Lazy<IMongoCollection<TDocument>> collectionAccessor;
-        private readonly Lazy<IMongoClient> clientAccessor;
         private readonly FilterDefinitionBuilder<TDocument> fdb;
-        private readonly IMongoDBSetting settings;
-        private string DatabaseName { get; set; }
-        public MongoRepository(IMongoDBSetting settings)
-        {
-            settings = settings ?? throw new ArgumentNullException(nameof(settings));
-            this.settings = settings;
 
-            clientAccessor = new Lazy<IMongoClient>(BuildClient, LazyThreadSafetyMode.ExecutionAndPublication);
-            collectionAccessor = new Lazy<IMongoCollection<TDocument>>
-                (clientAccessor.Value.GetDatabase(DatabaseName).GetCollection<TDocument>(GetCollectionName(typeof(TDocument))));
-            fdb = new FilterDefinitionBuilder<TDocument>();
-        }
-        protected IMongoClient BuildClient()
+        public MongoRepository(ICollectionProvider collectionProvider)
         {
-            DatabaseName = settings.DatabaseName;
-            if (string.IsNullOrEmpty(DatabaseName))
-                throw new ArgumentNullException(nameof(DatabaseName));
-
-            var host = settings.HostKeyName;
-            if (string.IsNullOrEmpty(host))
-                throw new ArgumentNullException(nameof(host));
-            var port = settings.PortKeyName;
-            var client = new MongoClient(new MongoClientSettings
-            {
-                Server = new MongoServerAddress(host, int.Parse(port))
-            });
-            return client;
+            this.collectionProvider = collectionProvider;
+            this.collectionAccessor = new Lazy<IMongoCollection<TDocument>>(GetCollection, LazyThreadSafetyMode.ExecutionAndPublication);
+            this.fdb = new FilterDefinitionBuilder<TDocument>();
         }
 
-        protected virtual string GetCollectionName(Type docType)
+        protected virtual IMongoCollection<TDocument> GetCollection()
         {
-            return $"{docType.Name}Collection";
+            return collectionProvider.GetCollection<TDocument>();
         }
 
         public virtual Task<List<TDocument>> FilterByAsync(
