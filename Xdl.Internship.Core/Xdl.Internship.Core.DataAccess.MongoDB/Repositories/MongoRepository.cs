@@ -10,7 +10,7 @@ using Xdl.Internship.Core.DataAccess.MongoDB.CollectionProviders;
 
 namespace Xdl.Internship.Core.DataAccess.MongoDB.Repositories
 {
-    public class MongoRepository<TDocument> : IMongoRepository<TDocument> where TDocument : ModelBase
+    public class MongoRepository<TDocument> : IMongoRepository<TDocument> where TDocument : IModelBase
     {
         private readonly ICollectionProvider collectionProvider;
         private readonly Lazy<IMongoCollection<TDocument>> collectionAccessor;

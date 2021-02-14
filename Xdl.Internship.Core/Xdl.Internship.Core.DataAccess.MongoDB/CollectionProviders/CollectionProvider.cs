@@ -1,6 +1,7 @@
 ﻿using System;
 using MongoDB.Driver;
 using Xdl.Internship.Core.DataAccess.MongoDB.ConnectionFactories;
+using Xdl.Internship.Core.Models.MongoDB;
 
 namespace Xdl.Internship.Core.DataAccess.MongoDB.CollectionProviders
 {
@@ -13,7 +14,7 @@ namespace Xdl.Internship.Core.DataAccess.MongoDB.CollectionProviders
             _connectionFactory = connectionFactory ?? throw new ArgumentNullException(nameof(connectionFactory));
         }
 
-        public IMongoCollection<TDocument> GetCollection<TDocument>(string name = null) where TDocument : class
+        public IMongoCollection<TDocument> GetCollection<TDocument>(string name = null) where TDocument : IModelBase
         {
             if (string.IsNullOrEmpty(name))
             {
@@ -26,7 +27,6 @@ namespace Xdl.Internship.Core.DataAccess.MongoDB.CollectionProviders
 
         protected virtual string GetCollectionName(Type docType)
         {
-            // doc type = Foo -> FooCollection
             return $"{docType.Name}Collection";
         }
     }
