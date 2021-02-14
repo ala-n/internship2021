@@ -30,7 +30,7 @@ namespace Xdl.Internship.Core.DataAccess.MongoDB.Repositories
             return _collectionAccessor.Value.FindSync(filterExpression, null, cancellationToken).ToListAsync(cancellationToken);
         }
 
-        public virtual Task<TDocument> FindFirstOrDefaultAsync(Expression<Func<TDocument, bool>> filterExpression, CancellationToken cancellationToken = default)
+        public virtual Task<TDocument> TryFindOneAsync(Expression<Func<TDocument, bool>> filterExpression, CancellationToken cancellationToken = default)
         {
             return _collectionAccessor.Value.Find(filterExpression).FirstOrDefaultAsync(cancellationToken);
         }

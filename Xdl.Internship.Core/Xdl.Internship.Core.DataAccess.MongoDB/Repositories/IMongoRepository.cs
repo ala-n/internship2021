@@ -18,7 +18,7 @@ namespace Xdl.Internship.Core.DataAccess.MongoDB.Repositories
         Task<List<TDocument>> FilterByAsync(
            Expression<Func<TDocument, bool>> filterExpression, CancellationToken cancellationToken = default);
 
-        Task<TDocument> FindFirstOrDefaultAsync(Expression<Func<TDocument, bool>> filterExpression, CancellationToken cancellationToken = default);
+        Task<TDocument> TryFindOneAsync(Expression<Func<TDocument, bool>> filterExpression, CancellationToken cancellationToken = default);
 
         Task<TDocument> FindByIdAsync(ObjectId id, CancellationToken cancellationToken = default);
 
