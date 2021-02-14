@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xdl.Internship.Core.Models.MongoDB", "Xdl.Internship.Core.Models.MongoDB\Xdl.Internship.Core.Models.MongoDB.csproj", "{BFAAF890-8797-4254-A8C5-75ECE1C7563D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xdl.Internship.Core.Models.MongoDB", "Xdl.Internship.Core.Models.MongoDB\Xdl.Internship.Core.Models.MongoDB.csproj", "{BFAAF890-8797-4254-A8C5-75ECE1C7563D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xdl.Internship.Core.DataAccess.MongoDB", "Xdl.Internship.Core.DataAccess.MongoDB\Xdl.Internship.Core.DataAccess.MongoDB.csproj", "{32654822-423E-417F-B1D4-D6DB8FAAB722}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xdl.Internship.Core.DataAccess.MongoDB", "Xdl.Internship.Core.DataAccess.MongoDB\Xdl.Internship.Core.DataAccess.MongoDB.csproj", "{32654822-423E-417F-B1D4-D6DB8FAAB722}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
