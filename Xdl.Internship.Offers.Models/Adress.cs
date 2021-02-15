@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Models
+namespace Xdl.Internship.Offers.Models
 {
-    class AdressModel
+    public class Adress
     {
         public string Country { get; set; }
         public string City { get; set; }
