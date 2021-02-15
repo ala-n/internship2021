@@ -2,9 +2,9 @@
 {
     public interface IMongoDBSetting
     {
-        string HostKeyName { get; set; }
+        string Host { get; set; }
 
-        string PortKeyName { get; set; }
+        string Port { get; set; }
 
         string DatabaseName { get; set; }
     }

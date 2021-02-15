@@ -2,9 +2,9 @@
 {
     public class MongoDBSetting : IMongoDBSetting
     {
-        public string HostKeyName { get; set; }
+        public string Host { get; set; }
 
-        public string PortKeyName { get; set; }
+        public string Port { get; set; }
 
         public string DatabaseName { get; set; }
     }
