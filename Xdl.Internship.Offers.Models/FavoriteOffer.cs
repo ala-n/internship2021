@@ -8,6 +8,5 @@ namespace Xdl.Internship.Offers.Models
         public ObjectId OfferId { get; set; }
 
         public ObjectId UserId { get; set; }
-
     }
 }
