@@ -41,6 +41,7 @@ namespace Xdl.Internship.Core.DataAccess.MongoDB.Repositories
             return _collectionAccessor.Value.Find(filter).SingleOrDefaultAsync(cancellationToken);
         }
 
+        // Create
         public virtual Task InsertOneAsync(TDocument document, CancellationToken cancellationToken = default)
         {
             return _collectionAccessor.Value.InsertOneAsync(document, null, cancellationToken);
@@ -51,12 +52,14 @@ namespace Xdl.Internship.Core.DataAccess.MongoDB.Repositories
             await _collectionAccessor.Value.InsertManyAsync(documents, null, cancellationToken);
         }
 
+        // Update (put)
         public virtual async Task ReplaceOneAsync(TDocument document, CancellationToken cancellationToken = default)
         {
             var filter = _fdb.Eq(doc => doc.Id, document.Id);
             await _collectionAccessor.Value.FindOneAndReplaceAsync(filter, document, cancellationToken: cancellationToken);
         }
 
+        // Delete
         public virtual Task DeleteOneAsync(Expression<Func<TDocument, bool>> filterExpression, CancellationToken cancellationToken = default)
         {
             return _collectionAccessor.Value.FindOneAndDeleteAsync(filterExpression, cancellationToken: cancellationToken);
@@ -73,6 +76,7 @@ namespace Xdl.Internship.Core.DataAccess.MongoDB.Repositories
             return _collectionAccessor.Value.DeleteManyAsync(filterExpression, cancellationToken);
         }
 
+        // Read
         public virtual async Task<ICollection<TDocument>> GetAsync(ObjectId id, CancellationToken cancellationToken = default)
         {
             var filter = _fdb.Eq(doc => doc.Id, id);
@@ -90,6 +94,7 @@ namespace Xdl.Internship.Core.DataAccess.MongoDB.Repositories
             return await cursor.ToListAsync(cancellationToken);
         }
 
+        // Service methods
         protected virtual IMongoCollection<TDocument> GetCollection()
         {
             return _collectionProvider.GetCollection<TDocument>();
