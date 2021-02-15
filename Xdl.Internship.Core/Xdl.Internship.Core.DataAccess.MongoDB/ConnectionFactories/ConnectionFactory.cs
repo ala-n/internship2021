@@ -2,6 +2,7 @@
 using System.Threading;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
+using Xdl.Internship.Core.DataAccess.MongoDB.Settings;
 
 namespace Xdl.Internship.Core.DataAccess.MongoDB.ConnectionFactories
 {

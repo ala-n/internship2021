@@ -1,4 +1,4 @@
-﻿namespace Xdl.Internship.Core.DataAccess.MongoDB
+﻿namespace Xdl.Internship.Core.DataAccess.MongoDB.Settings
 {
     public interface IMongoDBSetting
     {
