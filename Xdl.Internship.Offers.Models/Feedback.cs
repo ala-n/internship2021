@@ -5,12 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Models
+namespace Xdl.Internship.Offers.Models
 {
-    public class Feedback : BaseModel
+    public class Feedback :  AuditableModelBase
     {
         public ObjectId OfferId { get; set; }
+        
         public ObjectId UserId { get; set; }
+        
+        public ObjectId VendorEntityId { get; set; }
+        
         public int Rate { get; set; }
     }
 }
