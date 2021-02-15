@@ -5,10 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using MongoDB.Bson;
 
-namespace Models
+namespace Xdl.Internship.Offers.Models
 {
-    public class Favorite : BaseModel
+    public class FavoriteOffer : CreationAwareModel
     {
         public ObjectId OfferId { get; set; }
+
+        public ObjectId UserId { get; set; }
+
     }
 }
