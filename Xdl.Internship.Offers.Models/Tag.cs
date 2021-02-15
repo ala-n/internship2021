@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Xdl.Internship.Core.Models.MongoDB;
 
 namespace Xdl.Internship.Offers.Models
 {

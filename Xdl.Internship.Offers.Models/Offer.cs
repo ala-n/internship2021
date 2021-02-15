@@ -1,9 +1,6 @@
 ﻿using MongoDB.Bson;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Xdl.Internship.Core.Models.MongoDB;
 
 namespace Xdl.Internship.Offers.Models
 {
@@ -25,7 +22,7 @@ namespace Xdl.Internship.Offers.Models
         
         public ObjectId VendorId { get; set; }
         
-        public TagModel[] Tags { get; set; }
+        public ObjectId[] Tags { get; set; }
         
         public int NumberOfUses { get; set; }
         
