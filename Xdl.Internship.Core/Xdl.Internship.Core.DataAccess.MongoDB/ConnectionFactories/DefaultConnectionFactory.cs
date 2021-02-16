@@ -8,12 +8,12 @@ namespace Xdl.Internship.Core.DataAccess.MongoDB.ConnectionFactories
 {
     public class DefaultConnectionFactory : IConnectionFactory
     {
-        private readonly IMongoDBSetting _settings;
+        private readonly MongoDBSetting _settings;
         private readonly Lazy<IMongoClient> _clientAccessor;
 
-        public DefaultConnectionFactory(IOptions<IMongoDBSetting> settings)
+        public DefaultConnectionFactory(IOptions<MongoDBSetting> settings)
         {
-            if (settings.Equals(null) || settings.Value.Equals(null))
+            if (settings == null || settings.Value == null)
             {
                 throw new ArgumentNullException(nameof(settings));
             }

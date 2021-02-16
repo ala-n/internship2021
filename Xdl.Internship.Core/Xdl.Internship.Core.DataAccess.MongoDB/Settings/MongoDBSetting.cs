@@ -1,6 +1,6 @@
 ﻿namespace Xdl.Internship.Core.DataAccess.MongoDB.Settings
 {
-    public class MongoDBSetting : IMongoDBSetting
+    public class MongoDBSetting
     {
         public string Host { get; set; }
 
