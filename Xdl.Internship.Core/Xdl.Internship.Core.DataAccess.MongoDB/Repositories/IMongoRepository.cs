@@ -15,13 +15,6 @@ namespace Xdl.Internship.Core.DataAccess.MongoDB.Repositories
 
         Task<ICollection<TDocument>> GetAllAsync(CancellationToken cancellationToken = default);
 
-        Task<List<TDocument>> FilterByAsync(
-           Expression<Func<TDocument, bool>> filterExpression, CancellationToken cancellationToken = default);
-
-        Task<TDocument> TryFindOneAsync(Expression<Func<TDocument, bool>> filterExpression, CancellationToken cancellationToken = default);
-
-        Task<TDocument> FindByIdAsync(ObjectId id, CancellationToken cancellationToken = default);
-
         Task InsertOneAsync(TDocument document, CancellationToken cancellationToken = default);
 
         Task InsertManyAsync(ICollection<TDocument> documents, CancellationToken cancellationToken = default);

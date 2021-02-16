@@ -19,26 +19,9 @@ namespace Xdl.Internship.Core.DataAccess.MongoDB.Repositories
 
         public MongoRepository(ICollectionProvider collectionProvider)
         {
-            _collectionProvider = collectionProvider;
+            _collectionProvider = collectionProvider ?? throw new ArgumentNullException(nameof(collectionProvider);
             _collectionAccessor = new Lazy<IMongoCollection<TDocument>>(GetCollection, LazyThreadSafetyMode.ExecutionAndPublication);
             _fdb = new FilterDefinitionBuilder<TDocument>();
-        }
-
-        public virtual Task<List<TDocument>> FilterByAsync(
-             Expression<Func<TDocument, bool>> filterExpression, CancellationToken cancellationToken = default)
-        {
-            return _collectionAccessor.Value.FindSync(filterExpression, null, cancellationToken).ToListAsync(cancellationToken);
-        }
-
-        public virtual Task<TDocument> TryFindOneAsync(Expression<Func<TDocument, bool>> filterExpression, CancellationToken cancellationToken = default)
-        {
-            return _collectionAccessor.Value.Find(filterExpression).FirstOrDefaultAsync(cancellationToken);
-        }
-
-        public virtual Task<TDocument> FindByIdAsync(ObjectId id, CancellationToken cancellationToken = default)
-        {
-            var filter = _fdb.Eq(doc => doc.Id, id);
-            return _collectionAccessor.Value.Find(filter).SingleOrDefaultAsync(cancellationToken);
         }
 
         // Create
@@ -47,9 +30,9 @@ namespace Xdl.Internship.Core.DataAccess.MongoDB.Repositories
             return _collectionAccessor.Value.InsertOneAsync(document, null, cancellationToken);
         }
 
-        public virtual async Task InsertManyAsync(ICollection<TDocument> documents, CancellationToken cancellationToken = default)
+        public virtual Task InsertManyAsync(ICollection<TDocument> documents, CancellationToken cancellationToken = default)
         {
-            await _collectionAccessor.Value.InsertManyAsync(documents, null, cancellationToken);
+            return _collectionAccessor.Value.InsertManyAsync(documents, null, cancellationToken);
         }
 
         // Update (put)
