@@ -11,9 +11,9 @@ namespace Xdl.Internship.Core.DataAccess.MongoDB.Repositories
     public interface IMongoRepository<TDocument>
         where TDocument : IModelBase
     {
-        Task<TDocument> FindByIdAsync(ObjectId id);
+        Task<TDocument> FindByIdAsync(ObjectId id, CancellationToken cancellationToken = default);
 
-        Task<ICollection<TDocument>> FindAsync(Expression<Func<TDocument, bool>> filterExpression);
+        Task<ICollection<TDocument>> FindAsync(Expression<Func<TDocument, bool>> filterExpression, CancellationToken cancellationToken = default);
 
         Task InsertOneAsync(TDocument document, CancellationToken cancellationToken = default);
 

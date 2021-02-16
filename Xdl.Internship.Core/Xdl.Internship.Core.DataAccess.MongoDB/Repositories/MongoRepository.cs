@@ -25,15 +25,15 @@ namespace Xdl.Internship.Core.DataAccess.MongoDB.Repositories
         }
 
         // Read
-        public virtual Task<TDocument> FindByIdAsync(ObjectId id)
+        public virtual Task<TDocument> FindByIdAsync(ObjectId id, CancellationToken cancellationToken = default)
         {
             var filter = _fdb.Eq(doc => doc.Id, id);
-            return GetCollection().Find(filter).SingleOrDefaultAsync();
+            return GetCollection().Find(filter).SingleOrDefaultAsync(cancellationToken);
         }
 
-        public virtual async Task<ICollection<TDocument>> FindAsync(Expression<Func<TDocument, bool>> filterExpression)
+        public virtual async Task<ICollection<TDocument>> FindAsync(Expression<Func<TDocument, bool>> filterExpression, CancellationToken cancellationToken = default)
         {
-            return await GetCollection().Find(filterExpression, null).ToListAsync();
+            return await GetCollection().Find(filterExpression, null).ToListAsync(cancellationToken);
         }
 
         // Create
