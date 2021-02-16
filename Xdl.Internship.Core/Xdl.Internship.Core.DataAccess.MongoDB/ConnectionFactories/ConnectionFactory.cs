@@ -13,8 +13,12 @@ namespace Xdl.Internship.Core.DataAccess.MongoDB.ConnectionFactories
 
         public DefaultConnectionFactory(IOptions<IMongoDBSetting> settings)
         {
-            _settings = settings.Value ?? throw new ArgumentNullException(nameof(settings));
+            if (settings.Equals(null) || settings.Value.Equals(null))
+            {
+                throw new ArgumentNullException(nameof(settings));
+            }
 
+            _settings = settings.Value;
             _clientAccessor = new Lazy<IMongoClient>(BuildClient, LazyThreadSafetyMode.ExecutionAndPublication);
         }
 
