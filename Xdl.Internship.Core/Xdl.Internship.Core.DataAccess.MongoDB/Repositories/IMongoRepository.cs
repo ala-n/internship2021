@@ -4,6 +4,7 @@ using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
 using MongoDB.Bson;
+using MongoDB.Driver;
 using Xdl.Internship.Core.Models.MongoDB;
 
 namespace Xdl.Internship.Core.DataAccess.MongoDB.Repositories
@@ -11,9 +12,9 @@ namespace Xdl.Internship.Core.DataAccess.MongoDB.Repositories
     public interface IMongoRepository<TDocument>
         where TDocument : IModelBase
     {
-        Task<ICollection<TDocument>> GetAsync(ObjectId id, CancellationToken cancellationToken = default);
+        Task<TDocument> FindByIdAsync(ObjectId id);
 
-        Task<ICollection<TDocument>> GetAllAsync(CancellationToken cancellationToken = default);
+        Task<ICollection<TDocument>> FindAsync(FilterDefinition<TDocument> filter, CancellationToken cancellationToken = default);
 
         Task InsertOneAsync(TDocument document, CancellationToken cancellationToken = default);
 

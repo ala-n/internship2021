@@ -19,64 +19,63 @@ namespace Xdl.Internship.Core.DataAccess.MongoDB.Repositories
 
         public MongoRepository(ICollectionProvider collectionProvider)
         {
-            _collectionProvider = collectionProvider ?? throw new ArgumentNullException(nameof(collectionProvider);
-            _collectionAccessor = new Lazy<IMongoCollection<TDocument>>(GetCollection, LazyThreadSafetyMode.ExecutionAndPublication);
+            _collectionProvider = collectionProvider ?? throw new ArgumentNullException(nameof(collectionProvider));
+            _collectionAccessor = new Lazy<IMongoCollection<TDocument>>(() => _collectionProvider.GetCollection<TDocument>(), LazyThreadSafetyMode.ExecutionAndPublication);
             _fdb = new FilterDefinitionBuilder<TDocument>();
         }
 
         // Create
         public virtual Task InsertOneAsync(TDocument document, CancellationToken cancellationToken = default)
         {
-            return _collectionAccessor.Value.InsertOneAsync(document, null, cancellationToken);
+            return GetCollection().InsertOneAsync(document, null, cancellationToken);
         }
 
         public virtual Task InsertManyAsync(ICollection<TDocument> documents, CancellationToken cancellationToken = default)
         {
-            return _collectionAccessor.Value.InsertManyAsync(documents, null, cancellationToken);
+            return GetCollection().InsertManyAsync(documents, null, cancellationToken);
         }
 
         // Update (put)
         public virtual async Task ReplaceOneAsync(TDocument document, CancellationToken cancellationToken = default)
         {
             var filter = _fdb.Eq(doc => doc.Id, document.Id);
-            await _collectionAccessor.Value.FindOneAndReplaceAsync(filter, document, cancellationToken: cancellationToken);
+            await GetCollection().FindOneAndReplaceAsync(filter, document, cancellationToken: cancellationToken);
         }
 
         // Delete
         public virtual Task DeleteOneAsync(Expression<Func<TDocument, bool>> filterExpression, CancellationToken cancellationToken = default)
         {
-            return _collectionAccessor.Value.FindOneAndDeleteAsync(filterExpression, cancellationToken: cancellationToken);
+            return GetCollection().FindOneAndDeleteAsync(filterExpression, cancellationToken: cancellationToken);
         }
 
         public virtual Task DeleteByIdAsync(ObjectId id, CancellationToken cancellationToken)
         {
             var filter = _fdb.Eq(doc => doc.Id, id);
-            return _collectionAccessor.Value.FindOneAndDeleteAsync(filter, cancellationToken: cancellationToken);
+            return GetCollection().FindOneAndDeleteAsync(filter, cancellationToken: cancellationToken);
         }
 
         public virtual Task DeleteManyAsync(Expression<Func<TDocument, bool>> filterExpression, CancellationToken cancellationToken = default)
         {
-            return _collectionAccessor.Value.DeleteManyAsync(filterExpression, cancellationToken);
+            return GetCollection().DeleteManyAsync(filterExpression, cancellationToken);
         }
 
         // Read
-        public virtual async Task<TDocument> FindByIdAsync(ObjectId id, CancellationToken cancellationToken = default)
+        public virtual Task<TDocument> FindByIdAsync(ObjectId id)
         {
             var filter = _fdb.Eq(doc => doc.Id, id);
-            var docs = await _collectionAccessor.Value.FindAsync(filter, null, cancellationToken);
-            return await docs.FirstOrDefaultAsync(cancellationToken);
+            return GetCollection().Find(filter).SingleOrDefaultAsync();
         }
 
         public virtual async Task<ICollection<TDocument>> FindAsync(FilterDefinition<TDocument> filter, CancellationToken cancellationToken = default)
         {
-            var docs = await _collectionAccessor.Value.FindAsync(filter, null, cancellationToken);
+            var docs = await GetCollection().FindAsync(filter, null, cancellationToken);
             return await docs.ToListAsync(cancellationToken);
         }
 
         // Service methods
         protected virtual IMongoCollection<TDocument> GetCollection()
         {
-            return _collectionProvider.GetCollection<TDocument>();
+            return _collectionAccessor.Value;
         }
     }
 }
