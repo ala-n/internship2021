@@ -60,21 +60,17 @@ namespace Xdl.Internship.Core.DataAccess.MongoDB.Repositories
         }
 
         // Read
-        public virtual async Task<ICollection<TDocument>> GetAsync(ObjectId id, CancellationToken cancellationToken = default)
+        public virtual async Task<TDocument> FindByIdAsync(ObjectId id, CancellationToken cancellationToken = default)
         {
             var filter = _fdb.Eq(doc => doc.Id, id);
-            return await FindAsync(filter, null, cancellationToken);
+            var docs = await _collectionAccessor.Value.FindAsync(filter, null, cancellationToken);
+            return await docs.FirstOrDefaultAsync(cancellationToken);
         }
 
-        public virtual async Task<ICollection<TDocument>> GetAllAsync(CancellationToken cancellationToken = default)
+        public virtual async Task<ICollection<TDocument>> FindAsync(FilterDefinition<TDocument> filter, CancellationToken cancellationToken = default)
         {
-            return await FindAsync(_fdb.Empty, null, cancellationToken);
-        }
-
-        protected async Task<ICollection<TDocument>> FindAsync(FilterDefinition<TDocument> filter, FindOptions<TDocument> options = null, CancellationToken cancellationToken = default)
-        {
-            var cursor = await _collectionAccessor.Value.FindAsync(filter, options, cancellationToken);
-            return await cursor.ToListAsync(cancellationToken);
+            var docs = await _collectionAccessor.Value.FindAsync(filter, null, cancellationToken);
+            return await docs.ToListAsync(cancellationToken);
         }
 
         // Service methods
