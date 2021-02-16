@@ -10,14 +10,14 @@ using Xdl.Internship.Core.Models.MongoDB;
 
 namespace Xdl.Internship.Core.DataAccess.MongoDB.Repositories
 {
-    public abstract class MongoRepository<TDocument> : IMongoRepository<TDocument>
+    public abstract class MongoRepositoryBase<TDocument> : IMongoRepositoryBase<TDocument>
         where TDocument : IModelBase
     {
         private readonly ICollectionProvider _collectionProvider;
         private readonly Lazy<IMongoCollection<TDocument>> _collectionAccessor;
         private readonly FilterDefinitionBuilder<TDocument> _fdb;
 
-        public MongoRepository(ICollectionProvider collectionProvider)
+        public MongoRepositoryBase(ICollectionProvider collectionProvider)
         {
             _collectionProvider = collectionProvider ?? throw new ArgumentNullException(nameof(collectionProvider));
             _collectionAccessor = new Lazy<IMongoCollection<TDocument>>(() => _collectionProvider.GetCollection<TDocument>(), LazyThreadSafetyMode.ExecutionAndPublication);

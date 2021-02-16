@@ -8,7 +8,7 @@ using Xdl.Internship.Core.Models.MongoDB;
 
 namespace Xdl.Internship.Core.DataAccess.MongoDB.Repositories
 {
-    public interface IMongoRepository<TDocument>
+    public interface IMongoRepositoryBase<TDocument>
         where TDocument : IModelBase
     {
         Task<TDocument> FindByIdAsync(ObjectId id, CancellationToken cancellationToken = default);
