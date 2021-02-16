@@ -31,6 +31,11 @@ namespace Xdl.Internship.Core.DataAccess.MongoDB.Repositories
             return GetCollection().Find(filter).SingleOrDefaultAsync(cancellationToken);
         }
 
+        public virtual Task<TDocument> FindOneAsync(Expression<Func<TDocument, bool>> filterExpression, CancellationToken cancellationToken = default)
+        {
+            return GetCollection().Find(filterExpression).SingleOrDefaultAsync(cancellationToken);
+        }
+
         public virtual async Task<ICollection<TDocument>> FindAsync(Expression<Func<TDocument, bool>> filterExpression, CancellationToken cancellationToken = default)
         {
             return await GetCollection().Find(filterExpression, null).ToListAsync(cancellationToken);

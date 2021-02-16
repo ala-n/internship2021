@@ -13,6 +13,8 @@ namespace Xdl.Internship.Core.DataAccess.MongoDB.Repositories
     {
         Task<TDocument> FindByIdAsync(ObjectId id, CancellationToken cancellationToken = default);
 
+        Task<TDocument> FindOneAsync(Expression<Func<TDocument, bool>> filterExpression, CancellationToken cancellationToken = default);
+
         Task<ICollection<TDocument>> FindAsync(Expression<Func<TDocument, bool>> filterExpression, CancellationToken cancellationToken = default);
 
         Task InsertOneAsync(TDocument document, CancellationToken cancellationToken = default);
