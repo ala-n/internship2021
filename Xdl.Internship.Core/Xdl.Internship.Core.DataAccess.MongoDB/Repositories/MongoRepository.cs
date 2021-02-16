@@ -24,6 +24,18 @@ namespace Xdl.Internship.Core.DataAccess.MongoDB.Repositories
             _fdb = new FilterDefinitionBuilder<TDocument>();
         }
 
+        // Read
+        public virtual Task<TDocument> FindByIdAsync(ObjectId id)
+        {
+            var filter = _fdb.Eq(doc => doc.Id, id);
+            return GetCollection().Find(filter).SingleOrDefaultAsync();
+        }
+
+        public virtual async Task<ICollection<TDocument>> FindAsync(Expression<Func<TDocument, bool>> filterExpression)
+        {
+            return await GetCollection().Find(filterExpression, null).ToListAsync();
+        }
+
         // Create
         public virtual Task InsertOneAsync(TDocument document, CancellationToken cancellationToken = default)
         {
@@ -36,10 +48,10 @@ namespace Xdl.Internship.Core.DataAccess.MongoDB.Repositories
         }
 
         // Update (put)
-        public virtual async Task ReplaceOneAsync(TDocument document, CancellationToken cancellationToken = default)
+        public virtual Task ReplaceOneAsync(TDocument document, CancellationToken cancellationToken = default)
         {
             var filter = _fdb.Eq(doc => doc.Id, document.Id);
-            await GetCollection().FindOneAndReplaceAsync(filter, document, cancellationToken: cancellationToken);
+            return GetCollection().FindOneAndReplaceAsync(filter, document, cancellationToken: cancellationToken);
         }
 
         // Delete
@@ -57,19 +69,6 @@ namespace Xdl.Internship.Core.DataAccess.MongoDB.Repositories
         public virtual Task DeleteManyAsync(Expression<Func<TDocument, bool>> filterExpression, CancellationToken cancellationToken = default)
         {
             return GetCollection().DeleteManyAsync(filterExpression, cancellationToken);
-        }
-
-        // Read
-        public virtual Task<TDocument> FindByIdAsync(ObjectId id)
-        {
-            var filter = _fdb.Eq(doc => doc.Id, id);
-            return GetCollection().Find(filter).SingleOrDefaultAsync();
-        }
-
-        public virtual async Task<ICollection<TDocument>> FindAsync(FilterDefinition<TDocument> filter, CancellationToken cancellationToken = default)
-        {
-            var docs = await GetCollection().FindAsync(filter, null, cancellationToken);
-            return await docs.ToListAsync(cancellationToken);
         }
 
         // Service methods
