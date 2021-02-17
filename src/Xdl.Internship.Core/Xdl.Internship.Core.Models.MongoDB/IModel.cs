@@ -2,7 +2,7 @@
 
 namespace Xdl.Internship.Core.Models.MongoDB
 {
-    public interface IModelBase
+    public interface IModel
     {
         ObjectId Id { get; set; }
     }

@@ -11,7 +11,7 @@ using Xdl.Internship.Core.Models.MongoDB;
 namespace Xdl.Internship.Core.DataAccess.MongoDB.Repositories
 {
     public abstract class MongoRepositoryBase<TDocument> : IMongoRepository<TDocument>
-        where TDocument : IModelBase
+        where TDocument : IModel
     {
         private readonly ICollectionProvider _collectionProvider;
         private readonly Lazy<IMongoCollection<TDocument>> _collectionAccessor;

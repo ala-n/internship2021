@@ -15,7 +15,7 @@ namespace Xdl.Internship.Core.DataAccess.MongoDB.CollectionProviders
         }
 
         public IMongoCollection<TDocument> GetCollection<TDocument>(string name = null)
-            where TDocument : IModelBase
+            where TDocument : IModel
         {
             if (string.IsNullOrEmpty(name))
             {
