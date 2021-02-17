@@ -24,16 +24,16 @@ namespace Xdl.Internship.Core.DataAccess.MongoDB.ConnectionFactories
 
         public IMongoDatabase GetDb()
         {
-            return _clientAccessor.Value.GetDatabase(_settings.DatabaseName);
-        }
-
-        private IMongoClient BuildClient()
-        {
             if (string.IsNullOrEmpty(_settings.DatabaseName))
             {
                 throw new ArgumentNullException(nameof(_settings.DatabaseName));
             }
 
+            return _clientAccessor.Value.GetDatabase(_settings.DatabaseName);
+        }
+
+        private IMongoClient BuildClient()
+        {
             var host = _settings.Host;
             if (string.IsNullOrEmpty(host))
             {
