@@ -1,10 +1,10 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
-	<CodeAnalysisRuleSet>../intership2021.ruleset</CodeAnalysisRuleSet>
-	<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	  <CodeAnalysisRuleSet>../intership2021.ruleset</CodeAnalysisRuleSet>
+	  <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,7 +12,6 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Xdl.Internship.Core.Models.MongoDB" Version="1.0.0" />
   </ItemGroup>
 
 </Project>
