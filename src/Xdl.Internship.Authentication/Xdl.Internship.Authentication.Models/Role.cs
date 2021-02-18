@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Xdl.Internship.Authentication.Models
+﻿namespace Xdl.Internship.Authentication.Models
 {
     public enum Role
     {

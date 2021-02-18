@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Xdl.Internship.Authentication.DTOs\Xdl.Internship.Authentication.DTOs.csproj" />
     <ProjectReference Include="..\Xdl.Internship.Authentication.Models\Xdl.Internship.Authentication.Models.csproj" />
   </ItemGroup>
 

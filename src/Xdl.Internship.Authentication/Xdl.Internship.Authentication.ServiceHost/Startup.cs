@@ -7,7 +7,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Xdl.Internship.Authentication.DataAccess;
+using Xdl.Internship.Authentication.DataAccess.Interfaces;
 using Xdl.Internship.Authentication.ServiceHost.Tools;
+using Xdl.Internship.Core.DataAccess.MongoDB.CollectionProviders;
+using Xdl.Internship.Core.DataAccess.MongoDB.ConnectionFactories;
 
 namespace Xdl.Internship.Authentication.ServiceHost
 {
@@ -42,6 +46,10 @@ namespace Xdl.Internship.Authentication.ServiceHost
                     ValidateAudience = false,
                 };
             });
+
+            services.AddSingleton<ICollectionProvider, DefaultCollectionProvider>();
+            services.AddSingleton<IConnectionFactory, DefaultConnectionFactory>();
+            services.AddSingleton<IAuthenticationRepository, AuthenticationRepository>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
