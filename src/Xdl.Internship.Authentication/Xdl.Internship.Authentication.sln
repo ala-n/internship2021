@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xdl.Internship.Authentication.Models", "Xdl.Internship.Authentication.Models\Xdl.Internship.Authentication.Models.csproj", "{CE39272C-2AD5-478F-A1A5-5CC20CE4322E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xdl.Internship.Authentication.DataAccess", "Xdl.Internship.Authentication.DataAccess\Xdl.Internship.Authentication.DataAccess.csproj", "{8EADC37C-AB45-475E-9A28-7BC02437ED38}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xdl.Internship.Authentication.ServiceHost", "Xdl.Internship.Authentication.ServiceHost\Xdl.Internship.Authentication.ServiceHost.csproj", "{8C461E72-9E7E-4CF9-B3E1-A97A0A496A01}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CE39272C-2AD5-478F-A1A5-5CC20CE4322E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE39272C-2AD5-478F-A1A5-5CC20CE4322E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE39272C-2AD5-478F-A1A5-5CC20CE4322E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE39272C-2AD5-478F-A1A5-5CC20CE4322E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8EADC37C-AB45-475E-9A28-7BC02437ED38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EADC37C-AB45-475E-9A28-7BC02437ED38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EADC37C-AB45-475E-9A28-7BC02437ED38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EADC37C-AB45-475E-9A28-7BC02437ED38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C461E72-9E7E-4CF9-B3E1-A97A0A496A01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C461E72-9E7E-4CF9-B3E1-A97A0A496A01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C461E72-9E7E-4CF9-B3E1-A97A0A496A01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C461E72-9E7E-4CF9-B3E1-A97A0A496A01}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4045F0AB-5A51-4560-8722-165DC5F075E8}
+	EndGlobalSection
+EndGlobal
