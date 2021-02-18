@@ -1,0 +1,17 @@
+version: '3.4'
+
+services:
+  xdl.internship.notifications.servicehost:
+    image: ${DOCKER_REGISTRY-}xdlinternshipnotificationsservicehost
+    build:
+      context: .
+      dockerfile: Xdl.InternShip.Notifications.ServiceHost/Dockerfile
+    depends_on: 
+      - rabbitmq
+  rabbitmq:
+    container_name: rabbitmq
+    hostname: my-rabbit
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    image: rabbitmq:3-management
