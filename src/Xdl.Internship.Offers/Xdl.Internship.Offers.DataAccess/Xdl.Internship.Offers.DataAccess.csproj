@@ -17,14 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Xdl.Internship.Offers.DTOs\Xdl.Internship.Offers.DTOs.csproj" />
-    <ProjectReference Include="..\Xdl.Internship.Offers.Handlers\Xdl.Internship.Offers.Handlers.csproj" />
     <ProjectReference Include="..\Xdl.Internship.Offers.Models\Xdl.Internship.Offers.Models.csproj" />
-    <ProjectReference Include="..\Xdl.Internship.Offers.SDK\Xdl.Internship.Offers.SDK.csproj" />
-    <ProjectReference Include="..\Xdl.Internship.Offers.ServiceHost\Xdl.Internship.Offers.ServiceHost.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Repositories\" />
   </ItemGroup>
 
 </Project>
