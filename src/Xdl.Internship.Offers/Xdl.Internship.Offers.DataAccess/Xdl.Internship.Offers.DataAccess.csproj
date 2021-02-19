@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <CodeAnalysisRuleSet>../intership2021.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MongoDB.Driver" Version="2.12.0-beta1" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Xdl.Internship.Core.DataAccess.MongoDB" Version="1.0.0" />
+    <PackageReference Include="Xdl.Internship.Core.Models.MongoDB" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Xdl.Internship.Offers.DTOs\Xdl.Internship.Offers.DTOs.csproj" />
+    <ProjectReference Include="..\Xdl.Internship.Offers.Handlers\Xdl.Internship.Offers.Handlers.csproj" />
+    <ProjectReference Include="..\Xdl.Internship.Offers.Models\Xdl.Internship.Offers.Models.csproj" />
+    <ProjectReference Include="..\Xdl.Internship.Offers.SDK\Xdl.Internship.Offers.SDK.csproj" />
+    <ProjectReference Include="..\Xdl.Internship.Offers.ServiceHost\Xdl.Internship.Offers.ServiceHost.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Repositories\" />
+  </ItemGroup>
+
+</Project>
