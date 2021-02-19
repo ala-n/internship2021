@@ -32,9 +32,8 @@ namespace Xdl.Internship.Authentication.DataAccess
         public Task<User> LoginAsync(LoginAuth loginAuth, CancellationToken cancellationToken = default)
         {
             var user = FindOneAsync(x => x.Login == loginAuth.Login && x.Password == loginAuth.Password, cancellationToken);
-            if (user != null)
+            if (user.Result != null)
             {
-                user.Result.Password = null;
                 return user;
             }
 

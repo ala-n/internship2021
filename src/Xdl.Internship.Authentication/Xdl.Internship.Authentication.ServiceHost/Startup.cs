@@ -1,4 +1,3 @@
-using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -9,9 +8,9 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Xdl.Internship.Authentication.DataAccess;
 using Xdl.Internship.Authentication.DataAccess.Interfaces;
-using Xdl.Internship.Authentication.ServiceHost.Tools;
 using Xdl.Internship.Core.DataAccess.MongoDB.CollectionProviders;
 using Xdl.Internship.Core.DataAccess.MongoDB.ConnectionFactories;
+using Xdl.Internship.Core.DataAccess.MongoDB.Settings;
 
 namespace Xdl.Internship.Authentication.ServiceHost
 {
@@ -26,10 +25,6 @@ namespace Xdl.Internship.Authentication.ServiceHost
 
         public void ConfigureServices(IServiceCollection services)
         {
-            var appSettingsSection = Configuration.GetSection("AppSettings");
-            services.Configure<AppSettings>(appSettingsSection);
-            var appSettings = appSettingsSection.Get<AppSettings>();
-            var secretKey = Encoding.ASCII.GetBytes(appSettings.SecretKey);
             services.AddAuthentication(x =>
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -41,12 +36,12 @@ namespace Xdl.Internship.Authentication.ServiceHost
                 x.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(secretKey),
                     ValidateIssuer = false,
                     ValidateAudience = false,
                 };
             });
 
+            services.Configure<MongoDBSetting>(Configuration.GetSection("MongoDBSettings"));
             services.AddSingleton<ICollectionProvider, DefaultCollectionProvider>();
             services.AddSingleton<IConnectionFactory, DefaultConnectionFactory>();
             services.AddSingleton<IAuthenticationRepository, AuthenticationRepository>();
