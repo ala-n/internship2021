@@ -1,31 +1,34 @@
 ﻿using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Xdl.Internship.Authentication.DataAccess.Interfaces;
 using Xdl.Internship.Authentication.DTOs;
+using Xdl.Internship.Authentication.Models;
 
 namespace Xdl.Internship.Authentication.ServiceHost.Controllers
 {
     [Authorize]
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/users")]
     public class UsersController : ControllerBase
     {
-        private readonly IAuthenticationRepository _authenticationRepository;
+        private readonly IUserRepository _authenticationRepository;
 
-        public UsersController(IAuthenticationRepository authenticationRepository)
+        public UsersController(IUserRepository authenticationRepository)
         {
             _authenticationRepository = authenticationRepository;
         }
 
         [AllowAnonymous]
         [HttpPost("login")]
-        public IActionResult Login([FromBody] LoginAuth loginModel)
+        public async Task<IActionResult> LoginAsync([FromBody] UserCredentials userCredentials)
         {
-            var user = _authenticationRepository.LoginAsync(loginModel, default);
+            var user = await _authenticationRepository.LoginAsync(userCredentials, default);
             if (user == null)
             {
                 return BadRequest(new { message = "Login or password is incorrect" });
@@ -42,7 +45,7 @@ namespace Xdl.Internship.Authentication.ServiceHost.Controllers
                 Expires = DateTime.UtcNow.AddDays(2),
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
-            user.Result.Token = tokenHandler.WriteToken(token);
+            user.Token = tokenHandler.WriteToken(token);
             return Ok(user);
         }
     }

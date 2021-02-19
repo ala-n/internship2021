@@ -9,12 +9,12 @@ using Xdl.Internship.Authentication.Models;
 
 namespace Xdl.Internship.Authentication.DataAccess.Interfaces
 {
-    public interface IAuthenticationRepository
+    public interface IUserRepository
     {
         Task<User> FindUserByIdAsync(ObjectId id, CancellationToken cancellationToken = default);
 
         Task<ICollection<User>> FindUsersAsync(Expression<Func<User, bool>> filterExpression, CancellationToken cancellationToken = default);
 
-        Task<User> LoginAsync(LoginAuth loginAuth, CancellationToken cancellationToken = default);
+        Task<User> LoginAsync(UserCredentials loginAuth, CancellationToken cancellationToken = default);
     }
 }

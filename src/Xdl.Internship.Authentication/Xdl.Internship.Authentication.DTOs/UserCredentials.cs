@@ -1,6 +1,6 @@
 ﻿namespace Xdl.Internship.Authentication.DTOs
 {
-    public class LoginAuth
+    public class UserCredentials
     {
         public string Login { get; set; }
 

@@ -44,7 +44,7 @@ namespace Xdl.Internship.Authentication.ServiceHost
             services.Configure<MongoDBSetting>(Configuration.GetSection("MongoDBSettings"));
             services.AddSingleton<ICollectionProvider, DefaultCollectionProvider>();
             services.AddSingleton<IConnectionFactory, DefaultConnectionFactory>();
-            services.AddSingleton<IAuthenticationRepository, AuthenticationRepository>();
+            services.AddSingleton<IUserRepository, UserRepository>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
