@@ -9,7 +9,7 @@ using MailKit.Net.Smtp;
 
 namespace Xdl.Internship.Notifications.Services
 {
-    class EmailService : INotifier
+    public class EmailService : INotifier
     {
         public void SendAsync(INotification notification)
         {

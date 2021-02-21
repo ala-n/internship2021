@@ -3,13 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xdl.Internship.Notifications.ServiceHost", "Xdl.Internship.Notifications.ServiceHost\Xdl.Internship.Notifications.ServiceHost.csproj", "{8268A3F8-742C-4671-8A4F-1E7916CB0460}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xdl.Internship.Notifications.ServiceHost", "Xdl.Internship.Notifications.ServiceHost\Xdl.Internship.Notifications.ServiceHost.csproj", "{8268A3F8-742C-4671-8A4F-1E7916CB0460}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xdl.Internship.Notifications.SDK", "Xdl.Internship.Notifications.SDK\Xdl.Internship.Notifications.SDK.csproj", "{37D528CF-4C59-4B2C-A5D2-FACF6007B1F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xdl.Internship.Notifications.SDK", "Xdl.Internship.Notifications.SDK\Xdl.Internship.Notifications.SDK.csproj", "{37D528CF-4C59-4B2C-A5D2-FACF6007B1F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xdl.Internship.Notifications.Services", "Xdl.Internship.Notifications.Services\Xdl.Internship.Notifications.Services.csproj", "{41CDFD88-C745-48EF-B541-E310E4221D82}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xdl.Internship.Notifications.Services", "Xdl.Internship.Notifications.Services\Xdl.Internship.Notifications.Services.csproj", "{41CDFD88-C745-48EF-B541-E310E4221D82}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{458D20B6-7080-49E5-A245-2C6088CEAE4F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{32A527E3-0370-49B0-B839-63622E9D2D31}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

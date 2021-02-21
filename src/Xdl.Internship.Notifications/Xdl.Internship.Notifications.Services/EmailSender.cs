@@ -35,8 +35,8 @@ namespace Xdl.Internship.Notifications.Services
             _channel = _connection.CreateModel();
 
             _channel.ExchangeDeclare("notifications.exchange", ExchangeType.Topic);
-            _channel.QueueDeclare("notifications.queue.log", false, false, false, null);
-            _channel.QueueBind("notifications.queue.log", "notifications.exchange", "notifications.queue.*", null);
+            _channel.QueueDeclare("notifications.queue", false, false, false, null);
+            _channel.QueueBind("notifications.queue", "notifications.exchange", "notifications.queue.*", null);
             _channel.BasicQos(0, 1, false);
         }
 

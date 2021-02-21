@@ -8,6 +8,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Xdl.Internship.Notifications.Services;
+using Serilog;
+using Microsoft.Extensions.Configuration;
+using Xdl.Internship.Notifications.ServiceHost.Configuration;
 
 namespace Xdl.Internship.Notifications.ServiceHost
 {
@@ -15,9 +18,17 @@ namespace Xdl.Internship.Notifications.ServiceHost
     {
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
+        public IConfiguration Configuration { get; }
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddHostedService<EmailSender>();
+            services.Configure<RabbitMQConfiguration>(Configuration.GetSection("RabbitMq"));
+            services.Configure<SMTPConfiguration>(Configuration.GetSection("SMTP"));
+            services.AddHostedService<RabbitMQProvider>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -29,6 +40,7 @@ namespace Xdl.Internship.Notifications.ServiceHost
             }
 
             app.UseRouting();
+            app.UseSerilogRequestLogging();
 
             app.UseEndpoints(endpoints =>
             {
