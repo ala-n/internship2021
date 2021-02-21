@@ -37,22 +37,6 @@ namespace Xdl.Internship.Notifications.Services
             _emailService = emailService;
             _serilog = serilog;
         }
-        protected override Task ExecuteAsync(CancellationToken stoppingToken)
-        {
-            stoppingToken.ThrowIfCancellationRequested();
-
-            var consumer = new EventingBasicConsumer(_channel);
-            consumer.Received += (ch, ea) =>
-            {
-                var body = ea.Body.ToArray();
-                var message = JsonSerializer.Deserialize<EmailMessage>(body);
-                HandleMessage(message);
-            };
-
-            _channel.BasicConsume(_queueName, false, consumer);
-            _serilog.Information("Message has recieved");
-            return Task.CompletedTask;
-        }
 
         public override Task StartAsync(CancellationToken cancellationToken)
         {
@@ -71,6 +55,23 @@ namespace Xdl.Internship.Notifications.Services
             _channel.QueueDeclare(_queueName, false, false, false, null);
             _channel.QueueBind(_queueName, _exchangeName, _queueName, null);
             _channel.BasicQos(0, 1, false);
+            return Task.CompletedTask;
+        }
+
+        protected override Task ExecuteAsync(CancellationToken stoppingToken)
+        {
+            stoppingToken.ThrowIfCancellationRequested();
+
+            var consumer = new EventingBasicConsumer(_channel);
+            consumer.Received += (ch, ea) =>
+            {
+                var body = ea.Body.ToArray();
+                var message = JsonSerializer.Deserialize<EmailMessage>(body);
+                HandleMessage(message);
+            };
+
+            _channel.BasicConsume(_queueName, false, consumer);
+            _serilog.Information("Message has recieved");
             return Task.CompletedTask;
         }
 
