@@ -11,6 +11,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Xdl.Internship.Core.DataAccess.MongoDB.CollectionProviders;
+using Xdl.Internship.Core.DataAccess.MongoDB.ConnectionFactories;
+using Xdl.Internship.Core.DataAccess.MongoDB.Settings;
+using Xdl.Internship.Offers.DataAccess.Repositories;
 
 namespace Xdl.Internship.Offers.ServiceHost
 {
@@ -26,6 +30,11 @@ namespace Xdl.Internship.Offers.ServiceHost
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<MongoDBSetting>(Configuration.GetSection("MongoDBSetting"));
+            services.AddSingleton<IConnectionFactory, DefaultConnectionFactory>();
+            services.AddSingleton<ICollectionProvider, DefaultCollectionProvider>();
+            services.AddSingleton<VendorRepository>();
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
