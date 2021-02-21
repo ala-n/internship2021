@@ -4,9 +4,9 @@ using Xdl.Internship.Offers.Models;
 
 namespace Xdl.Internship.Offers.DataAccess.Repositories
 {
-    public class VendorRepository : MongoRepositoryBase<Vendor>
+    public class FavoriteOfferRepository : MongoRepositoryBase<FavoriteOffer>
     {
-        public VendorRepository(ICollectionProvider collectionProvider)
+        public FavoriteOfferRepository(ICollectionProvider collectionProvider)
             : base(collectionProvider)
         {
         }
