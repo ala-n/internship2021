@@ -17,9 +17,5 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CheckExpiredOffers\" />
-    <Folder Include="CheckExpiredOffers\Interfaces\" />
-    <Folder Include="CheckExpiredOffers\RequestModels\" />
-    <Folder Include="CheckExpiredOffers\ResponseModels\" />
-    <Folder Include="CheckExpiredOffers\QueryHandlers\" />
   </ItemGroup>
 </Project>
