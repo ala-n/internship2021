@@ -3,10 +3,10 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
-using Serilog;
 using Xdl.Internship.Notifications.SDK.DTOs;
 
 namespace Xdl.Internship.Notifications.Services
@@ -71,7 +71,7 @@ namespace Xdl.Internship.Notifications.Services
             };
 
             _channel.BasicConsume(_queueName, false, consumer);
-            _serilog.Information("Message has recieved");
+            _serilog.LogInformation("Message has recieved");
             return Task.CompletedTask;
         }
 
@@ -80,11 +80,11 @@ namespace Xdl.Internship.Notifications.Services
             try
             {
                 _emailService.SendEmail(emailMessage);
-                _serilog.Information("Message was sent to ", emailMessage.To);
+                _serilog.LogInformation("Message was sent to ", emailMessage.To);
             }
             catch (Exception ex)
             {
-                _serilog.Information(ex.Message);
+                _serilog.LogInformation(ex.Message);
             }
         }
     }
