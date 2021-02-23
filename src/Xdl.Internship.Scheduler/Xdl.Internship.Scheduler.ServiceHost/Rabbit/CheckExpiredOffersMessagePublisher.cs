@@ -13,10 +13,5 @@ namespace Xdl.Internship.Scheduler.ServiceHost.Rabbit
         {
             model.QueueDeclare(queue: _queeName, durable: false, exclusive: false, autoDelete: false, arguments: null);
         }
-
-        public void Publish(byte[] body)
-        {
-            
-        }
     }
 }

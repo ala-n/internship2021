@@ -36,7 +36,6 @@ namespace Xdl.Internship.Scheduler.ServiceHost
             // Rabbit
             services.AddOptions();
             services.Configure<RabbitMqConfiguration>(Configuration.GetSection("RabbitMq"));
-            services.AddTransient<ISend, Sender>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
