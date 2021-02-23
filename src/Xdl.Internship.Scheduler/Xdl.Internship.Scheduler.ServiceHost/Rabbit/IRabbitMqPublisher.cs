@@ -1,9 +1,8 @@
 ﻿using System;
-
 namespace Xdl.Internship.Scheduler.ServiceHost.Rabbit
 {
-    public interface ISend
+    public interface IRabbitMqPublisher
     {
-        void Send(object obj);
+        void Publish(byte[] body);
     }
 }
