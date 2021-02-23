@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Threading;
 using Microsoft.Extensions.Options;
 using RabbitMQ.Client;
-using System.Threading;
 
 namespace Xdl.Internship.Scheduler.ServiceHost.Rabbit
 {
@@ -22,23 +22,10 @@ namespace Xdl.Internship.Scheduler.ServiceHost.Rabbit
             _modelAccessor = new Lazy<IModel>(BuildModel, LazyThreadSafetyMode.ExecutionAndPublication);
         }
 
-        private IModel BuildModel()
+        public void Publish(byte[] body)
         {
-            var factory = new ConnectionFactory
-            {
-                HostName = _hostname,
-                UserName = _username,
-                Password = _password
-            };
-            var connection = factory.CreateConnection();
-
-            IModel channel = connection.CreateModel();
-            DeclareQuee(channel);
-
-            return channel;
+            throw new NotImplementedException();
         }
-
-        protected abstract void DeclareQuee(IModel model);
 
         public void Dispose()
         {
@@ -48,9 +35,22 @@ namespace Xdl.Internship.Scheduler.ServiceHost.Rabbit
             }
         }
 
-        public void Publish(byte[] body)
+        protected abstract void DeclareQuee(IModel model);
+
+        private IModel BuildModel()
         {
-            throw new NotImplementedException();
+            var factory = new ConnectionFactory
+            {
+                HostName = _hostname,
+                UserName = _username,
+                Password = _password,
+            };
+            var connection = factory.CreateConnection();
+
+            IModel channel = connection.CreateModel();
+            DeclareQuee(channel);
+
+            return channel;
         }
     }
 }

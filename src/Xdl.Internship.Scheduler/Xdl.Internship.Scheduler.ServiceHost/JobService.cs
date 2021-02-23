@@ -12,7 +12,7 @@ namespace Xdl.Internship.Scheduler.ServiceHost
     {
         private readonly ISchedulerFactory _schedulerFactory;
         private readonly IEnumerable<IJobSetup> _jobSetups;
-        
+
         public JobService(ISchedulerFactory schedulerFactory, IEnumerable<IJobSetup> jobSetups)
         {
             _schedulerFactory = schedulerFactory;

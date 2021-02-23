@@ -14,8 +14,7 @@ namespace Xdl.Internship.Scheduler.ServiceHost.Rabbit
         {
             _publisher = publisher;
         }
-        public void Send(object obj) { }
-        
+
         public Task PublishAsync(CheckExpiredOffersMessageDTO message)
         {
             string jsonView = JsonSerializer.Serialize(message);
