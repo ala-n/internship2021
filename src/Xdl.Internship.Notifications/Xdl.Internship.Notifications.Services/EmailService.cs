@@ -2,8 +2,7 @@
 using Microsoft.Extensions.Options;
 using MimeKit;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using Xdl.Internship.Notifications.SDK.Configuration;
 using Xdl.Internship.Notifications.SDK.DTOs;
 using Xdl.Internship.Notifications.SDK.Services;
 

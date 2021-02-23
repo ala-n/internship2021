@@ -7,6 +7,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
+using Xdl.Internship.Notifications.SDK.Configuration;
 using Xdl.Internship.Notifications.SDK.DTOs;
 
 namespace Xdl.Internship.Notifications.Services
@@ -25,7 +26,7 @@ namespace Xdl.Internship.Notifications.Services
         private readonly ILogger _serilog;
         private IConnection _connection;
 
-        public RabbitMQProvider(IOptions<RabbitMqConfiguration> rabbitMqOptions, EmailService emailService, ILogger serilog)
+        public RabbitMQProvider(IOptions<RabbitMQConfiguration> rabbitMqOptions, EmailService emailService, ILogger serilog)
         {
             _hostName = rabbitMqOptions.Value.HostName;
             _userName = rabbitMqOptions.Value.UserName;
