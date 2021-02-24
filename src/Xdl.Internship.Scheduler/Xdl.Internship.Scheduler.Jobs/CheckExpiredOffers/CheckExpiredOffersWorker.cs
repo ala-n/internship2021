@@ -24,7 +24,7 @@ namespace Xdl.Internship.Scheduler.Jobs.CheckExpiredOffers
         {
              Console.WriteLine("Job execute");
 
-             return _mediator.Publish(new CheckExpiredOffersRequest(), cancellationToken);
+             return _mediator.Send(new CheckExpiredOffersRequest(), cancellationToken);
         }
     }
 }

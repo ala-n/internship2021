@@ -5,12 +5,12 @@ using MediatR;
 
 namespace Xdl.Internship.Scheduler.Handlers.CheckExpiredOffers
 {
-    public class CheckExpiredOffersHandler : IRequestHandler<CheckExpiredOffersRequest>
+    public class CheckExpiredOffersHandler : IRequestHandler<CheckExpiredOffersRequest, bool>
     {
-        public Task<Unit> Handle(CheckExpiredOffersRequest request, CancellationToken cancellationToken)
+        public async Task<bool> Handle(CheckExpiredOffersRequest request, CancellationToken cancellationToken)
         {
-            Console.WriteLine("MESSAGE FROM HANDLE!!!");
-            return (Task<Unit>)Task.CompletedTask;
+            // Send command in Rabbit Quee
+            return true;
         }
     }
 }

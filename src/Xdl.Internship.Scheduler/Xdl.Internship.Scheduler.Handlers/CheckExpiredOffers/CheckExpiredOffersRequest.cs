@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Xdl.Internship.Scheduler.Handlers.CheckExpiredOffers
 {
-    public class CheckExpiredOffersRequest : IRequest
+    public class CheckExpiredOffersRequest : IRequest<bool>
     {
     }
 }
