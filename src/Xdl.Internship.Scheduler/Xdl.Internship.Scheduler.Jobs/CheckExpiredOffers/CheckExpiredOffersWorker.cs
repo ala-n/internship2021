@@ -1,10 +1,10 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
+using MediatR;
 using Microsoft.Extensions.Logging;
 using Quartz;
 using Xdl.Internship.Scheduler.Core.Jobs;
-using System;
-using MediatR;
 using Xdl.Internship.Scheduler.Handlers.CheckExpiredOffers;
 
 namespace Xdl.Internship.Scheduler.Jobs.CheckExpiredOffers
@@ -16,14 +16,15 @@ namespace Xdl.Internship.Scheduler.Jobs.CheckExpiredOffers
 
         public CheckExpiredOffersWorker(IMediator mediator, ILogger<CheckExpiredOffersWorker> logger)
         {
-            _mediator = mediator;
-            _logger = logger;
+            _mediator = mediator ?? throw new ArgumentNullException(nameof(_mediator));
+            _logger = logger ?? throw new ArgumentNullException(nameof(_logger));
         }
 
         public Task RunAsync(IJobExecutionContext context, CancellationToken cancellationToken = default)
         {
-            // Console.WriteLine("Job execute");
-            return _mediator.Publish(new CheckExpiredOffersRequest(), cancellationToken);
+             Console.WriteLine("Job execute");
+
+             return _mediator.Publish(new CheckExpiredOffersRequest(), cancellationToken);
         }
     }
 }

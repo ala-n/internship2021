@@ -11,7 +11,8 @@ namespace Xdl.Internship.Scheduler.ServiceHost.Rabbit
             return GetType().Name;
         }
 
-        public CheckExpiredOffersMessagePublisher(IOptions<RabbitMqConfiguration> rabbitMqOptions) : base()
+        public CheckExpiredOffersMessagePublisher(IOptions<RabbitMqConfiguration> rabbitMqOptions)
+            : base(rabbitMqOptions)
         {
         }
 

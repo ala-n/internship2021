@@ -1,3 +1,6 @@
+using System.ComponentModel;
+using System.Reflection;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -9,6 +12,7 @@ using Quartz;
 using Quartz.Impl;
 using Serilog;
 using Xdl.Internship.Scheduler.Core.Jobs;
+using Xdl.Internship.Scheduler.Handlers.CheckExpiredOffers;
 using Xdl.Internship.Scheduler.Jobs.CheckExpiredOffers;
 using Xdl.Internship.Scheduler.ServiceHost.Rabbit;
 
@@ -26,6 +30,13 @@ namespace Xdl.Internship.Scheduler.ServiceHost
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
+
+            services.AddMediatR(typeof(Startup));
+
+            services.AddMediatR(typeof(CheckExpiredOffersRequest).GetTypeInfo().Assembly);
+            services.AddMediatR(typeof(CheckExpiredOffersHandler).GetTypeInfo().Assembly);
+
             services.AddSingleton<ISchedulerFactory, StdSchedulerFactory>();
 
             services.AddSingleton<IHostedService, JobService>();

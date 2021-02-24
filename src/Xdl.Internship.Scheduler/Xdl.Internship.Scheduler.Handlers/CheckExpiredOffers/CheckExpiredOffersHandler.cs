@@ -9,6 +9,7 @@ namespace Xdl.Internship.Scheduler.Handlers.CheckExpiredOffers
     {
         public Task<Unit> Handle(CheckExpiredOffersRequest request, CancellationToken cancellationToken)
         {
+            Console.WriteLine("MESSAGE FROM HANDLE!!!");
             return (Task<Unit>)Task.CompletedTask;
         }
     }

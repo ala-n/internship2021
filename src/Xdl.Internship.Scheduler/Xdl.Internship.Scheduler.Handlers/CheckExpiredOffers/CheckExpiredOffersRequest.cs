@@ -5,6 +5,5 @@ namespace Xdl.Internship.Scheduler.Handlers.CheckExpiredOffers
 {
     public class CheckExpiredOffersRequest : IRequest
     {
-        
     }
 }

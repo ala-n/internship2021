@@ -1,6 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Quartz;
-using System;
 
 namespace Xdl.Internship.Scheduler.Core.Jobs
 {

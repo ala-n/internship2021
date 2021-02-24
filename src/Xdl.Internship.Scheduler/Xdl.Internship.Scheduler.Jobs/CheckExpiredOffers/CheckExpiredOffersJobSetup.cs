@@ -7,7 +7,8 @@ namespace Xdl.Internship.Scheduler.Jobs.CheckExpiredOffers
     {
         private readonly Type _jobType;
 
-        public CheckExpiredOffersJobSetup(CheckExpiredOffersWorker worker) : base(worker, "0/10 * * * * ?")
+        public CheckExpiredOffersJobSetup(CheckExpiredOffersWorker worker)
+            : base(worker, "0/10 * * * * ?")
         {
             _jobType = typeof(NonConcurrentJob);
         }
