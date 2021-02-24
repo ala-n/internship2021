@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Xdl.Internship.Offers.DataAccess.Repositories;
-using Xdl.Internship.Offers.DTOs.Vendor;
+using Xdl.Internship.Offers.DTOs.VendorDTOs;
+using Xdl.Internship.Offers.Handlers.Vendor;
 
 namespace Xdl.Internship.Offers.ServiceHost.Controllers
 {
@@ -12,17 +13,17 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
     [Route("api/vendors")]
     public class VendorController : ControllerBase
     {
-        private readonly VendorRepository _vendorRepository;
+        private readonly IMediator _mediator;
 
-        public VendorController(VendorRepository vendorRepository)
+        public VendorController(IMediator mediator)
         {
-            _vendorRepository = vendorRepository;
+            _mediator = mediator;
         }
 
         [HttpGet]
         public async Task<IEnumerable<VendorDTO>> GetAll()
         {
-            // return vendors.ToArray();
+            return await _mediator.Send(new FindActiveVendorsRequest());
         }
     }
 }

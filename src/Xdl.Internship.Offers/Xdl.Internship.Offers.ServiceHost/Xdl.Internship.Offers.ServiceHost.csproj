@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Xdl.Internship.Offers.DataAccess\Xdl.Internship.Offers.DataAccess.csproj" />
+    <ProjectReference Include="..\Xdl.Internship.Offers.Handlers\Xdl.Internship.Offers.Handlers.csproj" />
   </ItemGroup>
 
 </Project>
