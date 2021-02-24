@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Xdl.Internship.Offers.DataAccess.Repositories;
-using Xdl.Internship.Offers.Models;
+using Xdl.Internship.Offers.DTOs.Vendor;
 
 namespace Xdl.Internship.Offers.ServiceHost.Controllers
 {
@@ -20,10 +20,9 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Vendor>> GetAll()
+        public async Task<IEnumerable<VendorDTO>> GetAll()
         {
-            var vendors = await _vendorRepository.FindAsync((Vendor v) => true);
-            return vendors.ToArray();
+            // return vendors.ToArray();
         }
     }
 }
