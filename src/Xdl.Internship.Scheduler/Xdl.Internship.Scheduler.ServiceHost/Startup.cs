@@ -44,10 +44,6 @@ namespace Xdl.Internship.Scheduler.ServiceHost
             services.AddTransient<CheckExpiredOffersWorker>();
             services.AddTransient<IJobSetup, CheckExpiredOffersJobSetup>();
 
-            // Rabbit
-            services.AddOptions();
-            services.Configure<RabbitMqConfiguration>(Configuration.GetSection("RabbitMq"));
-
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
