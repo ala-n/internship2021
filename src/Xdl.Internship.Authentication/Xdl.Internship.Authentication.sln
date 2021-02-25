@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xdl.Internship.Authenticati
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xdl.Internship.Authentication.ServiceHost", "Xdl.Internship.Authentication.ServiceHost\Xdl.Internship.Authentication.ServiceHost.csproj", "{8C461E72-9E7E-4CF9-B3E1-A97A0A496A01}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xdl.Internship.Authentication.DTOs", "Xdl.Internship.Authentication.DTOs\Xdl.Internship.Authentication.DTOs.csproj", "{58BEE2DB-41CD-45F3-AB02-5F82D409B6B3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xdl.Internship.Authentication.DTOs", "Xdl.Internship.Authentication.DTOs\Xdl.Internship.Authentication.DTOs.csproj", "{58BEE2DB-41CD-45F3-AB02-5F82D409B6B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xdl.Internship.Authentication.Handlers", "Xdl.Internship.Authentication.Handlers\Xdl.Internship.Authentication.Handlers.csproj", "{670A73AA-52D7-4E57-8DF1-99466290BEB1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{58BEE2DB-41CD-45F3-AB02-5F82D409B6B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58BEE2DB-41CD-45F3-AB02-5F82D409B6B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58BEE2DB-41CD-45F3-AB02-5F82D409B6B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{670A73AA-52D7-4E57-8DF1-99466290BEB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{670A73AA-52D7-4E57-8DF1-99466290BEB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{670A73AA-52D7-4E57-8DF1-99466290BEB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{670A73AA-52D7-4E57-8DF1-99466290BEB1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

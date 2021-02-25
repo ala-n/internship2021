@@ -3,6 +3,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -18,10 +19,12 @@ namespace Xdl.Internship.Authentication.ServiceHost.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IUserRepository _authenticationRepository;
+        private readonly IMapper _mapper;
 
-        public UsersController(IUserRepository authenticationRepository)
+        public UsersController(IUserRepository authenticationRepository, IMapper mapper)
         {
-            _authenticationRepository = authenticationRepository;
+            _authenticationRepository = authenticationRepository ?? throw new ArgumentNullException(nameof(authenticationRepository));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
         [AllowAnonymous]
@@ -46,7 +49,7 @@ namespace Xdl.Internship.Authentication.ServiceHost.Controllers
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
             user.Token = tokenHandler.WriteToken(token);
-            return Ok(user);
+            return Ok(_mapper.Map<UserRead>(user));
         }
     }
 }

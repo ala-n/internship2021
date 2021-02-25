@@ -1,3 +1,5 @@
+using System;
+using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -42,6 +44,8 @@ namespace Xdl.Internship.Authentication.ServiceHost
             });
 
             services.Configure<MongoDBSetting>(Configuration.GetSection("MongoDBSettings"));
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
             services.AddSingleton<ICollectionProvider, DefaultCollectionProvider>();
             services.AddSingleton<IConnectionFactory, DefaultConnectionFactory>();
             services.AddSingleton<IUserRepository, UserRepository>();
