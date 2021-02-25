@@ -7,7 +7,7 @@
     <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
     <CodeAnalysisRuleSet>../intership2021.ruleset</CodeAnalysisRuleSet>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.1</Version>
+    <Version>1.0.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
