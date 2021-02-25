@@ -3,21 +3,23 @@ using RabbitMQ.Client;
 using System;
 using System.Threading;
 
-namespace Xdl.Internship.Core.RabbitMQ
+namespace Xdl.Internship.Core.RabbitMQ.SDK
 {
     public abstract class PublisherBase : IRabbitMqPublisher, IDisposable
     {
-        private Lazy<IModel> _modelAccessor;
+        protected Lazy<IModel> _modelAccessor;
 
-        private string _hostname;
-        private string _username;
-        private string _password;
+        private readonly string _hostname;
+        private readonly string _username;
+        private readonly string _password;
+        private readonly string _queueName;
 
         protected PublisherBase(IOptions<RabbitMQConfiguration> rabbitMqOptions)
         {
             _hostname = rabbitMqOptions.Value.Hostname;
             _username = rabbitMqOptions.Value.UserName;
             _password = rabbitMqOptions.Value.Password;
+            _queueName = rabbitMqOptions.Value.QueueName;
 
             _modelAccessor = new Lazy<IModel>(BuildModel, LazyThreadSafetyMode.ExecutionAndPublication);
         }

@@ -2,9 +2,8 @@
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using Xdl.Internship.Core.DTOs;
 
-namespace Xdl.Internship.Core.RabbitMQ
+namespace Xdl.Internship.Core.RabbitMQ.SDK
 {
     public class CheckExpiredOffersMessageSender : IMessageSender<CheckExpiredOffersMessage>
     {

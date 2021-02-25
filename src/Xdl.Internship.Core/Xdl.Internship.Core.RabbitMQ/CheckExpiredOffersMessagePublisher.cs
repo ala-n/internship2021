@@ -1,23 +1,21 @@
 ﻿using Microsoft.Extensions.Options;
 using RabbitMQ.Client;
 
-namespace Xdl.Internship.Core.RabbitMQ
+namespace Xdl.Internship.Core.RabbitMQ.SDK
 {
     public class CheckExpiredOffersMessagePublisher : PublisherBase, IRabbitMqPublisher
     {
-        protected string GetThisClassName()
-        {
-            return GetType().Name;
-        }
+        private readonly string _queueName;
 
         public CheckExpiredOffersMessagePublisher(IOptions<RabbitMQConfiguration> rabbitMqOptions)
             : base(rabbitMqOptions)
         {
+            _queueName = rabbitMqOptions.Value.QueueName; 
         }
 
         protected override void DeclareQueue(IModel model)
         {
-            model.QueueDeclare(queue: GetThisClassName(), durable: false, exclusive: false, autoDelete: false, arguments: null);
+            model.QueueDeclare(queue: _queueName, durable: false, exclusive: false, autoDelete: false, arguments: null);
         }
     }
 }

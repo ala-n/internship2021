@@ -1,4 +1,4 @@
-﻿namespace Xdl.Internship.Core.RabbitMQ
+﻿namespace Xdl.Internship.Core.RabbitMQ.SDK
 {
     public class RabbitMQConfiguration
     {
