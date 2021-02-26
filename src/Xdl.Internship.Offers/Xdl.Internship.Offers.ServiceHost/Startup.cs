@@ -36,13 +36,12 @@ namespace Xdl.Internship.Offers.ServiceHost
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<MongoDBSetting>(Configuration.GetSection("MongoDBSetting"));
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddMediatR(typeof(Startup).Assembly);
+
             services.AddSingleton<IConnectionFactory, DefaultConnectionFactory>();
             services.AddSingleton<ICollectionProvider, DefaultCollectionProvider>();
             services.AddSingleton<VendorRepository>();
-
-            services.AddMediatR(typeof(FindActiveVendorsRequest).GetTypeInfo().Assembly);
-
-            services.AddAutoMapper(typeof(VendorProfile).GetTypeInfo().Assembly);
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
