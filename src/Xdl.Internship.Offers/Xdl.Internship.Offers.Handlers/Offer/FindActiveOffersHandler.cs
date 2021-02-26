@@ -21,9 +21,17 @@ namespace Xdl.Internship.Offers.Handlers.Offer
             _mapper = mapper;
         }
 
-        public Task<ICollection<OfferDTO>> Handle(FindActiveOffersRequest request, CancellationToken cancellationToken)
+        public async Task<ICollection<OfferDTO>> Handle(FindActiveOffersRequest request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var offers = await _offerRepository.FindActiveAsync();
+            var offerDTO = new List<OfferDTO> { };
+
+            foreach (var offer in offers)
+            {
+                offerDTO.Add(_mapper.Map<OfferDTO>(offer));
+            }
+
+            return offerDTO;
         }
     }
 }
