@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MongoDB.Bson;
 
 namespace Xdl.Internship.Offers.Models
 {
@@ -10,7 +6,7 @@ namespace Xdl.Internship.Offers.Models
     {
         public string Country { get; set; }
 
-        public string City { get; set; }
+        public ObjectId CityId { get; set; }
 
         public string Street { get; set; }
 
