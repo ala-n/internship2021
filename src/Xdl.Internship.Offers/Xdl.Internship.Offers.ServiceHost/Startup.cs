@@ -37,7 +37,7 @@ namespace Xdl.Internship.Offers.ServiceHost
         {
             services.Configure<MongoDBSetting>(Configuration.GetSection("MongoDBSetting"));
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-            services.AddMediatR(typeof(Startup).Assembly);
+            services.AddMediatR(typeof(FindActiveVendorsHandler).Assembly);
 
             services.AddSingleton<IConnectionFactory, DefaultConnectionFactory>();
             services.AddSingleton<ICollectionProvider, DefaultCollectionProvider>();
