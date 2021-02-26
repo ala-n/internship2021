@@ -6,25 +6,6 @@ namespace Xdl.Internship.Offers.DTOs.VendorDTOs
 {
     public class VendorDTO
     {
-        public VendorDTO()
-        {
-        }
-
-        public VendorDTO(Vendor vendor)
-        {
-            Id = vendor.Id;
-            CreatedBy = vendor.CreatedBy;
-            CreatedAt = vendor.CreatedAt;
-            UpdatedBy = vendor.UpdatedBy;
-            UpdatedAt = vendor.UpdatedAt;
-            Name = vendor.Name;
-            Title = vendor.Title;
-            Website = vendor.Website;
-            Description = vendor.Description;
-            Rate = vendor.Rate;
-            IsActive = vendor.IsActive;
-        }
-
         public ObjectId Id { get; set; }
 
         public string CreatedBy { get; set; }
