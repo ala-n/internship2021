@@ -1,6 +1,6 @@
 ﻿using MongoDB.Bson;
 
-namespace Xdl.Internship.Offers.DTOs.VendorDTOs
+namespace Xdl.Internship.Offers.SDK.VendorDTOs
 {
     public class VendorMainDTO
     {

@@ -2,7 +2,7 @@
 using MongoDB.Bson;
 using Xdl.Internship.Offers.Models;
 
-namespace Xdl.Internship.Offers.DTOs.VendorEntityDTOs
+namespace Xdl.Internship.Offers.SDK.VendorEntityDTOs
 {
     public class VendorEntityDTO
     {

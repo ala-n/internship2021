@@ -1,7 +1,7 @@
 ﻿using System;
 using MongoDB.Bson;
 
-namespace Xdl.Internship.Offers.DTOs.TagDTOs
+namespace Xdl.Internship.Offers.SDK.TagDTOs
 {
     public class TagMainDTOs
     {

@@ -1,9 +1,9 @@
 ﻿using System;
 using MongoDB.Bson;
 
-namespace Xdl.Internship.Offers.DTOs.TagDTOs
+namespace Xdl.Internship.Offers.SDK.VendorDTOs
 {
-    public class TagDTO
+    public class VendorDTO
     {
         public ObjectId Id { get; set; }
 
@@ -17,10 +17,14 @@ namespace Xdl.Internship.Offers.DTOs.TagDTOs
 
         public string Name { get; set; }
 
-        public int UsesByUser { get; set; }
+        public string Title { get; set; }
 
-        public int UsesByVendor { get; set; }
+        public string Website { get; set; }
 
-        public bool IsDeleted { get; set; }
+        public string Description { get; set; }
+
+        public double Rate { get; set; }
+
+        public bool IsActive { get; set; }
     }
 }

@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
-using Xdl.Internship.Offers.DTOs.VendorDTOs;
 using Xdl.Internship.Offers.Handlers.Vendor;
+using Xdl.Internship.Offers.SDK.VendorDTOs;
 
 namespace Xdl.Internship.Offers.ServiceHost.Controllers
 {

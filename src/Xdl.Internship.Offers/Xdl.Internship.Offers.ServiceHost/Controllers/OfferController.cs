@@ -4,8 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Xdl.Internship.Offers.DTOs.OfferDTOs;
 using Xdl.Internship.Offers.Handlers.Offer;
+using Xdl.Internship.Offers.SDK.OfferDTOs;
 
 namespace Xdl.Internship.Offers.ServiceHost.Controllers
 {

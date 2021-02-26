@@ -5,7 +5,7 @@ using AutoMapper;
 using MediatR;
 using Xdl.Internship.Offers.DataAccess.Interfaces;
 using Xdl.Internship.Offers.DataAccess.Repositories;
-using Xdl.Internship.Offers.DTOs.VendorDTOs;
+using Xdl.Internship.Offers.SDK.VendorDTOs;
 
 namespace Xdl.Internship.Offers.Handlers.Vendor
 {

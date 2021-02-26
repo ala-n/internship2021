@@ -8,9 +8,9 @@ using MediatR;
 using MongoDB.Bson;
 using Xdl.Internship.Offers.DataAccess.Interfaces;
 using Xdl.Internship.Offers.DataAccess.Repositories;
-using Xdl.Internship.Offers.DTOs.VendorDTOs;
-using Xdl.Internship.Offers.DTOs.VendorEntityDTOs;
 using Xdl.Internship.Offers.Models;
+using Xdl.Internship.Offers.SDK.VendorDTOs;
+using Xdl.Internship.Offers.SDK.VendorEntityDTOs;
 
 namespace Xdl.Internship.Offers.Handlers.Vendor
 {

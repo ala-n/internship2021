@@ -4,8 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Xdl.Internship.Offers.DTOs.TagDTOs;
 using Xdl.Internship.Offers.Handlers.Tag;
+using Xdl.Internship.Offers.SDK.TagDTOs;
 
 namespace Xdl.Internship.Offers.ServiceHost.Controllers
 {

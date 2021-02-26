@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
-using Xdl.Internship.Offers.DTOs.VendorEntityDTOs;
+using Xdl.Internship.Offers.DTOs.VendorDTOs;
 using Xdl.Internship.Offers.Models;
+using Xdl.Internship.Offers.SDK.VendorEntityDTOs;
 
-namespace Xdl.Internship.Offers.DTOs.VendorDTOs
+namespace Xdl.Internship.Offers.SDK.VendorDTOs
 {
     public class VendorProfile : Profile
     {

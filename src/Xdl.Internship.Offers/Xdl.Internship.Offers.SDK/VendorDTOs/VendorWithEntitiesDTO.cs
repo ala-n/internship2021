@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using MongoDB.Bson;
-using Xdl.Internship.Offers.DTOs.VendorEntityDTOs;
+using Xdl.Internship.Offers.SDK.VendorEntityDTOs;
 
 namespace Xdl.Internship.Offers.DTOs.VendorDTOs
 {
