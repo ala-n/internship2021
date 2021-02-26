@@ -19,7 +19,7 @@ using Xdl.Internship.Core.DataAccess.MongoDB.ConnectionFactories;
 using Xdl.Internship.Core.DataAccess.MongoDB.Settings;
 using Xdl.Internship.Offers.DataAccess.Repositories;
 using Xdl.Internship.Offers.DTOs.VendorDTOs;
-using Xdl.Internship.Offers.Handlers.Vendor;
+using Xdl.Internship.Offers.Handlers;
 
 namespace Xdl.Internship.Offers.ServiceHost
 {
@@ -37,11 +37,12 @@ namespace Xdl.Internship.Offers.ServiceHost
         {
             services.Configure<MongoDBSetting>(Configuration.GetSection("MongoDBSetting"));
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-            services.AddMediatR(typeof(FindActiveVendorsHandler).Assembly);
+            services.AddMediatRHandlers();
 
             services.AddSingleton<IConnectionFactory, DefaultConnectionFactory>();
             services.AddSingleton<ICollectionProvider, DefaultCollectionProvider>();
             services.AddSingleton<VendorRepository>();
+            services.AddSingleton<VendorEntityRepository>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
