@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -17,6 +18,7 @@ using Xdl.Internship.Core.DataAccess.MongoDB.CollectionProviders;
 using Xdl.Internship.Core.DataAccess.MongoDB.ConnectionFactories;
 using Xdl.Internship.Core.DataAccess.MongoDB.Settings;
 using Xdl.Internship.Offers.DataAccess.Repositories;
+using Xdl.Internship.Offers.DTOs.VendorDTOs;
 using Xdl.Internship.Offers.Handlers.Vendor;
 
 namespace Xdl.Internship.Offers.ServiceHost
@@ -39,6 +41,8 @@ namespace Xdl.Internship.Offers.ServiceHost
             services.AddSingleton<VendorRepository>();
 
             services.AddMediatR(typeof(FindActiveVendorsRequest).GetTypeInfo().Assembly);
+
+            services.AddAutoMapper(typeof(VendorProfile).GetTypeInfo().Assembly);
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

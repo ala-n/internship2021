@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using AutoMapper;
 using MediatR;
 using MongoDB.Bson;
 using Xdl.Internship.Offers.DataAccess.Repositories;
@@ -11,10 +12,12 @@ namespace Xdl.Internship.Offers.Handlers.Vendor
     public class FindActiveVendorsHandler : IRequestHandler<FindActiveVendorsRequest, ICollection<VendorDTO>>
     {
         private readonly IVendorRepository _vendorRepository;
+        private readonly IMapper _mapper;
 
-        public FindActiveVendorsHandler(VendorRepository vendorRepository)
+        public FindActiveVendorsHandler(VendorRepository vendorRepository, IMapper mapper)
         {
             _vendorRepository = vendorRepository;
+            _mapper = mapper;
         }
 
         public async Task<ICollection<VendorDTO>> Handle(FindActiveVendorsRequest request, CancellationToken cancellationToken)
@@ -24,7 +27,7 @@ namespace Xdl.Internship.Offers.Handlers.Vendor
 
             foreach (var vendor in vendors)
             {
-                vendorDTO.Add(new VendorDTO(vendor));
+                vendorDTO.Add(_mapper.Map<VendorDTO>(vendor));
             }
 
             return vendorDTO;
