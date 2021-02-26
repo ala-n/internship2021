@@ -14,7 +14,6 @@ using Serilog;
 using Xdl.Internship.Scheduler.Core.Jobs;
 using Xdl.Internship.Scheduler.Handlers.CheckExpiredOffers;
 using Xdl.Internship.Scheduler.Jobs.CheckExpiredOffers;
-using Xdl.Internship.Scheduler.ServiceHost.Rabbit;
 
 namespace Xdl.Internship.Scheduler.ServiceHost
 {
