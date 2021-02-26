@@ -22,13 +22,9 @@ namespace Xdl.Internship.Offers.DataAccess.Repositories
             return await FindAsync(filter);
         }
 
-        public async Task<ICollection<Offer>> GetOffersByCityId()
-        {
-            // not completed
-            Expression<Func<Offer, bool>> filter = (v) => v.IsActive == true;
-            return await FindAsync(filter);
-        }
-
+        // public async Task<ICollection<Offer>> GetOffersByCityId()
+        // {
+        // }
         public Task<ICollection<Offer>> GetOffersByVendorId()
         {
             throw new NotImplementedException();
