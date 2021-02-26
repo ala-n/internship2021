@@ -10,6 +10,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Xdl.Internship.Authentication.DataAccess;
 using Xdl.Internship.Authentication.DataAccess.Interfaces;
+using Xdl.Internship.Authentication.Handlers;
 using Xdl.Internship.Core.DataAccess.MongoDB.CollectionProviders;
 using Xdl.Internship.Core.DataAccess.MongoDB.ConnectionFactories;
 using Xdl.Internship.Core.DataAccess.MongoDB.Settings;
@@ -45,6 +46,7 @@ namespace Xdl.Internship.Authentication.ServiceHost
 
             services.Configure<MongoDBSetting>(Configuration.GetSection("MongoDBSettings"));
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddAuthHandlers();
 
             services.AddSingleton<ICollectionProvider, DefaultCollectionProvider>();
             services.AddSingleton<IConnectionFactory, DefaultConnectionFactory>();

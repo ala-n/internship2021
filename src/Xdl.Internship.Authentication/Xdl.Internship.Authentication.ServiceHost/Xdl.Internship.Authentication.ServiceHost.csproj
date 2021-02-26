@@ -12,11 +12,10 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.0.7" />
-    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.8.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Xdl.Internship.Authentication.DataAccess\Xdl.Internship.Authentication.DataAccess.csproj" />
+    <ProjectReference Include="..\Xdl.Internship.Authentication.Handlers\Xdl.Internship.Authentication.Handlers.csproj" />
   </ItemGroup>
 
 

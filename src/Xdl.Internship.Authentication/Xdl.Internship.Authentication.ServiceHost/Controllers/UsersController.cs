@@ -1,15 +1,12 @@
 ﻿using System;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
 using Xdl.Internship.Authentication.DataAccess.Interfaces;
 using Xdl.Internship.Authentication.DTOs;
-using Xdl.Internship.Authentication.Models;
+using Xdl.Internship.Authentication.Handlers.Feature.Login;
 
 namespace Xdl.Internship.Authentication.ServiceHost.Controllers
 {
@@ -18,38 +15,25 @@ namespace Xdl.Internship.Authentication.ServiceHost.Controllers
     [Route("api/users")]
     public class UsersController : ControllerBase
     {
-        private readonly IUserRepository _authenticationRepository;
-        private readonly IMapper _mapper;
+        private readonly IMediator _mediator;
 
-        public UsersController(IUserRepository authenticationRepository, IMapper mapper)
+        public UsersController(IMediator mediator)
         {
-            _authenticationRepository = authenticationRepository ?? throw new ArgumentNullException(nameof(authenticationRepository));
-            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+            _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
 
         [AllowAnonymous]
         [HttpPost("login")]
-        public async Task<IActionResult> LoginAsync([FromBody] UserCredentials userCredentials)
+        public async Task<IActionResult> LoginAsync(Login.Command cmd)
         {
-            var user = await _authenticationRepository.LoginAsync(userCredentials, default);
-            if (user == null)
+            try
             {
-                return BadRequest(new { message = "Login or password is incorrect" });
+                return Ok(await _mediator.Send(cmd));
             }
-
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var tokenDescriptor = new SecurityTokenDescriptor()
+            catch (Exception ex)
             {
-                Subject = new ClaimsIdentity(
-                new Claim[]
-                {
-                    new Claim(ClaimTypes.Name, user.Id.ToString()),
-                }),
-                Expires = DateTime.UtcNow.AddDays(2),
-            };
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-            user.Token = tokenHandler.WriteToken(token);
-            return Ok(_mapper.Map<UserRead>(user));
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

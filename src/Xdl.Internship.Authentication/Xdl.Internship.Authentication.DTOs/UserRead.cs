@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using MongoDB.Bson;
 using Xdl.Internship.Core.Models.MongoDB;
 
 namespace Xdl.Internship.Authentication.DTOs
 {
-    public class UserRead : ModelBase
+    public class UserRead
     {
+        public ObjectId Id { get; set; }
+
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
