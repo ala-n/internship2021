@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
@@ -17,7 +17,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Xdl.Internship.Offers.DTOs\Xdl.Internship.Offers.DTOs.csproj" />
-    <ProjectReference Include="..\Xdl.Internship.Offers.Models\Xdl.Internship.Offers.Models.csproj" />
   </ItemGroup>
 
 </Project>

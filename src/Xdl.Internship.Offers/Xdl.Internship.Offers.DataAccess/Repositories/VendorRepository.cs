@@ -4,15 +4,11 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Xdl.Internship.Core.DataAccess.MongoDB.CollectionProviders;
 using Xdl.Internship.Core.DataAccess.MongoDB.Repositories;
+using Xdl.Internship.Offers.DataAccess.Interfaces;
 using Xdl.Internship.Offers.Models;
 
 namespace Xdl.Internship.Offers.DataAccess.Repositories
 {
-    public interface IVendorRepository
-    {
-        Task<ICollection<Vendor>> FindActiveAsync();
-    }
-
     public class VendorRepository : MongoRepositoryBase<Vendor>, IVendorRepository
     {
         public VendorRepository(ICollectionProvider collectionProvider)
@@ -20,10 +16,15 @@ namespace Xdl.Internship.Offers.DataAccess.Repositories
         {
         }
 
-        public Task<ICollection<Vendor>> FindActiveAsync()
+        public async Task<ICollection<Vendor>> FindActiveAsync()
         {
             Expression<Func<Vendor, bool>> filter = (v) => v.IsActive == true;
-            return FindAsync(filter);
+            return await FindAsync(filter);
+        }
+
+        public Task<Vendor> GetAllVendors()
+        {
+            throw new ArgumentException();
         }
     }
 }

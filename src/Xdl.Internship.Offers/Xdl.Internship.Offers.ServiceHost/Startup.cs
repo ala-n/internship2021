@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -34,11 +35,12 @@ namespace Xdl.Internship.Offers.ServiceHost
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<MongoDBSetting>(Configuration.GetSection("MongoDBSetting"));
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddMediatR(typeof(Startup).Assembly);
+
             services.AddSingleton<IConnectionFactory, DefaultConnectionFactory>();
             services.AddSingleton<ICollectionProvider, DefaultCollectionProvider>();
             services.AddSingleton<VendorRepository>();
-
-            services.AddMediatR(typeof(FindActiveVendorsRequest).GetTypeInfo().Assembly);
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
