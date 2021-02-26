@@ -12,6 +12,7 @@ namespace Xdl.Internship.Offers.DataAccess.Repositories
     public interface IVendorEntityRepository
     {
         Task<ICollection<VendorEntity>> FindAllFilterByCityAsync(ObjectId cityId, bool onlyActive);
+
         Task<ICollection<VendorEntity>> FindActiveAsync();
     }
 
@@ -28,10 +29,10 @@ namespace Xdl.Internship.Offers.DataAccess.Repositories
             return FindAsync(filter);
         }
 
-        public Task<ICollection<VendorEntity>> FindAllFilterByCityAsync(ObjectId cityId, bool onlyActive = false)
+        public Task<ICollection<VendorEntity>> FindAllFilterByCityAsync(ObjectId cityId, bool onlyActive)
         {
-            // Expression<Func<VendorEntity, bool>> filter = (v) => v.
-            return FindAsync(null);
+            Expression<Func<VendorEntity, bool>> filter = (v) => (cityId == null || v.Adress.CityId == cityId) && (!onlyActive || v.IsActive == true);
+            return FindAsync(filter);
         }
     }
 }

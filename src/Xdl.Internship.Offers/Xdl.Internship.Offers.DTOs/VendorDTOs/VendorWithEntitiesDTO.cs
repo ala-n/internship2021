@@ -30,6 +30,6 @@ namespace Xdl.Internship.Offers.DTOs.VendorDTOs
 
         public bool IsActive { get; set; }
 
-        public VendorEntityDTO[] VendorEntities { get; set; }
+        public List<VendorEntityDTO> VendorEntities { get; set; } = new List<VendorEntityDTO>();
     }
 }

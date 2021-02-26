@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
 using Xdl.Internship.Offers.DTOs.VendorDTOs;
 using Xdl.Internship.Offers.Handlers.Vendor;
 
@@ -24,6 +25,13 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
         public async Task<IEnumerable<VendorDTO>> GetAll()
         {
             return await _mediator.Send(new FindActiveVendorsRequest());
+        }
+
+        [HttpGet]
+        [Route("/city")]
+        public async Task<IEnumerable<VendorWithEntitiesDTO>> GetManyWithEntities(ObjectId? cityId, bool? onlyActive)
+        {
+            return await _mediator.Send(new FindVendorsJoinWithEntitiesRequest() { CityId = (ObjectId)cityId, OnlyActive = (bool)onlyActive });
         }
     }
 }
