@@ -29,5 +29,7 @@ namespace Xdl.Internship.Offers.Models
         public int NumberOfViews { get; set; }
 
         public double Rate { get; set; }
+
+        public bool IsActive { get; set; }
     }
 }

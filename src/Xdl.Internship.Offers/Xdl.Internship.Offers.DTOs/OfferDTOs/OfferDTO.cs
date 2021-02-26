@@ -38,5 +38,7 @@ namespace Xdl.Internship.Offers.DTOs.OfferDTOs
         public int NumberOfViews { get; set; }
 
         public double Rate { get; set; }
+
+        public bool IsActive { get; set; }
     }
 }
