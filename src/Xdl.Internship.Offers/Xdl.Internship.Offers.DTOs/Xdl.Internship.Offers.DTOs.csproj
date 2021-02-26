@@ -21,4 +21,7 @@
     <ProjectReference Include="..\Xdl.Internship.Offers.Models\Xdl.Internship.Offers.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="TagDTOs\" />
+  </ItemGroup>
 </Project>
