@@ -8,6 +8,8 @@ namespace Xdl.Internship.Offers.DataAccess.Interfaces
     {
         Task<ICollection<Offer>> FindActiveAsync();
 
-        Task<Offer> GetAllOffers();
+        Task<ICollection<Offer>> GetOffersByVendorId();
+
+        Task<ICollection<Offer>> GetOffersByCityId();
     }
 }

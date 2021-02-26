@@ -23,7 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="VendorEntity\" />
+    <Folder Include="Tag\" />
   </ItemGroup>
-
 </Project>

@@ -1,7 +1,7 @@
 ﻿using System;
 using MongoDB.Bson;
 
-namespace Xdl.Internship.Offers.Handlers.Offer
+namespace Xdl.Internship.Offers.DTOs.OfferDTOs
 {
     public class OfferDTO
     {
@@ -38,5 +38,7 @@ namespace Xdl.Internship.Offers.Handlers.Offer
         public int NumberOfViews { get; set; }
 
         public double Rate { get; set; }
+
+        public bool IsActive { get; set; }
     }
 }
