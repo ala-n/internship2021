@@ -1,7 +1,7 @@
 ﻿using System;
 using MongoDB.Bson;
 
-namespace Xdl.Internship.Offers.Handlers.Offer
+namespace Xdl.Internship.Offers.DTOs.OfferDTOs
 {
     public class OfferDTO
     {
