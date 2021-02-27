@@ -4,7 +4,7 @@ using System.Text;
 using MongoDB.Bson;
 using Xdl.Internship.Offers.SDK.VendorEntityDTOs;
 
-namespace Xdl.Internship.Offers.DTOs.VendorDTOs
+namespace Xdl.Internship.Offers.SDK.VendorDTOs
 {
     public class VendorWithEntitiesDTO
     {
