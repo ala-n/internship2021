@@ -22,6 +22,11 @@ namespace Xdl.Internship.Offers.DataAccess.Repositories
             return await FindAsync(filter);
         }
 
+        public Task<ICollection<Offer>> GetOffersByCityId()
+        {
+            throw new NotImplementedException();
+        }
+
         // public async Task<ICollection<Offer>> GetOffersByCityId()
         // {
         // }
