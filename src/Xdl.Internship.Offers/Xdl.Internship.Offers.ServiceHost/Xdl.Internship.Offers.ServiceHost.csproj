@@ -5,6 +5,7 @@
     <UserSecretsId>dab9672c-1053-4ad3-9081-76a0cba70abc</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <CodeAnalysisRuleSet>../intership2021.ruleset</CodeAnalysisRuleSet>
+    <StartupObject></StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
