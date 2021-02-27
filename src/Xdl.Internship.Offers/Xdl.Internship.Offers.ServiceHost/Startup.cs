@@ -44,6 +44,7 @@ namespace Xdl.Internship.Offers.ServiceHost
             services.AddSingleton<VendorEntityRepository>();
 
             services.AddSingleton<TagRepository>();
+            services.AddSingleton<OfferRepository>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
