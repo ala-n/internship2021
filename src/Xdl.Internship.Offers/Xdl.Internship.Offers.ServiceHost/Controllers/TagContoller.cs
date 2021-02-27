@@ -9,24 +9,22 @@ using Xdl.Internship.Offers.SDK.TagDTOs;
 
 namespace Xdl.Internship.Offers.ServiceHost.Controllers
 {
-    public class TagContoller : ControllerBase
+    [Controller]
+    [Route("api/tags")]
+    public class TagController : ControllerBase
     {
-        [Controller]
-        [Route("api/tags")]
-        public class TagController : ControllerBase
+        private readonly IMediator _mediator;
+
+        public TagController(IMediator mediator)
         {
-            private readonly IMediator _mediator;
+            _mediator = mediator;
+        }
 
-            public TagController(IMediator mediator)
-            {
-                _mediator = mediator;
-            }
-
-            [HttpGet]
-            public async Task<IEnumerable<TagDTO>> GeTopTags()
-            {
-                return await _mediator.Send(new FindTopTagsRequest());
-            }
+        [HttpGet]
+        [Route("/topTags")]
+        public async Task<IEnumerable<TagDTO>> GeTopTags()
+        {
+            return await _mediator.Send(new FindTopTagsRequest());
         }
     }
 }
