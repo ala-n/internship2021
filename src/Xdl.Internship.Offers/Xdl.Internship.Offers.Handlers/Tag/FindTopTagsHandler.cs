@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -24,9 +24,11 @@ namespace Xdl.Internship.Offers.Handlers.Tag
         public async Task<ICollection<TagDTO>> Handle(FindTopTagsRequest request, CancellationToken cancellationToken)
         {
             var tags = await _tagRepository.FindTopTagsAsync();
+            var topTags = tags.OrderBy(t => t.UsesByUser).Take(10);
+
             var tagDTO = new List<TagDTO> { };
 
-            foreach (var tag in tags)
+            foreach (var tag in topTags)
             {
                 tagDTO.Add(_mapper.Map<TagDTO>(tag));
             }

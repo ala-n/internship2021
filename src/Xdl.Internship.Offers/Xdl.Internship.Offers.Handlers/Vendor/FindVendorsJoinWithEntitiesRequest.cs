@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using MediatR;
 using MongoDB.Bson;
+using Xdl.Internship.Offers.SDK.VendorDTOs;
 
 namespace Xdl.Internship.Offers.Handlers.Vendor
 {

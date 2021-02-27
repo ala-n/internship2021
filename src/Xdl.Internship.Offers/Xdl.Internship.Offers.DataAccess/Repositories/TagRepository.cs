@@ -19,7 +19,7 @@ namespace Xdl.Internship.Offers.DataAccess.Repositories
 
         public async Task<ICollection<Tag>> FindTopTagsAsync()
         {
-            Expression<Func<Tag, bool>> filter = (tag) => tag.UsesByUser >= 10;
+            Expression<Func<Tag, bool>> filter = (tag) => tag.UsesByUser > 0;
 
             return await FindAsync(filter);
         }

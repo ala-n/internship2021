@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Xdl.Internship.Offers.DTOs.VendorDTOs;
 using Xdl.Internship.Offers.Models;
 using Xdl.Internship.Offers.SDK.VendorEntityDTOs;
 

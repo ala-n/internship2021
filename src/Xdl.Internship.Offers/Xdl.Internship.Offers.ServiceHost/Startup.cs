@@ -18,7 +18,6 @@ using Xdl.Internship.Core.DataAccess.MongoDB.CollectionProviders;
 using Xdl.Internship.Core.DataAccess.MongoDB.ConnectionFactories;
 using Xdl.Internship.Core.DataAccess.MongoDB.Settings;
 using Xdl.Internship.Offers.DataAccess.Repositories;
-using Xdl.Internship.Offers.DTOs.VendorDTOs;
 using Xdl.Internship.Offers.Handlers;
 
 namespace Xdl.Internship.Offers.ServiceHost
@@ -43,6 +42,8 @@ namespace Xdl.Internship.Offers.ServiceHost
             services.AddSingleton<ICollectionProvider, DefaultCollectionProvider>();
             services.AddSingleton<VendorRepository>();
             services.AddSingleton<VendorEntityRepository>();
+
+            services.AddSingleton<TagRepository>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
