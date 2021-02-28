@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
 using Xdl.Internship.Offers.Handlers.Vendor;
 using Xdl.Internship.Offers.SDK.VendorDTOs;
 
@@ -26,9 +27,14 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
 
         [HttpGet]
         [Route("city/{cityId}/entities")]
-        public async Task<IEnumerable<VendorWithEntitiesDTO>> GetManyWithEntities([FromRoute]string cityId, [FromQuery]bool includeInactive = false)
+        public async Task<ActionResult<IEnumerable<VendorWithEntitiesDTO>>> GetManyWithEntities([FromRoute]string cityId, [FromQuery]bool includeInactive = false)
         {
-            return await _mediator.Send(new FindVendorsWithEntitiesRequest(cityId, !includeInactive));
+            if (ObjectId.TryParse(cityId, out var id))
+            {
+                return BadRequest($"{nameof(cityId)} is not valid");
+            }
+
+            return Ok(await _mediator.Send(new FindVendorsWithEntitiesRequest(id, !includeInactive)));
         }
     }
 }

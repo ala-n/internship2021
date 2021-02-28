@@ -13,6 +13,6 @@ namespace Xdl.Internship.Offers.DataAccess.Interfaces
 
         Task<ICollection<Vendor>> FindActiveAsync();
 
-        Task<Vendor> GetAllVendors();
+        Task<ICollection<Vendor>> FindByIdsAsync(ICollection<ObjectId> ids);
     }
 }

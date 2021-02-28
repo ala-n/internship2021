@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -30,20 +31,16 @@ namespace Xdl.Internship.Offers.Handlers.Vendor
         public async Task<ICollection<VendorWithEntitiesDTO>> Handle(FindVendorsWithEntitiesRequest request, CancellationToken cancellationToken)
         {
             // Getting all Entitties
-            var entities = _mapper.Map<ICollection<VendorEntityDTO>>(await _vendorEntityRepository.FindActiveAsync());
-
-            // Filtering unique values
-            var vendorIds = new HashSet<string>() { };
-            var taskList = new List<Task<Models.Vendor>>() { };
-            foreach (var entity in entities)
+            if (ObjectId.TryParse(request.CityId, var ))
             {
-                if (vendorIds.Add(entity.VendorId))
-                {
-                    taskList.Add(_vendorRepository.FindByIdAsync(entity.VendorId));
-                }
-            }
 
-            var vendors = _mapper.Map<List<VendorDTO>>(await Task.WhenAll(taskList));
+            }
+            var entities = await _vendorEntityRepository.FindByCityAsync(ObjectId.Parse(request.CityId), request.OnlyActive);
+ 
+            // Filtering unique values
+            ICollection<ObjectId> vendorIds = (ICollection<ObjectId>)entities.Select(e => e.VendorId).Distinct();
+
+            var vendors = _vendorRepository.FindByIdsAsync(vendorIds);
 
             var res = _mapper.Map<IList<VendorWithEntitiesDTO>>(vendors);
             foreach (var entity in entities)
