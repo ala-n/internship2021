@@ -25,10 +25,10 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
         }
 
         [HttpGet]
-        [Route("city")]
-        public async Task<IEnumerable<VendorWithEntitiesDTO>> GetManyWithEntities(string? cityId, bool? onlyActive)
+        [Route("city/{cityId}/entities")]
+        public async Task<IEnumerable<VendorWithEntitiesDTO>> GetManyWithEntities([FromRoute]string cityId, [FromQuery]bool includeInactive = false)
         {
-            return await _mediator.Send(new FindVendorsJoinWithEntitiesRequest() { });
+            return await _mediator.Send(new FindVendorsWithEntitiesRequest(cityId, !includeInactive));
         }
     }
 }
