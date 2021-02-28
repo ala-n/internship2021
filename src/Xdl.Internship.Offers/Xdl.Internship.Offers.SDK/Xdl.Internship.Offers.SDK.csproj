@@ -11,8 +11,6 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Xdl.Internship.Core.DataAccess.MongoDB" Version="1.0.0" />
-    <PackageReference Include="Xdl.Internship.Core.Models.MongoDB" Version="1.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
   </ItemGroup>
 
