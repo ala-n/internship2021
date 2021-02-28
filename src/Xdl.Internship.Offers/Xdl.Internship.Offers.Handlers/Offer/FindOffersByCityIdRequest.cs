@@ -11,7 +11,6 @@ namespace Xdl.Internship.Offers.Handlers.Offer
     {
         public FindOffersByCityIdRequest(string cityId)
         {
-
         }
 
         public ObjectId CityId { get; set; }
