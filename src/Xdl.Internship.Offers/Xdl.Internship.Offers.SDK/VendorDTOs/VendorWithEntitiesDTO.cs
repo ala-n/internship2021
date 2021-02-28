@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using MongoDB.Bson;
 using Xdl.Internship.Offers.SDK.VendorEntityDTOs;
 
 namespace Xdl.Internship.Offers.SDK.VendorDTOs
 {
     public class VendorWithEntitiesDTO
     {
-        public ObjectId Id { get; set; }
+        public string Id { get; set; }
 
         public string CreatedBy { get; set; }
 
@@ -30,6 +28,6 @@ namespace Xdl.Internship.Offers.SDK.VendorDTOs
 
         public bool IsActive { get; set; }
 
-        public List<VendorEntityDTO> VendorEntities { get; set; } = new List<VendorEntityDTO>();
+        public ICollection<VendorEntityDTO> VendorEntities { get; set; }
     }
 }

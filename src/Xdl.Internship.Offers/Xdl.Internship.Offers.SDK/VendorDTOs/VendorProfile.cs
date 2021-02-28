@@ -10,8 +10,8 @@ namespace Xdl.Internship.Offers.SDK.VendorDTOs
         {
             CreateMap<Vendor, VendorDTO>();
 
-            CreateMap<VendorDTO, VendorWithEntitiesDTO>();
-            CreateMap<VendorEntityDTO, VendorWithEntitiesDTO>()
+            CreateMap<Vendor, VendorWithEntitiesDTO>();
+            CreateMap<VendorEntity, VendorWithEntitiesDTO>()
                 .ForMember(dest => dest.VendorEntities, opt => opt.MapFrom(src => src));
         }
     }

@@ -22,15 +22,16 @@ namespace Xdl.Internship.Offers.DataAccess.Repositories
             return base.FindByIdAsync(id);
         }
 
-        public async Task<ICollection<Vendor>> FindActiveAsync()
+        public Task<ICollection<Vendor>> FindActiveAsync()
         {
             Expression<Func<Vendor, bool>> filter = (v) => v.IsActive == true;
-            return await FindAsync(filter);
+            return FindAsync(filter);
         }
 
-        public Task<Vendor> GetAllVendors()
+        public Task<ICollection<Vendor>> FindByIdsAsync(ICollection<ObjectId> ids)
         {
-            throw new ArgumentException();
+            Expression<Func<Vendor, bool>> filter = (v) => ids.Contains(v.Id);
+            return FindAsync(filter);
         }
     }
 }

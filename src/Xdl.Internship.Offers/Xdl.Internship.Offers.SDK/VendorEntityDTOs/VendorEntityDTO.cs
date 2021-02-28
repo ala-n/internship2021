@@ -1,12 +1,11 @@
 ﻿using System;
-using MongoDB.Bson;
 using Xdl.Internship.Offers.Models;
 
 namespace Xdl.Internship.Offers.SDK.VendorEntityDTOs
 {
     public class VendorEntityDTO
     {
-        public ObjectId Id { get; set; }
+        public string Id { get; set; }
 
         public string CreatedBy { get; set; }
 
@@ -24,7 +23,7 @@ namespace Xdl.Internship.Offers.SDK.VendorEntityDTOs
 
         public string Email { get; set; }
 
-        public ObjectId VendorId { get; set; }
+        public string VendorId { get; set; }
 
         public bool IsActive { get; set; }
 

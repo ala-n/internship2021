@@ -1,6 +1,4 @@
-﻿using MongoDB.Bson;
-
-namespace Xdl.Internship.Offers.SDK.VendorEntityDTOs
+﻿namespace Xdl.Internship.Offers.SDK.VendorEntityDTOs
 {
     // for OfferMainDTO
     public class VendorEntityMainDTO
