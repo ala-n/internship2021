@@ -33,7 +33,7 @@ namespace Xdl.Internship.Offers.Handlers.Vendor
             var entities = _mapper.Map<ICollection<VendorEntityDTO>>(await _vendorEntityRepository.FindActiveAsync());
 
             // Filtering unique values
-            var vendorIds = new HashSet<ObjectId>() { };
+            var vendorIds = new HashSet<string>() { };
             var taskList = new List<Task<Models.Vendor>>() { };
             foreach (var entity in entities)
             {

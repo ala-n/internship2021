@@ -1,10 +1,8 @@
-﻿using MongoDB.Bson;
-
-namespace Xdl.Internship.Offers.SDK.VendorEntityDTOs
+﻿namespace Xdl.Internship.Offers.SDK.VendorEntityDTOs
 {
     public class VendorEntityMainDTO
     {
-        public ObjectId Id { get; set; }
+        public string Id { get; set; }
 
         public string Street { get; set; }
 

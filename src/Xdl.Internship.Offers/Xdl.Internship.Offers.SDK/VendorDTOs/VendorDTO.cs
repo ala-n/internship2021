@@ -1,11 +1,10 @@
 ﻿using System;
-using MongoDB.Bson;
 
 namespace Xdl.Internship.Offers.SDK.VendorDTOs
 {
     public class VendorDTO
     {
-        public ObjectId Id { get; set; }
+        public string Id { get; set; }
 
         public string CreatedBy { get; set; }
 
