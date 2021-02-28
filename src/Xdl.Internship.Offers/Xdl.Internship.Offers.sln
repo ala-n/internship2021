@@ -3,17 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xdl.Internship.Offers.Models", "Xdl.Internship.Offers.Models\Xdl.Internship.Offers.Models.csproj", "{2EC6CB45-B893-4EA7-AD82-12F461E8C282}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xdl.Internship.Offers.Models", "Xdl.Internship.Offers.Models\Xdl.Internship.Offers.Models.csproj", "{2EC6CB45-B893-4EA7-AD82-12F461E8C282}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xdl.Internship.Offers.DataAccess", "Xdl.Internship.Offers.DataAccess\Xdl.Internship.Offers.DataAccess.csproj", "{794A2668-6282-4B2A-A096-95CACD4C6AA0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xdl.Internship.Offers.DataAccess", "Xdl.Internship.Offers.DataAccess\Xdl.Internship.Offers.DataAccess.csproj", "{794A2668-6282-4B2A-A096-95CACD4C6AA0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xdl.Internship.Offers.Handlers", "Xdl.Internship.Offers.Handlers\Xdl.Internship.Offers.Handlers.csproj", "{425BCA54-9075-4082-89F8-3C0067F2AAE3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xdl.Internship.Offers.Handlers", "Xdl.Internship.Offers.Handlers\Xdl.Internship.Offers.Handlers.csproj", "{425BCA54-9075-4082-89F8-3C0067F2AAE3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xdl.Internship.Offers.ServiceHost", "Xdl.Internship.Offers.ServiceHost\Xdl.Internship.Offers.ServiceHost.csproj", "{6ED72477-B89E-410E-9315-5F805AEE646E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xdl.Internship.Offers.ServiceHost", "Xdl.Internship.Offers.ServiceHost\Xdl.Internship.Offers.ServiceHost.csproj", "{6ED72477-B89E-410E-9315-5F805AEE646E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xdl.Internship.Offers.SDK", "Xdl.Internship.Offers.SDK\Xdl.Internship.Offers.SDK.csproj", "{6EEDB43D-0ACD-4F47-9F87-53DB23A7B9CB}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xdl.Internship.Offers.DTOs", "Xdl.Internship.Offers.DTOs\Xdl.Internship.Offers.DTOs.csproj", "{65C9BEE6-7AA7-420A-B28B-382978FE2E83}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xdl.Internship.Offers.SDK", "Xdl.Internship.Offers.SDK\Xdl.Internship.Offers.SDK.csproj", "{6EEDB43D-0ACD-4F47-9F87-53DB23A7B9CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +39,6 @@ Global
 		{6EEDB43D-0ACD-4F47-9F87-53DB23A7B9CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6EEDB43D-0ACD-4F47-9F87-53DB23A7B9CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6EEDB43D-0ACD-4F47-9F87-53DB23A7B9CB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{65C9BEE6-7AA7-420A-B28B-382978FE2E83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{65C9BEE6-7AA7-420A-B28B-382978FE2E83}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{65C9BEE6-7AA7-420A-B28B-382978FE2E83}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{65C9BEE6-7AA7-420A-B28B-382978FE2E83}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

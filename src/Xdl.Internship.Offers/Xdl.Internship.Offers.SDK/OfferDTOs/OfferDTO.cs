@@ -5,7 +5,7 @@ namespace Xdl.Internship.Offers.SDK.OfferDTOs
 {
     public class OfferDTO
     {
-        public ObjectId Id { get; set; }
+        public string Id { get; set; }
 
         public string CreatedBy { get; set; }
 
