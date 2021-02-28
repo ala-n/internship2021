@@ -1,9 +1,13 @@
-﻿using MongoDB.Bson;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using Xdl.Internship.Offers.SDK.OfferDTOs;
+using Xdl.Internship.Offers.SDK.VendorDTOs;
 
 namespace Xdl.Internship.Offers.SDK.VendorEntityDTOs
 {
-    // for OfferMainDTO
-    public class VendorEntityMainDTO
+    // getOfficeById
+    public class VendorEntityWithVendorAndOffersDTO
     {
         public string Id { get; set; }
 

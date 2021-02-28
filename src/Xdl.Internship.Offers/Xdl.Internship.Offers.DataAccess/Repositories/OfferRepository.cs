@@ -27,9 +27,6 @@ namespace Xdl.Internship.Offers.DataAccess.Repositories
             throw new NotImplementedException();
         }
 
-        // public async Task<ICollection<Offer>> GetOffersByCityId()
-        // {
-        // }
         public Task<ICollection<Offer>> GetOffersByVendorId()
         {
             throw new NotImplementedException();
