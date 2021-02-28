@@ -19,6 +19,7 @@ using Xdl.Internship.Core.DataAccess.MongoDB.ConnectionFactories;
 using Xdl.Internship.Core.DataAccess.MongoDB.Settings;
 using Xdl.Internship.Offers.DataAccess.Repositories;
 using Xdl.Internship.Offers.Handlers;
+using Xdl.Internship.Offers.SDK;
 
 namespace Xdl.Internship.Offers.ServiceHost
 {
@@ -35,7 +36,9 @@ namespace Xdl.Internship.Offers.ServiceHost
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<MongoDBSetting>(Configuration.GetSection("MongoDBSetting"));
-            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+            // services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddAutoMapperConfiguration();
             services.AddMediatRHandlers();
 
             services.AddSingleton<IConnectionFactory, DefaultConnectionFactory>();
