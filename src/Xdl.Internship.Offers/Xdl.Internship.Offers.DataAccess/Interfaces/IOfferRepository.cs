@@ -9,10 +9,12 @@ namespace Xdl.Internship.Offers.DataAccess.Interfaces
     {
         Task<ICollection<Offer>> FindActiveAsync();
 
-        Task<ICollection<Offer>> GetOffersByVendorId(ObjectId vendorId);
+        Task<ICollection<Offer>> FindOffersByVendorId(ObjectId vendorId);
 
-        Task<ICollection<Offer>> GetOffersByCityId(ObjectId cityId);
+        Task<ICollection<Offer>> FindOffersByCityId(ObjectId cityId);
 
-        Task<ICollection<Offer>> GetOfferById(ObjectId offerId);
+        Task<Offer> FindOfferById(ObjectId offerId);
+
+        Task<ICollection<Offer>> FindOfferByVendorEntityId(ObjectId vendorEntityId);
     }
 }

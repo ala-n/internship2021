@@ -23,17 +23,22 @@ namespace Xdl.Internship.Offers.DataAccess.Repositories
             return await FindAsync(filter);
         }
 
-        public Task<ICollection<Offer>> GetOfferById(ObjectId offerId)
+        public Task<Offer> FindOfferById(ObjectId offerId)
+        {
+            return FindByIdAsync(offerId);
+        }
+
+        public Task<ICollection<Offer>> FindOffersByCityId(ObjectId cityId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<ICollection<Offer>> GetOffersByCityId(ObjectId cityId)
+        public Task<ICollection<Offer>> FindOffersByVendorId(ObjectId vendorId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<ICollection<Offer>> GetOffersByVendorId(ObjectId vendorId)
+        public Task<ICollection<Offer>> FindOfferByVendorEntityId(ObjectId vendorEntityId)
         {
             throw new NotImplementedException();
         }
