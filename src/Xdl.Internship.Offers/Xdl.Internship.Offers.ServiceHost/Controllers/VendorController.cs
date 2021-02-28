@@ -20,16 +20,16 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<VendorDTO>> GetAll()
+        public async Task<ActionResult<IEnumerable<VendorDTO>>> GetAll()
         {
-            return await _mediator.Send(new FindActiveVendorsRequest());
+            return Ok(await _mediator.Send(new FindActiveVendorsRequest()));
         }
 
         [HttpGet]
         [Route("city/{cityId}/entities")]
         public async Task<ActionResult<IEnumerable<VendorWithEntitiesDTO>>> GetManyWithEntities([FromRoute]string cityId, [FromQuery]bool includeInactive = false)
         {
-            if (ObjectId.TryParse(cityId, out var id))
+            if (!ObjectId.TryParse(cityId, out var id))
             {
                 return BadRequest($"{nameof(cityId)} is not valid");
             }

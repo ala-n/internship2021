@@ -32,6 +32,7 @@ namespace Xdl.Internship.Offers.DataAccess.Repositories
         public Task<ICollection<VendorEntity>> FindByCityAsync(ObjectId cityId, bool onlyActive)
         {
             Expression<Func<VendorEntity, bool>> filter = (v) => v.Adress.CityId == cityId && (!onlyActive || v.IsActive);
+
             return FindAsync(filter);
         }
     }

@@ -31,30 +31,29 @@ namespace Xdl.Internship.Offers.Handlers.Vendor
         public async Task<ICollection<VendorWithEntitiesDTO>> Handle(FindVendorsWithEntitiesRequest request, CancellationToken cancellationToken)
         {
             // Getting all Entitties
-            if (ObjectId.TryParse(request.CityId, var ))
-            {
+            var entities = await _vendorEntityRepository.FindByCityAsync(request.CityId, request.OnlyActive);
 
-            }
-            var entities = await _vendorEntityRepository.FindByCityAsync(ObjectId.Parse(request.CityId), request.OnlyActive);
- 
             // Filtering unique values
-            ICollection<ObjectId> vendorIds = (ICollection<ObjectId>)entities.Select(e => e.VendorId).Distinct();
+            ICollection<ObjectId> vendorIds = entities.Select(e => e.VendorId).Distinct().ToList();
 
-            var vendors = _vendorRepository.FindByIdsAsync(vendorIds);
+            var vendors = await _vendorRepository.FindByIdsAsync(vendorIds);
 
-            var res = _mapper.Map<IList<VendorWithEntitiesDTO>>(vendors);
-            foreach (var entity in entities)
+            var entitiesByVendor = entities.GroupBy(e => e.VendorId);
+            var vendorsByIdMap = vendors.ToDictionary(v => v.Id);
+
+            ICollection<VendorWithEntitiesDTO> result = new List<VendorWithEntitiesDTO>();
+            foreach (var vendorEntities in entitiesByVendor)
             {
-                for (var i = 0; i < res.Count; i++)
+                var vendorId = vendorEntities.Key;
+                if (vendorsByIdMap.TryGetValue(vendorId, out var vendor))
                 {
-                    if (entity.VendorId == res[i].Id)
-                    {
-                        res[i].VendorEntities.Add(entity);
-                    }
+                    var vendorWithEntitiesDTO = _mapper.Map<VendorWithEntitiesDTO>(vendor);
+                    vendorWithEntitiesDTO.VendorEntities = _mapper.Map<ICollection<VendorEntityDTO>>(vendorEntities);
+                    result.Add(vendorWithEntitiesDTO);
                 }
             }
 
-            return res;
+            return result;
         }
     }
 }
