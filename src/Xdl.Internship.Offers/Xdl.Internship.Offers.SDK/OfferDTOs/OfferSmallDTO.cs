@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Xdl.Internship.Offers.SDK.OfferDTOs
 {
-    class OfferSmallDTO
+    public class OfferSmallDTO
     {
     }
 }

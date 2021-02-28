@@ -1,5 +1,5 @@
 ﻿using System;
-using Xdl.Internship.Offers.Models;
+using Xdl.Internship.Offers.SDK.AddressDTOs;
 
 namespace Xdl.Internship.Offers.SDK.VendorEntityDTOs
 {
@@ -17,7 +17,7 @@ namespace Xdl.Internship.Offers.SDK.VendorEntityDTOs
 
         public double[] Location { get; set; }
 
-        public Adress Adress { get; set; }
+        public AddressDTO Adress { get; set; }
 
         public string Phone { get; set; }
 
