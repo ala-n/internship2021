@@ -31,7 +31,5 @@ namespace Xdl.Internship.Offers.SDK.OffersDTOs
         public string DateEnd { get; set; }
 
         public int Rating { get; set; }
-
-        public ICollection<VendorEntityMainDTO> VendorEntities { get; set; }
     }
 }

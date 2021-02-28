@@ -16,8 +16,6 @@
 
   <ItemGroup>
     <Folder Include="TagDTOs\" />
-    <Folder Include="VendorDTOs\" />
-    <Folder Include="VendorEntityDTOs\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Xdl.Internship.Offers.Models\Xdl.Internship.Offers.Models.csproj" />
