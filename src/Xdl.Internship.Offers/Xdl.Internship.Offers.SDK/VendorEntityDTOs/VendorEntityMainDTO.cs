@@ -1,8 +1,11 @@
 ﻿namespace Xdl.Internship.Offers.SDK.VendorEntityDTOs
 {
+    // for OfferMainDTO
     public class VendorEntityMainDTO
     {
         public string Id { get; set; }
+
+        public string City { get; set; }
 
         public string Street { get; set; }
 

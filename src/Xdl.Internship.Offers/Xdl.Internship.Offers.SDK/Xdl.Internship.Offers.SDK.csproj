@@ -15,7 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="OfferDTOs\" />
     <Folder Include="TagDTOs\" />
     <Folder Include="VendorDTOs\" />
     <Folder Include="VendorEntityDTOs\" />
