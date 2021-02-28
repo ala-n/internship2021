@@ -25,5 +25,12 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
         {
             return await _mediator.Send(new FindActiveOffersRequest());
         }
+
+        [HttpGet]
+        [Route("city")]
+        public async Task<IEnumerable<OfferForListDTO>> GetManyWithEntities(string cityId)
+        {
+            return await _mediator.Send(new FindOffersByCityIdRequest(cityId));
+        }
     }
 }
