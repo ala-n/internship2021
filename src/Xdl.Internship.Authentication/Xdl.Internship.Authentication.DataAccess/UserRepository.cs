@@ -12,26 +12,26 @@ using Xdl.Internship.Core.DataAccess.MongoDB.Repositories;
 
 namespace Xdl.Internship.Authentication.DataAccess
 {
-    public class UserRepository : MongoRepositoryBase<User>, IUserRepository
+    public class UserRepository : MongoRepositoryBase<Models.User>, IUserRepository
     {
         public UserRepository(ICollectionProvider collectionProvider)
             : base(collectionProvider)
         {
         }
 
-        public async Task<User> FindUserByIdAsync(ObjectId id, CancellationToken cancellationToken = default)
+        public async Task<Models.User> FindUserByIdAsync(ObjectId id, CancellationToken cancellationToken = default)
         {
             return await FindByIdAsync(id, default);
         }
 
-        public async Task<ICollection<User>> FindUsersAsync(Expression<Func<User, bool>> filterExpression, CancellationToken cancellationToken = default)
+        public async Task<ICollection<Models.User>> FindUsersAsync(Expression<Func<Models.User, bool>> filterExpression, CancellationToken cancellationToken = default)
         {
             return await FindAsync(filterExpression, cancellationToken);
         }
 
-        public async Task<User> LoginAsync(UserCredentials userCredentials, CancellationToken cancellationToken = default)
+        public async Task<Models.User> LoginAsync(string login, string password, CancellationToken cancellationToken = default)
         {
-            var user = await FindOneAsync(x => x.Login == userCredentials.Login && x.Password == userCredentials.Password, cancellationToken);
+            var user = await FindOneAsync(x => x.Login == login && x.Password == password, cancellationToken);
             return user;
         }
     }

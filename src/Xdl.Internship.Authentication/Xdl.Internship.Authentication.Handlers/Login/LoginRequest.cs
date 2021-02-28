@@ -2,21 +2,18 @@
 using Microsoft.AspNetCore.Mvc;
 using Xdl.Internship.Authentication.DTOs;
 
-namespace Xdl.Internship.Authentication.Handlers.Feature.Login
+namespace Xdl.Internship.Authentication.Handlers.Login
 {
-    public partial class Login
-    {
-        public class Command : IRequest<UserRead>
+        public class LoginRequest : IRequest<UserAuthInfo>
         {
             public string Login { get; }
 
             public string Password { get; }
 
-            public Command(string login, string password)
+            public LoginRequest(string login, string password)
             {
                 Login = login;
                 Password = password;
             }
         }
-    }
 }

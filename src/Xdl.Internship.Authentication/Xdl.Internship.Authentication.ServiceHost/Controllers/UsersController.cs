@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
-using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Xdl.Internship.Authentication.DataAccess.Interfaces;
 using Xdl.Internship.Authentication.DTOs;
-using Xdl.Internship.Authentication.Handlers.Feature.Login;
+using Xdl.Internship.Authentication.Handlers.Login;
 
 namespace Xdl.Internship.Authentication.ServiceHost.Controllers
 {
@@ -24,16 +22,21 @@ namespace Xdl.Internship.Authentication.ServiceHost.Controllers
 
         [AllowAnonymous]
         [HttpPost("login")]
-        public async Task<IActionResult> LoginAsync(Login.Command cmd)
+        public async Task<IActionResult> LoginAsync([FromBody] UserCredentials credentials)
         {
-            try
+            if (credentials == null)
             {
-                return Ok(await _mediator.Send(cmd));
+                return BadRequest("No data");
             }
-            catch (Exception ex)
+
+            var authInfo = await _mediator.Send(new LoginRequest(credentials.Login, credentials.Password));
+
+            if (string.IsNullOrEmpty(authInfo?.Token))
             {
-                return BadRequest(ex.Message);
+                return BadRequest("Error login or password");
             }
+
+            return Ok(authInfo);
         }
     }
 }
