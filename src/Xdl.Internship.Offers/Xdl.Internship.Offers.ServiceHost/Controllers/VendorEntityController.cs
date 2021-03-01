@@ -54,5 +54,17 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
 
             return Ok(await _mediator.Send(new ReplaceVendorEntityRequest(parsedId, vendorEntity)));
         }
+
+        [HttpDelete]
+        [Route("api/vendorEntities/{id}")]
+        public async Task<ActionResult> DeleteVendorEntity([FromRoute] string id)
+        {
+            if (!ObjectId.TryParse(id, out var parsedId))
+            {
+                return BadRequest($"{nameof(id)} is not valid");
+            }
+
+            return Ok(await _mediator.Send(new DeleteVendorEntityRequest(parsedId)));
+        }
     }
 }
