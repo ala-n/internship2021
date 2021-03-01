@@ -10,7 +10,7 @@ using Xdl.Internship.Offers.SDK.TagDTOs;
 
 namespace Xdl.Internship.Offers.Handlers.Tag
 {
-    public class FindTopTagsHandler : IRequestHandler<FindTopTagsRequest, ICollection<TagDTO>>
+    public class FindTopTagsHandler : IRequestHandler<FindTopTagsRequest, ICollection<TagMainDTO>>
     {
         private readonly ITagRepository _tagRepository;
         private readonly IMapper _mapper;
@@ -21,16 +21,16 @@ namespace Xdl.Internship.Offers.Handlers.Tag
             _mapper = mapper;
         }
 
-        public async Task<ICollection<TagDTO>> Handle(FindTopTagsRequest request, CancellationToken cancellationToken)
+        public async Task<ICollection<TagMainDTO>> Handle(FindTopTagsRequest request, CancellationToken cancellationToken)
         {
             var tags = await _tagRepository.FindTopTagsAsync();
-            var topTags = tags.OrderBy(t => t.UsesByUser).Take(10);
+            var topTags = tags.OrderByDescending(t => t.UsesByUser).Take(10);
 
-            var tagDTO = new List<TagDTO> { };
+            var tagDTO = new List<TagMainDTO> { };
 
             foreach (var tag in topTags)
             {
-                tagDTO.Add(_mapper.Map<TagDTO>(tag));
+                tagDTO.Add(_mapper.Map<TagMainDTO>(tag));
             }
 
             return tagDTO;

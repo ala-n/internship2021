@@ -5,7 +5,7 @@ using Xdl.Internship.Offers.SDK.TagDTOs;
 
 namespace Xdl.Internship.Offers.Handlers.Tag
 {
-    public class FindTopTagsRequest : IRequest<ICollection<TagDTO>>
+    public class FindTopTagsRequest : IRequest<ICollection<TagMainDTO>>
     {
     }
 }
