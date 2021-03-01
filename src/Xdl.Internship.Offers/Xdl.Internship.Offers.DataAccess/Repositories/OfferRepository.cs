@@ -28,15 +28,6 @@ namespace Xdl.Internship.Offers.DataAccess.Repositories
             return FindByIdAsync(offerId);
         }
 
-        public Task<ICollection<Offer>> FindOffersByCityId(ObjectId cityId)
-        {
-            /*  Expression<Func<VendorEntity, bool>> filter1 = (v) => v.Adress.CityId == cityId;
-              Expression<Func<Offer, bool>> filter = (o) => o.Adress.CityId == cityId && o.IsActive;
-
-              return FindAsync(filter);*/
-            throw new ArgumentException();
-        }
-
         public Task<ICollection<Offer>> FindOffersByVendorId(ObjectId vendorId)
         {
             Expression<Func<Offer, bool>> filter = (o) => o.Id == vendorId && o.IsActive;

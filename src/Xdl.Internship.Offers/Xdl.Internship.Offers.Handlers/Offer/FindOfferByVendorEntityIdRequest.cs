@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using MediatR;
 using MongoDB.Bson;
-using Xdl.Internship.Offers.SDK.OffersDTOs;
+using Xdl.Internship.Offers.SDK.OfferDTOs;
 
 namespace Xdl.Internship.Offers.Handlers.Offer
 {

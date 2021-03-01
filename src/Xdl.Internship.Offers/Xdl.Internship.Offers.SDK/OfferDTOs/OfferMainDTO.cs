@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using MongoDB.Bson;
 using Xdl.Internship.Offers.SDK.VendorEntityDTOs;
 
-namespace Xdl.Internship.Offers.SDK.OffersDTOs
+namespace Xdl.Internship.Offers.SDK.OfferDTOs
 {
     // getOfferById
     public class OfferMainDTO
