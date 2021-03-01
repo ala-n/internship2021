@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Xdl.Internship.Offers.Handlers.Offer
 {
-    class FindOfferByIdHandler
+    public class FindOfferByIdHandler
     {
     }
 }
