@@ -20,8 +20,13 @@ namespace Xdl.Internship.Offers.Handlers.VendorEntity
 
         public async Task<VendorEntityDTO> Handle(ReplaceVendorEntityRequest request, CancellationToken cancellationToken)
         {
+            // Getting old value to copy audit fields
+            var oldEntity = await _vendorEntityRepository.FindByIdAsync(request.Id);
+
             var entity = _mapper.Map<Models.VendorEntity>(request.VendorEntityDTO);
             entity.Id = request.Id;
+            entity.CreatedBy = oldEntity.CreatedBy;
+            entity.CreatedAt = oldEntity.CreatedAt;
 
             await _vendorEntityRepository.ReplaceOneAsync(entity);
 
