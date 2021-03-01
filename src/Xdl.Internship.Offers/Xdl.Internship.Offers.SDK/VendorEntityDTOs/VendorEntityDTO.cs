@@ -17,7 +17,7 @@ namespace Xdl.Internship.Offers.SDK.VendorEntityDTOs
 
         public double[] Location { get; set; }
 
-        public AddressDTO Adress { get; set; }
+        public AddressDTO Address { get; set; }
 
         public string Phone { get; set; }
 

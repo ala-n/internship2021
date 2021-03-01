@@ -21,7 +21,6 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
         }
 
         [HttpGet]
-        [Route("/topTags")]
         public async Task<IEnumerable<TagDTO>> GeTopTags()
         {
             return await _mediator.Send(new FindTopTagsRequest());
