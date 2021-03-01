@@ -22,12 +22,11 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet("GetAll")]
-        public async Task<IEnumerable<OfferDTO>> GetAll()
-        {
-            return await _mediator.Send(new FindActiveOffersRequest());
-        }
-
+        // [HttpGet("GetAll")]
+        // public async Task<IEnumerable<OfferDTO>> GetAll()
+        // {
+        //    return await _mediator.Send(new FindActiveOffersRequest());
+        // }
         [HttpGet("{cityId}")]
         public async Task<ActionResult<IEnumerable<OfferForListDTO>>> FindOffersByCityId([FromRoute]string cityId)
         {
