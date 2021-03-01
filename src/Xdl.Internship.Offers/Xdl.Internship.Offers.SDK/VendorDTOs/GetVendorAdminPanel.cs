@@ -5,7 +5,7 @@ namespace Xdl.Internship.Offers.SDK.VendorDTOs
 {
     public class GetVendorAdminPanel
     {
-        public ObjectId Id { get; set; }
+        public string Id { get; set; }
 
         public string Name { get; set; }
 

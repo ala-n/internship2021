@@ -20,7 +20,7 @@ namespace Xdl.Internship.Offers.SDK.TagDTOs
                 .ForMember(d => d.UsesByVendor, opt => opt.MapFrom(s => s.UsesByVendor))
                 .ForMember(d => d.IsDeleted, opt => opt.MapFrom(s => s.IsDeleted));
 
-            CreateMap<Tag, TagMainDTOs>();
+            CreateMap<Tag, TagMainDTO>();
         }
     }
 }
