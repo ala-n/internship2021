@@ -21,7 +21,7 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet("GetAll")]
+        [HttpGet]
         public async Task<IEnumerable<OfferDTO>> GetAll()
         {
             return await _mediator.Send(new FindActiveOffersRequest());
