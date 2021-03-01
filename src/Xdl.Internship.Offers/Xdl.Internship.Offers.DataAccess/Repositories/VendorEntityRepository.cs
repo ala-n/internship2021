@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using MongoDB.Bson;
@@ -11,11 +12,19 @@ namespace Xdl.Internship.Offers.DataAccess.Repositories
 {
     public interface IVendorEntityRepository
     {
-        Task<ICollection<VendorEntity>> FindByCityAsync(ObjectId cityId, bool onlyActive);
+        // READ
+        Task<VendorEntity> FindByIdAsync(ObjectId id);
+
+        Task<VendorEntity> FindOneByLocationAsync(double[] location);
 
         Task<ICollection<VendorEntity>> FindActiveAsync();
 
+        Task<ICollection<VendorEntity>> FindByCityAsync(ObjectId cityId, bool onlyActive);
+
         Task<ICollection<VendorEntity>> FindByVendorId(ObjectId vendorId);
+
+        // CREATE
+        Task InsertOneAsync(VendorEntity vendorEntity);
     }
 
     public class VendorEntityRepository : MongoRepositoryBase<VendorEntity>, IVendorEntityRepository
@@ -23,6 +32,19 @@ namespace Xdl.Internship.Offers.DataAccess.Repositories
         public VendorEntityRepository(ICollectionProvider collectionProvider)
             : base(collectionProvider)
         {
+        }
+
+        // READ
+        public Task<VendorEntity> FindByIdAsync(ObjectId id)
+        {
+            return base.FindByIdAsync(id);
+        }
+
+        public Task<VendorEntity> FindOneByLocationAsync(double[] location)
+        {
+            // Expression<Func<VendorEntity, bool>> filter = (v) => v.Location.SequenceEqual(location);
+            Expression<Func<VendorEntity, bool>> filter = (v) => v.Location[0] == location[0] && v.Location[1] == location[1];
+            return FindOneAsync(filter);
         }
 
         public Task<ICollection<VendorEntity>> FindActiveAsync()
@@ -41,6 +63,12 @@ namespace Xdl.Internship.Offers.DataAccess.Repositories
         {
             Expression<Func<VendorEntity, bool>> filter = (v) => v.VendorId == vendorId;
             return FindAsync(filter);
+        }
+
+        // CREATE
+        public Task InsertOneAsync(VendorEntity vendorEntity)
+        {
+            return base.InsertOneAsync(vendorEntity);
         }
     }
 }
