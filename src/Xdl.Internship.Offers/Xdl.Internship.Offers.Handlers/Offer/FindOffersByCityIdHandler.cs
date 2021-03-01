@@ -23,7 +23,8 @@ namespace Xdl.Internship.Offers.Handlers.Offer
         }
 
         public Task<ICollection<OfferForListDTO>> Handle(FindOffersByCityIdRequest request, CancellationToken cancellationToken)
-        {    
+        {
+            throw new Exception();
         }
     }
 }
