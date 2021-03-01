@@ -1,8 +1,10 @@
-﻿using MongoDB.Bson;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Xdl.Internship.Offers.SDK.VendorDTOs
 {
-    public class GetVendorByIdAdminPanel
+    public class VendorByIdAdminPanel
     {
         public string Id { get; set; }
 

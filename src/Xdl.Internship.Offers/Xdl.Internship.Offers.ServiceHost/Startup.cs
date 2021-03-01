@@ -17,8 +17,10 @@ using Microsoft.OpenApi.Models;
 using Xdl.Internship.Core.DataAccess.MongoDB.CollectionProviders;
 using Xdl.Internship.Core.DataAccess.MongoDB.ConnectionFactories;
 using Xdl.Internship.Core.DataAccess.MongoDB.Settings;
+using Xdl.Internship.Offers.DataAccess.Interfaces;
 using Xdl.Internship.Offers.DataAccess.Repositories;
 using Xdl.Internship.Offers.Handlers;
+using Xdl.Internship.Offers.Handlers.Vendor;
 using Xdl.Internship.Offers.SDK;
 
 namespace Xdl.Internship.Offers.ServiceHost
@@ -40,10 +42,10 @@ namespace Xdl.Internship.Offers.ServiceHost
             // services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddAutoMapperConfiguration();
             services.AddMediatRHandlers();
-
             services.AddSingleton<IConnectionFactory, DefaultConnectionFactory>();
             services.AddSingleton<ICollectionProvider, DefaultCollectionProvider>();
             services.AddSingleton<VendorRepository>();
+            services.AddSingleton<IVendorRepository, VendorRepository>();
             services.AddSingleton<VendorEntityRepository>();
 
             services.AddSingleton<TagRepository>();

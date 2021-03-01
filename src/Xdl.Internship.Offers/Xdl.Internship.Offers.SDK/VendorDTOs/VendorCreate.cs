@@ -1,11 +1,7 @@
-﻿using MongoDB.Bson;
-
-namespace Xdl.Internship.Offers.SDK.VendorDTOs
+﻿namespace Xdl.Internship.Offers.SDK.VendorDTOs
 {
-    public class GetVendorByIdAdminPanel
+    public class VendorCreate
     {
-        public string Id { get; set; }
-
         public string Name { get; set; }
 
         public string Title { get; set; }
@@ -15,5 +11,7 @@ namespace Xdl.Internship.Offers.SDK.VendorDTOs
         public string Description { get; set; }
 
         public bool IsActive { get; set; }
+
+        public string CreatedBy { get; set; }
     }
 }
