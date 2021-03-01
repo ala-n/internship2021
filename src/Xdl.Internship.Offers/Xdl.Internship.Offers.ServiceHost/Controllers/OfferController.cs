@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 using Xdl.Internship.Offers.Handlers.Offer;
 using Xdl.Internship.Offers.SDK.OfferDTOs;
-using Xdl.Internship.Offers.SDK.OffersDTOs;
 
 namespace Xdl.Internship.Offers.ServiceHost.Controllers
 {
@@ -35,7 +34,7 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
                 return BadRequest($"{nameof(cityId)} is not valid");
             }
 
-            return Ok(await _mediator.Send(new FindOffersByCityIdRequest(id)));
+            return Ok(await _mediator.Send(new FindOffersByCityIdRequest(id, true)));
         }
 
         [HttpGet("{offerId}")]

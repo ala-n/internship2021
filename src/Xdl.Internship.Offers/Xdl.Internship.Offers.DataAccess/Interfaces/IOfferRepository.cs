@@ -11,8 +11,6 @@ namespace Xdl.Internship.Offers.DataAccess.Interfaces
 
         Task<ICollection<Offer>> FindOffersByVendorId(ObjectId vendorId);
 
-        Task<ICollection<Offer>> FindOffersByCityId(ObjectId cityId);
-
         Task<Offer> FindOfferById(ObjectId offerId);
 
         Task<ICollection<Offer>> FindOfferByVendorEntityId(ObjectId vendorEntityId);
