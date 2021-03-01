@@ -20,7 +20,7 @@ namespace Xdl.Internship.Offers.Models
 
         public DateTime DateEnd { get; set; }
 
-        public ObjectId VendorId { get; set; }
+        public ObjectId[] VendorEntitiesId { get; set; }
 
         public ObjectId[] Tags { get; set; }
 
