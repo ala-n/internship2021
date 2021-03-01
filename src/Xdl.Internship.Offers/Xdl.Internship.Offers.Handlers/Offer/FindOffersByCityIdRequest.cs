@@ -9,8 +9,9 @@ namespace Xdl.Internship.Offers.Handlers.Offer
 {
     public class FindOffersByCityIdRequest : IRequest<ICollection<OfferForListDTO>>
     {
-        public FindOffersByCityIdRequest(string cityId)
+        public FindOffersByCityIdRequest(ObjectId cityId)
         {
+            CityId = cityId;
         }
 
         public ObjectId CityId { get; set; }
