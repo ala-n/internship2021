@@ -25,7 +25,7 @@ namespace Xdl.Internship.Offers.Handlers.Offer
 
         public async Task<OfferMainDTO> Handle(FindOfferByIdRequest request, CancellationToken cancellationToken)
         {
-            return _mapper.Map<OfferMainDTO>(_offerRepository.FindOfferById(request.OfferId));
+            return _mapper.Map<OfferMainDTO>(await _offerRepository.FindOfferById(request.OfferId));
         }
     }
 }
