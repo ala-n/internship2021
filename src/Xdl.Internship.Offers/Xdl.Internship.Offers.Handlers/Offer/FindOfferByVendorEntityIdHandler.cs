@@ -22,9 +22,16 @@ namespace Xdl.Internship.Offers.Handlers.Offer
             _mapper = mapper;
         }
 
-        public Task<ICollection<OfferMainDTO>> Handle(FindOfferByVendorEntityIdRequest request, CancellationToken cancellationToken)
+        public async Task<ICollection<OfferMainDTO>> Handle(FindOfferByVendorEntityIdRequest request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var entities = await _offerRepository.FindOfferByVendorEntityId(request.VendorEntityId);
+            var result = new List<OfferMainDTO> { };
+            foreach (var en in entities)
+            {
+                result.Add(_mapper.Map<OfferMainDTO>(en));
+            }
+
+            return result;
         }
     }
 }

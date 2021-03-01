@@ -38,14 +38,14 @@ namespace Xdl.Internship.Offers.DataAccess.Repositories
 
         public Task<ICollection<Offer>> FindOffersByVendorId(ObjectId vendorId)
         {
-            Expression<Func<Offer, bool>> filter = (o) => o.VendorId == vendorId && o.IsActive;
+            Expression<Func<Offer, bool>> filter = (o) => o == vendorId && o.IsActive;
 
             return FindAsync(filter);
         }
 
         public Task<ICollection<Offer>> FindOfferByVendorEntityId(ObjectId vendorEntityId)
         {
-            Expression<Func<Offer, bool>> filter = (o) => o.VendorId == cityId && o.IsActive;
+            Expression<Func<Offer, bool>> filter = (o) => o.VendorEntitiesId.Contains(vendorEntityId) && o.IsActive;
 
             return FindAsync(filter);
         }
