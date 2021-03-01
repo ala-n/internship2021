@@ -8,9 +8,9 @@ using Xdl.Internship.Offers.SDK.OfferDTOs;
 
 namespace Xdl.Internship.Offers.Handlers.Offer
 {
-    public class FindOffersByCityIdHandler : IRequestHandler<FindOffersByCityIdRequest, ICollection<OfferDTO>>
+    public class FindOffersByCityIdHandler : IRequestHandler<FindOffersByCityIdRequest, ICollection<OfferForListDTO>>
     {
-        public Task<ICollection<OfferDTO>> Handle(FindOffersByCityIdRequest request, CancellationToken cancellationToken)
+        public Task<ICollection<OfferForListDTO>> Handle(FindOffersByCityIdRequest request, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
