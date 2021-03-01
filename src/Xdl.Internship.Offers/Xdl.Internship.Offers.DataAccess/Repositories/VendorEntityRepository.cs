@@ -25,6 +25,9 @@ namespace Xdl.Internship.Offers.DataAccess.Repositories
 
         // CREATE
         Task InsertOneAsync(VendorEntity vendorEntity);
+
+        // UPDATE
+        Task ReplaceOneAsync(VendorEntity vendorEntity);
     }
 
     public class VendorEntityRepository : MongoRepositoryBase<VendorEntity>, IVendorEntityRepository
@@ -69,6 +72,12 @@ namespace Xdl.Internship.Offers.DataAccess.Repositories
         public Task InsertOneAsync(VendorEntity vendorEntity)
         {
             return base.InsertOneAsync(vendorEntity);
+        }
+
+        // UPDATE
+        public Task ReplaceOneAsync(VendorEntity vendorEntity)
+        {
+            return base.ReplaceOneAsync(vendorEntity);
         }
     }
 }

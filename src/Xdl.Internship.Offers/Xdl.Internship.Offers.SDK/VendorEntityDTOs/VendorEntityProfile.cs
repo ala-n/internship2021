@@ -9,8 +9,12 @@ namespace Xdl.Internship.Offers.SDK.VendorEntityDTOs
         public VendorEntityProfile()
         {
             CreateMap<VendorEntity, VendorEntityDTO>();
+
             CreateMap<CreateVendorEntityDTO, VendorEntity>()
                 .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(src => DateTimeOffset.Now));
+
+            CreateMap<UpdateVendorEntityDTO, VendorEntity>()
+                .ForMember(dest => dest.UpdatedAt, opt => opt.MapFrom(src => DateTimeOffset.Now));
         }
     }
 }

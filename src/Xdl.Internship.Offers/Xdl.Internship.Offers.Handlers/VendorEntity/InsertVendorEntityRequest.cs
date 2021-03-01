@@ -10,7 +10,7 @@ namespace Xdl.Internship.Offers.Handlers.VendorEntity
 
         public CreateVendorEntityDTO VendorEntityDTO { get; }
 
-        public InsertVendorEntityRequest(CreateVendorEntityDTO vendorEntityDTO, ObjectId vendorId)
+        public InsertVendorEntityRequest(ObjectId vendorId, CreateVendorEntityDTO vendorEntityDTO)
         {
             VendorEntityDTO = vendorEntityDTO;
             VendorId = vendorId;

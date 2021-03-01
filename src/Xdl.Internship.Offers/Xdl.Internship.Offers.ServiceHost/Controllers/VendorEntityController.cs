@@ -23,24 +23,36 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
         [Route("api/vendorEntities/{id}")]
         public async Task<ActionResult<IEnumerable<VendorDTO>>> GetVendorEntitiesById([FromRoute] string id)
         {
-            if (!ObjectId.TryParse(id, out var vendorEntityId))
+            if (!ObjectId.TryParse(id, out var parsedId))
             {
                 return BadRequest($"{nameof(id)} is not valid");
             }
 
-            return Ok(await _mediator.Send(new FindVendorEntityByIdRequest(vendorEntityId)));
+            return Ok(await _mediator.Send(new FindVendorEntityByIdRequest(parsedId)));
         }
 
         [HttpPost]
         [Route("api/vendors/{vendorId}/vendorEntities")]
         public async Task<ActionResult<VendorEntityDTO>> CreateVendorEntity([FromRoute] string vendorId, [FromBody] CreateVendorEntityDTO vendorEntity)
         {
-            if (!ObjectId.TryParse(vendorId, out var id))
+            if (!ObjectId.TryParse(vendorId, out var parsedId))
             {
                 return BadRequest($"{nameof(vendorId)} is not valid");
             }
 
-            return Ok(await _mediator.Send(new InsertVendorEntityRequest(vendorEntity, id)));
+            return Ok(await _mediator.Send(new InsertVendorEntityRequest(parsedId, vendorEntity)));
+        }
+
+        [HttpPut]
+        [Route("api/vendorEntities/{id}")]
+        public async Task<ActionResult<VendorEntityDTO>> UpdateVendorEntity([FromRoute] string id, [FromBody] UpdateVendorEntityDTO vendorEntity)
+        {
+            if (!ObjectId.TryParse(id, out var parsedId))
+            {
+                return BadRequest($"{nameof(id)} is not valid");
+            }
+
+            return Ok(await _mediator.Send(new ReplaceVendorEntityRequest(parsedId, vendorEntity)));
         }
     }
 }
