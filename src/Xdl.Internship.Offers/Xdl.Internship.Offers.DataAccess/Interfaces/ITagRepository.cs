@@ -10,5 +10,7 @@ namespace Xdl.Internship.Offers.DataAccess.Interfaces
         Task<ICollection<Tag>> FindTopTagsAsync();
 
         Task<Tag> FindTagById(ObjectId tagId);
+
+        Task<ICollection<Tag>> FindAllTagsAsync();
     }
 }
