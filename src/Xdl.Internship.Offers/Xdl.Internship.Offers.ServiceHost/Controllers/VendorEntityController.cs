@@ -31,6 +31,8 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
             return Ok(await _mediator.Send(new FindVendorEntityByIdRequest(parsedId)));
         }
 
+        // offerId -> list of vendorEntities
+
         [HttpPost]
         [Route("api/vendors/{vendorId}/vendorEntities")]
         public async Task<ActionResult<VendorEntityDTO>> CreateVendorEntity([FromRoute] string vendorId, [FromBody] CreateVendorEntityDTO vendorEntity)
