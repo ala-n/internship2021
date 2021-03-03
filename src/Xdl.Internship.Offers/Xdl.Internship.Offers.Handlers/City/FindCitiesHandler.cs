@@ -13,18 +13,18 @@ namespace Xdl.Internship.Offers.Handlers.City
 {
     public class FindCitiesHandler : IRequestHandler<FindCitiesRequest, ICollection<CityDTO>>
     {
-        private readonly IVendorRepository _vendorRepository;
+        private readonly ICityRepository _cityRepository;
         private readonly IMapper _mapper;
 
-        public FindCitiesHandler(VendorRepository vendorRepository, IMapper mapper)
+        public FindCitiesHandler(CityRepository cityRepository, IMapper mapper)
         {
-            _vendorRepository = vendorRepository;
+            _cityRepository = cityRepository;
             _mapper = mapper;
         }
 
-        public Task<ICollection<CityDTO>> Handle(FindCitiesRequest request, CancellationToken cancellationToken)
+        public async Task<ICollection<CityDTO>> Handle(FindCitiesRequest request, CancellationToken cancellationToken)
         {
-            throw new System.NotImplementedException();
+            return _mapper.Map<ICollection<CityDTO>>(await _cityRepository.FindActiveAsync());
         }
     }
 }

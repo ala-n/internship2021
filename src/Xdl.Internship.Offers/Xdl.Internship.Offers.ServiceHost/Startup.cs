@@ -45,11 +45,10 @@ namespace Xdl.Internship.Offers.ServiceHost
             services.AddSingleton<IConnectionFactory, DefaultConnectionFactory>();
             services.AddSingleton<ICollectionProvider, DefaultCollectionProvider>();
             services.AddSingleton<VendorRepository>();
-            services.AddSingleton<IVendorRepository, VendorRepository>();
             services.AddSingleton<VendorEntityRepository>();
-
             services.AddSingleton<TagRepository>();
             services.AddSingleton<OfferRepository>();
+            services.AddSingleton<CityRepository>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

@@ -5,7 +5,6 @@ using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
-using Xdl.Internship.Offers.DataAccess.Interfaces;
 using Xdl.Internship.Offers.Handlers.Vendor;
 using Xdl.Internship.Offers.Models;
 using Xdl.Internship.Offers.SDK.VendorDTOs;
@@ -17,18 +16,16 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
     public class VendorController : ControllerBase
     {
         private readonly IMediator _mediator;
-        private readonly IVendorRepository _vendorRepository;
         private readonly IMapper _mapper;
 
-        public VendorController(IMediator mediator, IVendorRepository vendorRepository, IMapper mapper)
+        public VendorController(IMediator mediator, IMapper mapper)
         {
             _mediator = mediator;
-            _vendorRepository = vendorRepository;
             _mapper = mapper;
         }
 
         [HttpGet("allActive")]
-        public async Task<ActionResult<IEnumerable<VendorDTO>>> GetAllActive()
+        public async Task<ActionResult<IEnumerable<VendorDTO>>> GetActiveVendors()
         {
             return Ok(await _mediator.Send(new FindActiveVendorsRequest()));
         }
@@ -57,7 +54,7 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
             return Ok(await _mediator.Send(new FindVendorsWithEntitiesRequest(id, !includeInactive)));
         }
 
-        [HttpPost("add")]
+        /** [HttpPost("add")]
         public async Task<ActionResult<Vendor>> AddVendor([FromBody] VendorCreate vendor)
         {
             if (vendor == null)
@@ -80,6 +77,6 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
             var objId = new ObjectId(id);
             var data = await _vendorRepository.FindAdminVendorById(objId);
             return Ok(_mapper.Map<VendorByIdAdminPanel>(data));
-        }
+        }**/
     }
 }
