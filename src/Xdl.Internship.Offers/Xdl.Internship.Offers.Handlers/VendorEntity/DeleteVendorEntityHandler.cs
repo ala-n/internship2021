@@ -2,8 +2,7 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
-using Xdl.Internship.Offers.DataAccess.Repositories;
-using Xdl.Internship.Offers.SDK.VendorEntityDTOs;
+using Xdl.Internship.Offers.DataAccess.Interfaces;
 
 namespace Xdl.Internship.Offers.Handlers.VendorEntity
 {
@@ -12,7 +11,7 @@ namespace Xdl.Internship.Offers.Handlers.VendorEntity
         private readonly IVendorEntityRepository _vendorEntityRepository;
         private readonly IMapper _mapper;
 
-        public DeleteVendorEntityHandler(VendorEntityRepository vendorEntityRepository, IMapper mapper)
+        public DeleteVendorEntityHandler(IVendorEntityRepository vendorEntityRepository, IMapper mapper)
         {
             _vendorEntityRepository = vendorEntityRepository;
             _mapper = mapper;
