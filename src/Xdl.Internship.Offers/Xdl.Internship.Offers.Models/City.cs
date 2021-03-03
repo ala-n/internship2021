@@ -7,5 +7,7 @@ namespace Xdl.Internship.Offers.Models
         public ObjectId Id { get; set; }
 
         public string Name { get; set; }
+
+        public string IsActive { get; set; }
     }
 }
