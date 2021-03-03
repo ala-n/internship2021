@@ -13,6 +13,10 @@ namespace Xdl.Internship.Offers.SDK.CityDTOs
             CreateMap<CreateCityDTO, City>()
                 .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(src => DateTimeOffset.Now))
                 .ForMember(dest => dest.IsActive, opt => opt.MapFrom(src => true));
+
+            CreateMap<UpdateCityDTO, City>()
+                .ForMember(dest => dest.UpdatedAt, opt => opt.MapFrom(src => DateTimeOffset.Now))
+                .ForMember(dest => dest.IsActive, opt => opt.MapFrom(src => true));
         }
     }
 }
