@@ -9,7 +9,6 @@ using MediatR;
 using MongoDB.Bson;
 using Xdl.Internship.Offers.DataAccess.Interfaces;
 using Xdl.Internship.Offers.DataAccess.Repositories;
-using Xdl.Internship.Offers.Models;
 using Xdl.Internship.Offers.SDK.VendorDTOs;
 using Xdl.Internship.Offers.SDK.VendorEntityDTOs;
 
@@ -21,7 +20,7 @@ namespace Xdl.Internship.Offers.Handlers.Vendor
         private readonly IVendorEntityRepository _vendorEntityRepository;
         private readonly IMapper _mapper;
 
-        public FindVendorsWithEntitiesHandler(VendorRepository vendorRepository, VendorEntityRepository vendorEntityRepository, IMapper mapper)
+        public FindVendorsWithEntitiesHandler(IVendorRepository vendorRepository, VendorEntityRepository vendorEntityRepository, IMapper mapper)
         {
             _vendorRepository = vendorRepository;
             _vendorEntityRepository = vendorEntityRepository;

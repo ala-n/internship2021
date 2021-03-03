@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using Xdl.Internship.Offers.DataAccess.Interfaces;
-using Xdl.Internship.Offers.DataAccess.Repositories;
 using Xdl.Internship.Offers.SDK.VendorDTOs;
 
 namespace Xdl.Internship.Offers.Handlers.Vendor
@@ -14,7 +13,7 @@ namespace Xdl.Internship.Offers.Handlers.Vendor
         private readonly IVendorRepository _vendorRepository;
         private readonly IMapper _mapper;
 
-        public FindActiveVendorsHandler(VendorRepository vendorRepository, IMapper mapper)
+        public FindActiveVendorsHandler(IVendorRepository vendorRepository, IMapper mapper)
         {
             _vendorRepository = vendorRepository;
             _mapper = mapper;

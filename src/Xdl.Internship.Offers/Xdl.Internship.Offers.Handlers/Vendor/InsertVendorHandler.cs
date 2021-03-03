@@ -2,17 +2,17 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
-using Xdl.Internship.Offers.DataAccess.Repositories;
+using Xdl.Internship.Offers.DataAccess.Interfaces;
 using Xdl.Internship.Offers.SDK.VendorDTOs;
 
 namespace Xdl.Internship.Offers.Handlers.Vendor
 {
     public class InsertVendorHandler : IRequestHandler<InsertVendorRequest, VendorDTO>
     {
-        private readonly VendorRepository _vendorRepository;
+        private readonly IVendorRepository _vendorRepository;
         private readonly IMapper _mapper;
 
-        public InsertVendorHandler(VendorRepository vendorEntityRepository, IMapper mapper)
+        public InsertVendorHandler(IVendorRepository vendorEntityRepository, IMapper mapper)
         {
             _vendorRepository = vendorEntityRepository;
             _mapper = mapper;

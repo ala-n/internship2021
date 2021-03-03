@@ -44,7 +44,7 @@ namespace Xdl.Internship.Offers.ServiceHost
             services.AddMediatRHandlers();
             services.AddSingleton<IConnectionFactory, DefaultConnectionFactory>();
             services.AddSingleton<ICollectionProvider, DefaultCollectionProvider>();
-            services.AddSingleton<VendorRepository>();
+            services.AddSingleton<IVendorRepository, VendorRepository>();
             services.AddSingleton<VendorEntityRepository>();
             services.AddSingleton<ITagRepository, TagRepository>();
             services.AddSingleton<OfferRepository>();
