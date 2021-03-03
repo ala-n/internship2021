@@ -24,10 +24,10 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet("allActive")]
-        public async Task<ActionResult<IEnumerable<VendorDTO>>> GetActiveVendors()
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<VendorDTO>>> GetAllVendors([FromQuery]bool includeInactive = false)
         {
-            return Ok(await _mediator.Send(new FindActiveVendorsRequest()));
+            return Ok(await _mediator.Send(new FindActiveVendorsRequest(includeInactive)));
         }
 
         [HttpGet]
@@ -44,7 +44,7 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
 
         [HttpGet]
         [Route("city/{cityId}/vendorEntities")]
-        public async Task<ActionResult<IEnumerable<VendorWithEntitiesDTO>>> GetVendorsWithEntities([FromRoute]string cityId, [FromQuery]bool includeInactive = false)
+        public async Task<ActionResult<IEnumerable<VendorWithEntitiesDTO>>> GetVendorsByCityWithEntities([FromRoute]string cityId, [FromQuery]bool includeInactive = false)
         {
             if (!ObjectId.TryParse(cityId, out var id))
             {

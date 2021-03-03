@@ -18,14 +18,14 @@ namespace Xdl.Internship.Offers.DataAccess.Repositories
         {
         }
 
-        public Task<Vendor> FindByIdAsync(ObjectId id, CancellationToken cancellationToken = default)
+        public override Task<Vendor> FindByIdAsync(ObjectId id, CancellationToken cancellationToken = default)
         {
             return base.FindByIdAsync(id, cancellationToken = default);
         }
 
-        public Task<ICollection<Vendor>> FindActiveAsync(CancellationToken cancellationToken = default)
+        public Task<ICollection<Vendor>> FindAsync(bool includeInactive, CancellationToken cancellationToken = default)
         {
-            Expression<Func<Vendor, bool>> filter = (v) => v.IsActive == true;
+            Expression<Func<Vendor, bool>> filter = (v) => includeInactive || v.IsActive == true;
             return FindAsync(filter, cancellationToken = default);
         }
 

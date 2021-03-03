@@ -10,7 +10,7 @@ namespace Xdl.Internship.Offers.DataAccess.Interfaces
     {
         Task<Vendor> FindByIdAsync(ObjectId id, CancellationToken cancellationToken = default);
 
-        Task<ICollection<Vendor>> FindActiveAsync(CancellationToken cancellationToken = default);
+        Task<ICollection<Vendor>> FindAsync(bool includeInactive, CancellationToken cancellationToken = default);
 
         Task<ICollection<Vendor>> FindByIdsAsync(ICollection<ObjectId> ids, CancellationToken cancellationToken = default);
 
