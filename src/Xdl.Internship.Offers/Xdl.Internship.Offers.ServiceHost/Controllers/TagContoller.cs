@@ -46,5 +46,31 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
         {
             return await _mediator.Send(new FindAllTagsRequest());
         }
+
+        [HttpGet]
+        [Route("/allTagsStatistics")]
+        public async Task<IEnumerable<TagStatisticsDTO>> GeAllTagsStatistics()
+        {
+            return await _mediator.Send(new FindAllTagsStatisticsRequest());
+        }
+
+        [HttpPost]
+        [Route("/tag")]
+        public async Task<ActionResult<TagDTO>> CreateVendorEntity([FromBody] CreateTagDTO tag)
+        {
+            return Ok(await _mediator.Send(new InsertTagRequest(tag)));
+        }
+
+        [HttpDelete]
+        [Route("{tagId}")]
+        public async Task DeleteTagById([FromRoute] string tagId)
+        {
+            if (!ObjectId.TryParse(tagId, out var id))
+            {
+                BadRequest($"{nameof(tagId)} is not valid");
+            }
+
+            await _mediator.Send(new DeleteTagRequest(id));
+        }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading;
 using System.Threading.Tasks;
 using MongoDB.Bson;
 using Xdl.Internship.Core.DataAccess.MongoDB.CollectionProviders;
@@ -35,6 +36,16 @@ namespace Xdl.Internship.Offers.DataAccess.Repositories
             Expression<Func<Tag, bool>> filter = (tag) => tag.Name.Length > 0;
 
             return await FindAsync(filter);
+        }
+
+        public Task InsertTagAsync(Tag tag, CancellationToken cancellationToken = default)
+        {
+            return InsertOneAsync(tag, cancellationToken);
+        }
+
+        public async Task DeleteTagAsync(ObjectId tagId, CancellationToken cancellationToken = default)
+        {
+            await DeleteByIdAsync(tagId, cancellationToken);
         }
     }
 }

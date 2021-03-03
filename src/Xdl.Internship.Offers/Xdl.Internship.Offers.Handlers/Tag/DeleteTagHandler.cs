@@ -5,24 +5,25 @@ using AutoMapper;
 using MediatR;
 using Xdl.Internship.Offers.DataAccess.Interfaces;
 using Xdl.Internship.Offers.DataAccess.Repositories;
-using Xdl.Internship.Offers.SDK.TagDTOs;
 
 namespace Xdl.Internship.Offers.Handlers.Tag
 {
-    public class FindTagByIdHandler : IRequestHandler<FindTagByIdRequest, TagMainDTO>
+    public class DeleteTagHandler : IRequestHandler<DeleteTagRequest>
     {
         private readonly ITagRepository _tagRepository;
         private readonly IMapper _mapper;
 
-        public FindTagByIdHandler(TagRepository tagRepository, IMapper mapper)
+        public DeleteTagHandler(TagRepository tagRepository, IMapper mapper)
         {
             _tagRepository = tagRepository;
             _mapper = mapper;
         }
 
-        public async Task<TagMainDTO> Handle(FindTagByIdRequest request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(DeleteTagRequest request, CancellationToken cancellationToken)
         {
-            return _mapper.Map<TagMainDTO>(await _tagRepository.FindTagById(request.Id));
+            await _tagRepository.DeleteTagAsync(request.Id);
+
+            return Unit.Value;
         }
     }
 }
