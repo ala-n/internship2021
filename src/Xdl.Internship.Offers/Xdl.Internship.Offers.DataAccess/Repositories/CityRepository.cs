@@ -15,7 +15,7 @@ namespace Xdl.Internship.Offers.DataAccess.Repositories
     {
         Task<City> FindByIdAsync(ObjectId id, CancellationToken cancellationToken = default);
 
-        Task<ICollection<City>> FindActiveAsync(CancellationToken cancellationToken = default);
+        Task<ICollection<City>> FindAsync(bool includeInactive, CancellationToken cancellationToken = default);
 
         Task InsertOneAsync(City city, CancellationToken cancellationToken = default);
 
@@ -29,9 +29,9 @@ namespace Xdl.Internship.Offers.DataAccess.Repositories
         {
         }
 
-        public Task<ICollection<City>> FindActiveAsync(CancellationToken cancellationToken = default)
+        public Task<ICollection<City>> FindAsync(bool includeInactive, CancellationToken cancellationToken = default)
         {
-            Expression<Func<City, bool>> filter = (v) => v.IsActive == true;
+            Expression<Func<City, bool>> filter = (v) => includeInactive || v.IsActive == true;
             return FindAsync(filter, cancellationToken);
         }
 

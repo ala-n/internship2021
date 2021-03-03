@@ -20,9 +20,21 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<ICollection<CityDTO>>> GetActiveCities()
+        public async Task<ActionResult<ICollection<CityDTO>>> GetAllCities([FromQuery]bool includeInactive = false)
         {
-            return Ok(await _mediator.Send(new FindCitiesRequest()));
+            return Ok(await _mediator.Send(new FindCitiesRequest(includeInactive)));
+        }
+
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<ActionResult<CityDTO>> GetCityById([FromRoute] string id)
+        {
+            if (ObjectId.TryParse(id, out var parseId))
+            {
+                return BadRequest($"{nameof(id)} is not valid");
+            }
+
+            return Ok(await _mediator.Send(new FindCityByIdRequest(parseId)));
         }
     }
 }

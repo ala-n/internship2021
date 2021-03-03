@@ -32,14 +32,14 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
 
         [HttpGet]
         [Route("{vendorId}")]
-        public async Task<ActionResult<VendorWithEntitiesDTO>> GetVendorByIdWithEntities([FromRoute] string vendorId, [FromQuery] bool includeEntities = false)
+        public async Task<ActionResult<VendorWithEntitiesDTO>> GetVendorByIdWithEntities([FromRoute] string id, [FromQuery] bool includeEntities = false)
         {
-            if (!ObjectId.TryParse(vendorId, out var id))
+            if (!ObjectId.TryParse(id, out var parsedId))
             {
-                return BadRequest($"{nameof(vendorId)} is not valid");
+                return BadRequest($"{nameof(id)} is not valid");
             }
 
-            return Ok(await _mediator.Send(new FindVendorByIdRequest(id, includeEntities)));
+            return Ok(await _mediator.Send(new FindVendorByIdRequest(parsedId, includeEntities)));
         }
 
         [HttpGet]
