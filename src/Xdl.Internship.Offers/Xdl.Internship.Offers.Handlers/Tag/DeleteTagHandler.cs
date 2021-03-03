@@ -13,7 +13,7 @@ namespace Xdl.Internship.Offers.Handlers.Tag
         private readonly ITagRepository _tagRepository;
         private readonly IMapper _mapper;
 
-        public DeleteTagHandler(TagRepository tagRepository, IMapper mapper)
+        public DeleteTagHandler(ITagRepository tagRepository, IMapper mapper)
         {
             _tagRepository = tagRepository;
             _mapper = mapper;

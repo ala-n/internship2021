@@ -46,7 +46,7 @@ namespace Xdl.Internship.Offers.ServiceHost
             services.AddSingleton<ICollectionProvider, DefaultCollectionProvider>();
             services.AddSingleton<VendorRepository>();
             services.AddSingleton<VendorEntityRepository>();
-            services.AddSingleton<TagRepository>();
+            services.AddSingleton<ITagRepository, TagRepository>();
             services.AddSingleton<OfferRepository>();
             services.AddSingleton<CityRepository>();
 
