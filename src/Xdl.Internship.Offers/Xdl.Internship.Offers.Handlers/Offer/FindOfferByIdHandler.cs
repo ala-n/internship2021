@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using Xdl.Internship.Offers.DataAccess.Interfaces;
-using Xdl.Internship.Offers.DataAccess.Repositories;
 using Xdl.Internship.Offers.SDK.OfferDTOs;
 
 namespace Xdl.Internship.Offers.Handlers.Offer
@@ -17,7 +16,7 @@ namespace Xdl.Internship.Offers.Handlers.Offer
         private readonly IOfferRepository _offerRepository;
         private readonly IMapper _mapper;
 
-        public FindOfferByIdHandler(OfferRepository offerRepository, IMapper mapper)
+        public FindOfferByIdHandler(IOfferRepository offerRepository, IMapper mapper)
         {
             _offerRepository = offerRepository;
             _mapper = mapper;
@@ -25,7 +24,7 @@ namespace Xdl.Internship.Offers.Handlers.Offer
 
         public async Task<OfferMainDTO> Handle(FindOfferByIdRequest request, CancellationToken cancellationToken)
         {
-            return _mapper.Map<OfferMainDTO>(await _offerRepository.FindOfferById(request.OfferId));
+            return _mapper.Map<OfferMainDTO>(await _offerRepository.FindByIdAsync(request.OfferId));
         }
     }
 }

@@ -1,18 +1,18 @@
 ﻿using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using MongoDB.Bson;
+using Xdl.Internship.Core.DataAccess.MongoDB.Repositories;
 using Xdl.Internship.Offers.Models;
 
 namespace Xdl.Internship.Offers.DataAccess.Interfaces
 {
-    public interface IOfferRepository
+    public interface IOfferRepository : IMongoRepository<Offer>
     {
-        Task<ICollection<Offer>> FindActiveAsync();
+        Task<ICollection<Offer>> FindAsync(bool includeInactive, CancellationToken cancellationToken = default);
 
-        Task<ICollection<Offer>> FindOffersByVendorId(ObjectId vendorId);
+        Task<ICollection<Offer>> FindByVendorIdAsync(ObjectId vendorId, CancellationToken cancellationToken = default);
 
-        Task<Offer> FindOfferById(ObjectId offerId);
-
-        Task<ICollection<Offer>> FindOfferByVendorEntityId(ObjectId vendorEntityId);
+        Task<ICollection<Offer>> FindByVendorEntityIdAsync(ObjectId vendorEntityId, CancellationToken cancellationToken = default);
     }
 }

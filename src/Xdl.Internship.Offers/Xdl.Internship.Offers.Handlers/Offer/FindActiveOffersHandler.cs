@@ -23,7 +23,7 @@ namespace Xdl.Internship.Offers.Handlers.Offer
 
         public async Task<ICollection<OfferDTO>> Handle(FindActiveOffersRequest request, CancellationToken cancellationToken)
         {
-            var offers = await _offerRepository.FindActiveAsync();
+            var offers = await _offerRepository.FindAsync(request.InlcudeInactive);
             var offerDTO = new List<OfferDTO> { };
 
             foreach (var offer in offers)

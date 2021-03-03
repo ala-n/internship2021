@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using Xdl.Internship.Offers.DataAccess.Interfaces;
-using Xdl.Internship.Offers.DataAccess.Repositories;
 using Xdl.Internship.Offers.SDK.OfferDTOs;
 
 namespace Xdl.Internship.Offers.Handlers.Offer
@@ -17,7 +16,7 @@ namespace Xdl.Internship.Offers.Handlers.Offer
         private readonly IVendorEntityRepository _vendorEntityRepository;
         private readonly IMapper _mapper;
 
-        public FindOffersByVendorIdHandler(OfferRepository offerRepository, VendorEntityRepository vendorEntityRepository, IMapper mapper)
+        public FindOffersByVendorIdHandler(IOfferRepository offerRepository, IVendorEntityRepository vendorEntityRepository, IMapper mapper)
         {
             _offerRepository = offerRepository;
             _vendorEntityRepository = vendorEntityRepository;
@@ -30,7 +29,7 @@ namespace Xdl.Internship.Offers.Handlers.Offer
             var result = new List<OfferMainDTO> { };
             foreach (var en in entities)
             {
-                var entity = await _offerRepository.FindOfferByVendorEntityId(en.Id);
+                var entity = await _offerRepository.FindByVendorEntityIdAsync(en.Id);
                 if (entity.Count != 0)
                 {
                     foreach (var e in entity)

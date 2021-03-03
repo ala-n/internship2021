@@ -22,9 +22,9 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<OfferDTO>> GetAll()
+        public async Task<IEnumerable<OfferDTO>> GetAll([FromQuery] bool includeInactive = false)
         {
-            return await _mediator.Send(new FindActiveOffersRequest());
+            return await _mediator.Send(new FindActiveOffersRequest(includeInactive));
         }
 
         [HttpGet]
