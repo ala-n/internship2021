@@ -15,5 +15,7 @@ namespace Xdl.Internship.Offers.DataAccess.Interfaces
         Task<ICollection<Tag>> FindAllTagsAsync();
 
         Task InsertTagAsync(Tag tag, CancellationToken cancellationToken = default);
+
+        Task DeleteTagAsync(ObjectId tagId, CancellationToken cancellationToken = default);
     }
 }

@@ -24,7 +24,9 @@ namespace Xdl.Internship.Offers.Handlers.Tag
         async Task<Unit> IRequestHandler<InsertTagRequest, Unit>.Handle(InsertTagRequest request, CancellationToken cancellationToken)
         {
             Console.WriteLine(request.TagDTO + "  " + request.TagDTO.Name);
+
             var entity = _mapper.Map<Models.Tag>(request.TagDTO);
+
             Console.WriteLine("text rrr " + entity);
             await _tagRepository.InsertTagAsync(entity);
 

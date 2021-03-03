@@ -60,5 +60,17 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
         {
             return Ok(await _mediator.Send(new InsertTagRequest(tag)));
         }
+
+        [HttpDelete]
+        [Route("{tagId}")]
+        public async Task DeleteTagById([FromRoute] string tagId)
+        {
+            if (!ObjectId.TryParse(tagId, out var id))
+            {
+                BadRequest($"{nameof(tagId)} is not valid");
+            }
+
+            await _mediator.Send(new DeleteTagRequest(id));
+        }
     }
 }
