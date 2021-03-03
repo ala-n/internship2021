@@ -30,16 +30,6 @@ namespace Xdl.Internship.Core.DataAccess.MongoDB.Repositories
             return FindOneAsync(doc => doc.Id == id, cancellationToken);
         }
 
-        public virtual Task<TDocument> FindOneAsync(Expression<Func<TDocument, bool>> filterExpression, CancellationToken cancellationToken = default)
-        {
-            return GetCollection().Find(filterExpression).SingleOrDefaultAsync(cancellationToken);
-        }
-
-        public virtual async Task<ICollection<TDocument>> FindAsync(Expression<Func<TDocument, bool>> filterExpression, CancellationToken cancellationToken = default)
-        {
-            return await GetCollection().Find(filterExpression, null).ToListAsync(cancellationToken);
-        }
-
         // Create
         public virtual Task InsertOneAsync(TDocument document, CancellationToken cancellationToken = default)
         {
@@ -59,18 +49,31 @@ namespace Xdl.Internship.Core.DataAccess.MongoDB.Repositories
         }
 
         // Delete
-        public virtual Task DeleteOneAsync(Expression<Func<TDocument, bool>> filterExpression, CancellationToken cancellationToken = default)
-        {
-            return GetCollection().FindOneAndDeleteAsync(filterExpression, cancellationToken: cancellationToken);
-        }
-
         public virtual Task DeleteByIdAsync(ObjectId id, CancellationToken cancellationToken)
         {
             var filter = _fdb.Eq(doc => doc.Id, id);
             return GetCollection().FindOneAndDeleteAsync(filter, cancellationToken: cancellationToken);
         }
 
-        public virtual Task DeleteManyAsync(Expression<Func<TDocument, bool>> filterExpression, CancellationToken cancellationToken = default)
+        // PROTECTED METHODS
+        // Read
+        protected virtual Task<TDocument> FindOneAsync(Expression<Func<TDocument, bool>> filterExpression, CancellationToken cancellationToken = default)
+        {
+            return GetCollection().Find(filterExpression).SingleOrDefaultAsync(cancellationToken);
+        }
+
+        protected virtual async Task<ICollection<TDocument>> FindAsync(Expression<Func<TDocument, bool>> filterExpression, CancellationToken cancellationToken = default)
+        {
+            return await GetCollection().Find(filterExpression, null).ToListAsync(cancellationToken);
+        }
+
+        // Delete
+        protected virtual Task DeleteOneAsync(Expression<Func<TDocument, bool>> filterExpression, CancellationToken cancellationToken = default)
+        {
+            return GetCollection().FindOneAndDeleteAsync(filterExpression, cancellationToken: cancellationToken);
+        }
+
+        protected virtual Task DeleteManyAsync(Expression<Func<TDocument, bool>> filterExpression, CancellationToken cancellationToken = default)
         {
             return GetCollection().DeleteManyAsync(filterExpression, cancellationToken);
         }
