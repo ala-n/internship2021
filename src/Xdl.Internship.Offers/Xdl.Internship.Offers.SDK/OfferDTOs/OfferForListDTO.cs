@@ -11,18 +11,17 @@ namespace Xdl.Internship.Offers.SDK.OfferDTOs
 
         public string Title { get; set; }
 
-        public string VendorName { get; set; }
+       // public string VendorName { get; set; }
+        public int NumberOfViews { get; set; }
 
-        public string NumberOfViews { get; set; }
-
-        public string NumberOfUses { get; set; }
+        public int NumberOfUses { get; set; }
 
         public string Discount { get; set; }
 
-        public string Rating { get; set; }
+        public int Rate { get; set; }
 
         public string UpdatedAt { get; set; }
 
-        public string PhotoUrl { get; set; }
+        public string[] PhotoUrl { get; set; }
     }
 }
