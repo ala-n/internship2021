@@ -21,7 +21,7 @@ namespace Xdl.Internship.Offers.DataAccess.Repositories
 
         public async Task<ICollection<Tag>> FindTopTagsAsync()
         {
-            Expression<Func<Tag, bool>> filter = (tag) => tag.Name.Length > 0;
+            Expression<Func<Tag, bool>> filter = (tag) => tag.IsDeleted != true;
 
             return await FindAsync(filter);
         }
@@ -33,7 +33,7 @@ namespace Xdl.Internship.Offers.DataAccess.Repositories
 
         public async Task<ICollection<Tag>> FindAllTagsAsync()
         {
-            Expression<Func<Tag, bool>> filter = (tag) => tag.Name.Length > 0;
+            Expression<Func<Tag, bool>> filter = (tag) => tag.IsDeleted != true;
 
             return await FindAsync(filter);
         }
