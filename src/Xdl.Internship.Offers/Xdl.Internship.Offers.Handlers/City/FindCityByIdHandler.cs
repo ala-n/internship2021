@@ -8,7 +8,7 @@ using Xdl.Internship.Offers.SDK.CityDTOs;
 
 namespace Xdl.Internship.Offers.Handlers.City
 {
-    public class FindCityByIdHandler : IRequestHandler<FindCityByIdRequest, ICollection<CityDTO>>
+    public class FindCityByIdHandler : IRequestHandler<FindCityByIdRequest, CityDTO>
     {
         private readonly ICityRepository _cityRepository;
         private readonly IMapper _mapper;

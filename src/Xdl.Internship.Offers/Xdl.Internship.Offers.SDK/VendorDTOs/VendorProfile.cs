@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using Xdl.Internship.Offers.Models;
 using Xdl.Internship.Offers.SDK.VendorEntityDTOs;
 
@@ -13,6 +14,9 @@ namespace Xdl.Internship.Offers.SDK.VendorDTOs
             CreateMap<Vendor, VendorWithEntitiesDTO>();
             CreateMap<VendorEntity, VendorWithEntitiesDTO>()
                 .ForMember(dest => dest.VendorEntities, opt => opt.MapFrom(src => src));
+
+            CreateMap<CreateVendorDTO, Vendor>()
+                .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(src => DateTimeOffset.Now));
 
             CreateMap<Vendor, VendorAdminPanel>()
                 .ForMember(x => x.Id, x => x.MapFrom(x => x.Id.ToString()))

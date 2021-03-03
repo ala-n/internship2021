@@ -18,11 +18,6 @@ namespace Xdl.Internship.Offers.DataAccess.Repositories
         {
         }
 
-        public override Task<Vendor> FindByIdAsync(ObjectId id, CancellationToken cancellationToken = default)
-        {
-            return base.FindByIdAsync(id, cancellationToken = default);
-        }
-
         public Task<ICollection<Vendor>> FindAsync(bool includeInactive, CancellationToken cancellationToken = default)
         {
             Expression<Func<Vendor, bool>> filter = (v) => includeInactive || v.IsActive == true;
@@ -33,24 +28,6 @@ namespace Xdl.Internship.Offers.DataAccess.Repositories
         {
             Expression<Func<Vendor, bool>> filter = (v) => ids.Contains(v.Id);
             return FindAsync(filter, cancellationToken = default);
-        }
-
-        public async Task<Vendor> AddVendor(Vendor vendor, CancellationToken cancellationToken = default)
-        {
-            await InsertOneAsync(vendor, cancellationToken);
-            return vendor;
-        }
-
-        public async Task<ICollection<Vendor>> GetAllAdminVendors(CancellationToken cancellationToken = default)
-        {
-            Expression<Func<Vendor, bool>> filter = v => v.IsActive == true || v.IsActive == false;
-            return await FindAsync(filter, cancellationToken = default);
-        }
-
-        public async Task<Vendor> FindAdminVendorById(ObjectId id, CancellationToken cancellationToken = default)
-        {
-            Expression<Func<Vendor, bool>> filter = v => v.Id == id;
-            return await FindOneAsync(filter, cancellationToken);
         }
     }
 }

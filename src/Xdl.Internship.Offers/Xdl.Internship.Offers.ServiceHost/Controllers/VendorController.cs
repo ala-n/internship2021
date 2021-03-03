@@ -53,5 +53,11 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
 
             return Ok(await _mediator.Send(new FindVendorsWithEntitiesRequest(id, !includeInactive)));
         }
+
+        [HttpPost]
+        public async Task<ActionResult<VendorDTO>> CreateVendor([FromBody] CreateVendorDTO vendorDTO)
+        {
+            return Ok(await _mediator.Send(new InsertVendorRequest(vendorDTO)));
+        }
     }
 }

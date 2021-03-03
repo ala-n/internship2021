@@ -5,7 +5,7 @@ using Xdl.Internship.Offers.SDK.CityDTOs;
 
 namespace Xdl.Internship.Offers.Handlers.City
 {
-    public class FindCityByIdRequest : IRequest<ICollection<CityDTO>>
+    public class FindCityByIdRequest : IRequest<CityDTO>
     {
         public ObjectId Id { get; }
 

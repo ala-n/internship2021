@@ -36,5 +36,9 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
 
             return Ok(await _mediator.Send(new FindCityByIdRequest(parseId)));
         }
+
+        // [HttpPost]
+        // [Route("{id}")]
+        // public async Task<IActionResult<CityDTO>>
     }
 }
