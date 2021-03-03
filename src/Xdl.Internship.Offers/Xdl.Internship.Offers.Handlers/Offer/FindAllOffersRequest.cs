@@ -4,11 +4,11 @@ using Xdl.Internship.Offers.SDK.OfferDTOs;
 
 namespace Xdl.Internship.Offers.Handlers.Offer
 {
-    public class FindActiveOffersRequest : IRequest<ICollection<OfferDTO>>
+    public class FindAllOffersRequest : IRequest<ICollection<OfferDTO>>
     {
         public bool InlcudeInactive { get; }
 
-        public FindActiveOffersRequest(bool includeInactive)
+        public FindAllOffersRequest(bool includeInactive)
         {
             InlcudeInactive = includeInactive;
         }

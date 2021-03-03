@@ -5,11 +5,11 @@ using Xdl.Internship.Offers.SDK.VendorDTOs;
 
 namespace Xdl.Internship.Offers.Handlers.Vendor
 {
-    public class FindActiveVendorsRequest : IRequest<ICollection<VendorDTO>>
+    public class FindAllVendorsRequest : IRequest<ICollection<VendorDTO>>
     {
         public bool IncludeInactive { get; }
 
-        public FindActiveVendorsRequest(bool includeInactive)
+        public FindAllVendorsRequest(bool includeInactive)
         {
             IncludeInactive = includeInactive;
         }

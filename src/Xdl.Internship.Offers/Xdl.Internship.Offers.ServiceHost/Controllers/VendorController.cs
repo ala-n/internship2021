@@ -27,7 +27,7 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<VendorDTO>>> GetAllVendors([FromQuery]bool includeInactive = false)
         {
-            return Ok(await _mediator.Send(new FindActiveVendorsRequest(includeInactive)));
+            return Ok(await _mediator.Send(new FindAllVendorsRequest(includeInactive)));
         }
 
         [HttpGet]
