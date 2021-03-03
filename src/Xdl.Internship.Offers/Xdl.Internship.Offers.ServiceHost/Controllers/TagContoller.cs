@@ -41,16 +41,16 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<TagMainDTO>> GeAllTags()
-        {
-            return await _mediator.Send(new FindAllTagsRequest());
-        }
-
-        [HttpGet]
-        [Route("/allTagsStatistics")]
         public async Task<IEnumerable<TagStatisticsDTO>> GeAllTagsStatistics()
         {
             return await _mediator.Send(new FindAllTagsStatisticsRequest());
+        }
+
+        [HttpGet]
+        [Route("/allTags")]
+        public async Task<IEnumerable<TagMainDTO>> GeAllTags()
+        {
+            return await _mediator.Send(new FindAllTagsRequest());
         }
 
         [HttpPost]
