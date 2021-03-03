@@ -14,8 +14,6 @@ namespace Xdl.Internship.Offers.SDK.OfferDTOs
             CreateMap<Offer, OfferDTO>();
             CreateMap<Offer, OfferForListDTO>()
                 .ReverseMap();
-            CreateMap<Offer, OfferSmallDTO>()
-                .ReverseMap();
             CreateMap<Offer, OfferMainDTO>()
                 .ReverseMap();
         }
