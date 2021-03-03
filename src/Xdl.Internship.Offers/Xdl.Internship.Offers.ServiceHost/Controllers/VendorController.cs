@@ -44,7 +44,7 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
 
         [HttpGet]
         [Route("city/{cityId}/vendorEntities")]
-        public async Task<ActionResult<IEnumerable<VendorWithEntitiesDTO>>> GetManyVendorsWithEntities([FromRoute]string cityId, [FromQuery]bool includeInactive = false)
+        public async Task<ActionResult<IEnumerable<VendorWithEntitiesDTO>>> GetVendorsWithEntities([FromRoute]string cityId, [FromQuery]bool includeInactive = false)
         {
             if (!ObjectId.TryParse(cityId, out var id))
             {
@@ -53,30 +53,5 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
 
             return Ok(await _mediator.Send(new FindVendorsWithEntitiesRequest(id, !includeInactive)));
         }
-
-        /** [HttpPost("add")]
-        public async Task<ActionResult<Vendor>> AddVendor([FromBody] VendorCreate vendor)
-        {
-            if (vendor == null)
-            {
-                return BadRequest();
-            }
-
-            return Ok(await _mediator.Send(new AddVendorRequest(vendor.Name, vendor.Title, vendor.Website, vendor.Description, vendor.IsActive, vendor.CreatedBy)));
-        }
-
-        [HttpGet("allAdmin")]
-        public async Task<ActionResult<ICollection<VendorAdminPanel>>> GetAdminVendor()
-        {
-            return Ok(await _mediator.Send(new GetAdminVendorRequest()));
-        }
-
-        [HttpGet("/api/get/{id}")]
-        public async Task<ActionResult<VendorByIdAdminPanel>> GetAdminVendorById(string id)
-        {
-            var objId = new ObjectId(id);
-            var data = await _vendorRepository.FindAdminVendorById(objId);
-            return Ok(_mapper.Map<VendorByIdAdminPanel>(data));
-        }**/
     }
 }
