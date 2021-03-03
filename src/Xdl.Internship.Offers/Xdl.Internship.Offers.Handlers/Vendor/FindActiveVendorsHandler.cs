@@ -22,7 +22,7 @@ namespace Xdl.Internship.Offers.Handlers.Vendor
 
         public async Task<ICollection<VendorDTO>> Handle(FindActiveVendorsRequest request, CancellationToken cancellationToken)
         {
-            var vendors = await _vendorRepository.FindActiveAsync();
+            var vendors = await _vendorRepository.FindAsync(request.IncludeInactive);
             var vendorDTO = new List<VendorDTO> { };
 
             foreach (var vendor in vendors)

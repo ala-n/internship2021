@@ -33,7 +33,7 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
 
         // offerId -> list of vendorEntities
         [HttpPost]
-        [Route("api/vendors/{vendorId}/vendorEntities")]
+        [Route("api/vendorEntities/vendor/{vendorId}")]
         public async Task<ActionResult<VendorEntityDTO>> CreateVendorEntity([FromRoute] string vendorId, [FromBody] CreateVendorEntityDTO vendorEntity)
         {
             if (!ObjectId.TryParse(vendorId, out var parsedId))
