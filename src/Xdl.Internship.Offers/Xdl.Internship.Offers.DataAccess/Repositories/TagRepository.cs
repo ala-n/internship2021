@@ -43,9 +43,9 @@ namespace Xdl.Internship.Offers.DataAccess.Repositories
             return InsertOneAsync(tag, cancellationToken);
         }
 
-        public async Task DeleteTagAsync(ObjectId tagId, CancellationToken cancellationToken = default)
+        public Task ReplaceTagAsync(Tag tag, CancellationToken cancellationToken = default)
         {
-            await DeleteByIdAsync(tagId, cancellationToken);
+            return ReplaceOneAsync(tag, cancellationToken);
         }
     }
 }
