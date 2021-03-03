@@ -41,7 +41,6 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
         }
 
         [HttpGet]
-        [Route("/allTags")]
         public async Task<IEnumerable<TagMainDTO>> GeAllTags()
         {
             return await _mediator.Send(new FindAllTagsRequest());
@@ -56,7 +55,7 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
 
         [HttpPost]
         [Route("/tag")]
-        public async Task<ActionResult<TagDTO>> CreateVendorEntity([FromBody] CreateTagDTO tag)
+        public async Task<ActionResult<TagDTO>> CreateTag([FromBody] CreateTagDTO tag)
         {
             return Ok(await _mediator.Send(new InsertTagRequest(tag)));
         }
