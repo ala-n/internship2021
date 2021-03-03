@@ -21,7 +21,10 @@ namespace Xdl.Internship.Offers.Handlers.Tag
 
         public async Task<Unit> Handle(DeleteTagRequest request, CancellationToken cancellationToken)
         {
-            await _tagRepository.DeleteByIdAsync(request.Id);
+            var tag = await _tagRepository.FindByIdAsync(request.Id);
+            tag.IsDeleted = true;
+
+            await _tagRepository.ReplaceOneAsync(tag);
 
             return Unit.Value;
         }
