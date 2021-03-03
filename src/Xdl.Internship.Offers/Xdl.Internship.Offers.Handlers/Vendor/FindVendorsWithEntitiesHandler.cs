@@ -20,7 +20,7 @@ namespace Xdl.Internship.Offers.Handlers.Vendor
         private readonly IVendorEntityRepository _vendorEntityRepository;
         private readonly IMapper _mapper;
 
-        public FindVendorsWithEntitiesHandler(IVendorRepository vendorRepository, VendorEntityRepository vendorEntityRepository, IMapper mapper)
+        public FindVendorsWithEntitiesHandler(IVendorRepository vendorRepository, IVendorEntityRepository vendorEntityRepository, IMapper mapper)
         {
             _vendorRepository = vendorRepository;
             _vendorEntityRepository = vendorEntityRepository;
