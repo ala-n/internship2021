@@ -22,10 +22,16 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
         }
 
         [HttpGet]
-        [Route("/topTags")]
+        [Route("topTags")]
         public async Task<IEnumerable<TagMainDTO>> GeTopTags()
         {
             return await _mediator.Send(new FindTopTagsRequest());
+        }
+
+        [HttpGet]
+        public async Task<IEnumerable<TagMainDTO>> GeAllTags([FromQuery] bool includeInactive = false)
+        {
+            return await _mediator.Send(new FindAllTagsRequest(includeInactive));
         }
 
         [HttpGet]
@@ -41,20 +47,13 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
         }
 
         [HttpGet]
+        [Route("statistics")]
         public async Task<IEnumerable<TagStatisticsDTO>> GeAllTagsStatistics()
         {
             return await _mediator.Send(new FindAllTagsStatisticsRequest());
         }
 
-        [HttpGet]
-        [Route("/allTags")]
-        public async Task<IEnumerable<TagMainDTO>> GeAllTags()
-        {
-            return await _mediator.Send(new FindAllTagsRequest());
-        }
-
         [HttpPost]
-        [Route("/tag")]
         public async Task<ActionResult<TagDTO>> CreateTag([FromBody] CreateTagDTO tag)
         {
             return Ok(await _mediator.Send(new InsertTagRequest(tag)));

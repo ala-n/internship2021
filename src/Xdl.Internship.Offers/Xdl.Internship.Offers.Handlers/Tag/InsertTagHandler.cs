@@ -10,7 +10,7 @@ using Xdl.Internship.Offers.SDK.TagDTOs;
 
 namespace Xdl.Internship.Offers.Handlers.Tag
 {
-    public class InsertTagHandler : IRequestHandler<InsertTagRequest>
+    public class InsertTagHandler : IRequestHandler<InsertTagRequest, TagDTO>
     {
         private readonly ITagRepository _tagRepository;
         private readonly IMapper _mapper;
@@ -21,16 +21,13 @@ namespace Xdl.Internship.Offers.Handlers.Tag
             _mapper = mapper;
         }
 
-        async Task<Unit> IRequestHandler<InsertTagRequest, Unit>.Handle(InsertTagRequest request, CancellationToken cancellationToken)
+        public async Task<TagDTO> Handle(InsertTagRequest request, CancellationToken cancellationToken)
         {
-            Console.WriteLine(request.TagDTO + "  " + request.TagDTO.Name);
+            var tag = _mapper.Map<Models.Tag>(request.TagDTO);
 
-            var entity = _mapper.Map<Models.Tag>(request.TagDTO);
+            await _tagRepository.InsertOneAsync(tag);
 
-            Console.WriteLine("text rrr " + entity);
-            await _tagRepository.InsertTagAsync(entity);
-
-            return Unit.Value;
+            return _mapper.Map<TagDTO>(await _tagRepository.FindByIdAsync(tag.Id));
         }
     }
 }

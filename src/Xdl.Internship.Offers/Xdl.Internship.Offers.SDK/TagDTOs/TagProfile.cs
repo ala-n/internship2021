@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using Xdl.Internship.Offers.Models;
 using Xdl.Internship.Offers.SDK.TagDTOs;
 
@@ -22,8 +23,11 @@ namespace Xdl.Internship.Offers.SDK.TagDTOs
 
             CreateMap<Tag, TagMainDTO>();
 
-            CreateMap<Tag, CreateTagDTO>()
-                .ForMember(d => d.Name, opt => opt.MapFrom(s => s.Name));
+            CreateMap<CreateTagDTO, Tag>()
+                .ForMember(d => d.Name, opt => opt.MapFrom(s => s.Name))
+                .ForMember(d => d.CreatedAt, opt => opt.MapFrom(s => DateTimeOffset.Now))
+                .ForMember(d => d.UsesByUser, opt => opt.MapFrom(s => 0))
+                .ForMember(d => d.UsesByVendor, opt => opt.MapFrom(s => 0));
 
             CreateMap<Tag, TagStatisticsDTO>()
                 .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id))

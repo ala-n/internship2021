@@ -22,7 +22,7 @@ namespace Xdl.Internship.Offers.Handlers.Tag
 
         public async Task<TagMainDTO> Handle(FindTagByIdRequest request, CancellationToken cancellationToken)
         {
-            return _mapper.Map<TagMainDTO>(await _tagRepository.FindTagById(request.Id));
+            return _mapper.Map<TagMainDTO>(await _tagRepository.FindByIdAsync(request.Id));
         }
     }
 }

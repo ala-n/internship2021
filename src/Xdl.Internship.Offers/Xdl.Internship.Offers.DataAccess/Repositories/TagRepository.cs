@@ -19,33 +19,17 @@ namespace Xdl.Internship.Offers.DataAccess.Repositories
         {
         }
 
+        public Task<ICollection<Tag>> FindAsync(bool includeInactive, CancellationToken cancellationToken = default)
+        {
+            Expression<Func<Tag, bool>> filter = (v) => includeInactive || v.IsDeleted == false;
+            return FindAsync(filter, cancellationToken = default);
+        }
+
         public async Task<ICollection<Tag>> FindTopTagsAsync()
         {
             Expression<Func<Tag, bool>> filter = (tag) => tag.Name.Length > 0;
 
             return await FindAsync(filter);
-        }
-
-        public Task<Tag> FindTagById(ObjectId tagId)
-        {
-            return FindByIdAsync(tagId);
-        }
-
-        public async Task<ICollection<Tag>> FindAllTagsAsync()
-        {
-            Expression<Func<Tag, bool>> filter = (tag) => tag.Name.Length > 0;
-
-            return await FindAsync(filter);
-        }
-
-        public Task InsertTagAsync(Tag tag, CancellationToken cancellationToken = default)
-        {
-            return InsertOneAsync(tag, cancellationToken);
-        }
-
-        public async Task DeleteTagAsync(ObjectId tagId, CancellationToken cancellationToken = default)
-        {
-            await DeleteByIdAsync(tagId, cancellationToken);
         }
     }
 }

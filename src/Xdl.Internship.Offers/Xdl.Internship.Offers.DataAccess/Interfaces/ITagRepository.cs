@@ -2,20 +2,15 @@
 using System.Threading;
 using System.Threading.Tasks;
 using MongoDB.Bson;
+using Xdl.Internship.Core.DataAccess.MongoDB.Repositories;
 using Xdl.Internship.Offers.Models;
 
 namespace Xdl.Internship.Offers.DataAccess.Interfaces
 {
-    public interface ITagRepository
+    public interface ITagRepository : IMongoRepository<Tag>
     {
+        Task<ICollection<Tag>> FindAsync(bool includeInactive, CancellationToken cancellationToken = default);
+
         Task<ICollection<Tag>> FindTopTagsAsync();
-
-        Task<Tag> FindTagById(ObjectId tagId);
-
-        Task<ICollection<Tag>> FindAllTagsAsync();
-
-        Task InsertTagAsync(Tag tag, CancellationToken cancellationToken = default);
-
-        Task DeleteTagAsync(ObjectId tagId, CancellationToken cancellationToken = default);
     }
 }
