@@ -11,17 +11,6 @@ using Xdl.Internship.Offers.Models;
 
 namespace Xdl.Internship.Offers.DataAccess.Repositories
 {
-    public interface ICityRepository
-    {
-        Task<City> FindByIdAsync(ObjectId id, CancellationToken cancellationToken = default);
-
-        Task<ICollection<City>> FindAsync(bool includeInactive, CancellationToken cancellationToken = default);
-
-        Task InsertOneAsync(City city, CancellationToken cancellationToken = default);
-
-        Task ReplaceOneAsync(City city, CancellationToken cancellationToken = default);
-    }
-
     public class CityRepository : MongoRepositoryBase<City>, ICityRepository
     {
         public CityRepository(ICollectionProvider collectionProvider)
@@ -33,21 +22,6 @@ namespace Xdl.Internship.Offers.DataAccess.Repositories
         {
             Expression<Func<City, bool>> filter = (v) => includeInactive || v.IsActive == true;
             return FindAsync(filter, cancellationToken);
-        }
-
-        public override Task<City> FindByIdAsync(ObjectId id, CancellationToken cancellationToken = default)
-        {
-            return base.FindByIdAsync(id, cancellationToken);
-        }
-
-        public override Task InsertOneAsync(City city, CancellationToken cancellationToken = default)
-        {
-            return base.InsertOneAsync(city, cancellationToken);
-        }
-
-        public override Task ReplaceOneAsync(City city, CancellationToken cancellationToken = default)
-        {
-            return base.ReplaceOneAsync(city, cancellationToken);
         }
     }
 }

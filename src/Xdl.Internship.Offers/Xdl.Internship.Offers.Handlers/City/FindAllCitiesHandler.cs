@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
-using Xdl.Internship.Offers.DataAccess.Repositories;
+using Xdl.Internship.Offers.DataAccess.Interfaces;
 using Xdl.Internship.Offers.SDK.CityDTOs;
 
 namespace Xdl.Internship.Offers.Handlers.City
@@ -13,7 +13,7 @@ namespace Xdl.Internship.Offers.Handlers.City
         private readonly ICityRepository _cityRepository;
         private readonly IMapper _mapper;
 
-        public FindAllCitiesHandler(CityRepository cityRepository, IMapper mapper)
+        public FindAllCitiesHandler(ICityRepository cityRepository, IMapper mapper)
         {
             _cityRepository = cityRepository;
             _mapper = mapper;

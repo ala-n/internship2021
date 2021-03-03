@@ -48,8 +48,8 @@ namespace Xdl.Internship.Offers.ServiceHost
             services.AddSingleton<IVendorRepository, VendorRepository>();
             services.AddSingleton<IVendorEntityRepository, VendorEntityRepository>();
             services.AddSingleton<ITagRepository, TagRepository>();
-            services.AddSingleton<OfferRepository>();
-            services.AddSingleton<CityRepository>();
+            services.AddSingleton<IOfferRepository, OfferRepository>();
+            services.AddSingleton<ICityRepository, CityRepository>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
