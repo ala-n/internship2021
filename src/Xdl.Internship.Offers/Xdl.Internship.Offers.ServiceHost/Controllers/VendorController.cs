@@ -46,7 +46,7 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
         }
 
         [HttpGet]
-        [Route("city/{cityId}/entities")]
+        [Route("city/{cityId}/vendorEntities")]
         public async Task<ActionResult<IEnumerable<VendorWithEntitiesDTO>>> GetManyVendorsWithEntities([FromRoute]string cityId, [FromQuery]bool includeInactive = false)
         {
             if (!ObjectId.TryParse(cityId, out var id))

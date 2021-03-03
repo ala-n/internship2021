@@ -20,7 +20,7 @@ namespace Xdl.Internship.Offers.DataAccess.Repositories
 
         public async Task<ICollection<Tag>> FindTopTagsAsync()
         {
-            Expression<Func<Tag, bool>> filter = (tag) => tag.UsesByUser > 0;
+            Expression<Func<Tag, bool>> filter = (tag) => tag.Name.Length > 0;
 
             return await FindAsync(filter);
         }
@@ -28,6 +28,13 @@ namespace Xdl.Internship.Offers.DataAccess.Repositories
         public Task<Tag> FindTagById(ObjectId tagId)
         {
             return FindByIdAsync(tagId);
+        }
+
+        public async Task<ICollection<Tag>> FindAllTagsAsync()
+        {
+            Expression<Func<Tag, bool>> filter = (tag) => tag.Name.Length > 0;
+
+            return await FindAsync(filter);
         }
     }
 }

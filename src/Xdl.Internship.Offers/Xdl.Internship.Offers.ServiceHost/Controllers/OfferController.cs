@@ -21,13 +21,14 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet("GetAll")]
+        [HttpGet]
         public async Task<IEnumerable<OfferDTO>> GetAll()
         {
             return await _mediator.Send(new FindActiveOffersRequest());
         }
 
-        [HttpGet("city/{cityId}")]
+        [HttpGet]
+        [Route("city/{cityId}")]
         public async Task<ActionResult<IEnumerable<OfferForListDTO>>> FindOffersByCityId([FromRoute]string cityId)
         {
             if (!ObjectId.TryParse(cityId, out var id))
@@ -38,7 +39,8 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
             return Ok(await _mediator.Send(new FindOffersByCityIdRequest(id, true)));
         }
 
-        [HttpGet("/{offerId}")]
+        [HttpGet]
+        [Route("{offerId}")]
         public async Task<ActionResult<IEnumerable<OfferMainDTO>>> FindOfferById([FromRoute] string offerId)
         {
             if (!ObjectId.TryParse(offerId, out var id))
@@ -49,7 +51,8 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
             return Ok(await _mediator.Send(new FindOfferByIdRequest(id)));
         }
 
-        [HttpGet("vandor/{vendorId}")]
+        [HttpGet]
+        [Route("vendor/{vendorId}")]
         public async Task<ActionResult<IEnumerable<OfferMainDTO>>> FindOffersByVendorId([FromRoute] string vendorId)
         {
             if (!ObjectId.TryParse(vendorId, out var id))
@@ -60,7 +63,8 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
             return Ok(await _mediator.Send(new FindOffersByVendorIdRequest(id)));
         }
 
-        [HttpGet("office/{vendorEntityId}")]
+        [HttpGet]
+        [Route("vendorEntity/{vendorEntityId}")]
         public async Task<ActionResult<IEnumerable<OfferMainDTO>>> FindOfferByVendorEntityId([FromRoute] string vendorEntityId)
         {
             if (!ObjectId.TryParse(vendorEntityId, out var id))

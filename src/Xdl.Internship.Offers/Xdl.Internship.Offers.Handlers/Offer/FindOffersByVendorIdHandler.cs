@@ -30,7 +30,14 @@ namespace Xdl.Internship.Offers.Handlers.Offer
             var result = new List<OfferMainDTO> { };
             foreach (var en in entities)
             {
-                result.Add(_mapper.Map<OfferMainDTO>(_offerRepository.FindOfferByVendorEntityId(en.Id)));
+                var entity = await _offerRepository.FindOfferByVendorEntityId(en.Id);
+                if (entity.Count != 0)
+                {
+                    foreach (var e in entity)
+                    {
+                        result.Add(_mapper.Map<OfferMainDTO>(e));
+                    }
+                }
             }
 
             return result;

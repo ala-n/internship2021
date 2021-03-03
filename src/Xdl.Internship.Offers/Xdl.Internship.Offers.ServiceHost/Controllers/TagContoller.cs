@@ -28,7 +28,8 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
             return await _mediator.Send(new FindTopTagsRequest());
         }
 
-        [HttpGet("{tagId}")]
+        [HttpGet]
+        [Route("{tagId}")]
         public async Task<ActionResult<IEnumerable<TagDTO>>> FindTagById([FromRoute] string tagId)
         {
             if (!ObjectId.TryParse(tagId, out var id))
@@ -37,6 +38,13 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
             }
 
             return Ok(await _mediator.Send(new FindTagByIdRequest(id)));
+        }
+
+        [HttpGet]
+        [Route("/allTags")]
+        public async Task<IEnumerable<TagMainDTO>> GeAllTags()
+        {
+            return await _mediator.Send(new FindAllTagsRequest());
         }
     }
 }

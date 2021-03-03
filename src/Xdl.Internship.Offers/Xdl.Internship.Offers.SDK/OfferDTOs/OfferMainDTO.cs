@@ -16,8 +16,6 @@ namespace Xdl.Internship.Offers.SDK.OfferDTOs
 
         public string[] PhotoUrl { get; set; }
 
-        public string VendorName { get; set; }
-
         public int NumberOfViews { get; set; }
 
         public int NumberOfUses { get; set; }
@@ -30,6 +28,6 @@ namespace Xdl.Internship.Offers.SDK.OfferDTOs
 
         public string DateEnd { get; set; }
 
-        public int Rating { get; set; }
+        public int Rate { get; set; }
     }
 }

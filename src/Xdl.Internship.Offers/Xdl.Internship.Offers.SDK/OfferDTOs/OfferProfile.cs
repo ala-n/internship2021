@@ -12,9 +12,12 @@ namespace Xdl.Internship.Offers.SDK.OfferDTOs
         public OfferProfile()
         {
             CreateMap<Offer, OfferDTO>();
-            CreateMap<Offer, OfferForListDTO>();
-            CreateMap<Offer, OfferSmallDTO>();
-            CreateMap<Offer, OfferMainDTO>();
+            CreateMap<Offer, OfferForListDTO>()
+                .ReverseMap();
+            CreateMap<Offer, OfferSmallDTO>()
+                .ReverseMap();
+            CreateMap<Offer, OfferMainDTO>()
+                .ReverseMap();
         }
     }
 }

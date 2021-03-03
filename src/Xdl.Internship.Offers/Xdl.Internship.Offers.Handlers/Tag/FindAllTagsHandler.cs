@@ -10,25 +10,25 @@ using Xdl.Internship.Offers.SDK.TagDTOs;
 
 namespace Xdl.Internship.Offers.Handlers.Tag
 {
-    public class FindTopTagsHandler : IRequestHandler<FindTopTagsRequest, ICollection<TagMainDTO>>
+    public class FindAllTagsHandler : IRequestHandler<FindAllTagsRequest, ICollection<TagMainDTO>>
     {
         private readonly ITagRepository _tagRepository;
         private readonly IMapper _mapper;
 
-        public FindTopTagsHandler(TagRepository tagRepository, IMapper mapper)
+        public FindAllTagsHandler(TagRepository tagRepository, IMapper mapper)
         {
             _tagRepository = tagRepository;
             _mapper = mapper;
         }
 
-        public async Task<ICollection<TagMainDTO>> Handle(FindTopTagsRequest request, CancellationToken cancellationToken)
+        public async Task<ICollection<TagMainDTO>> Handle(FindAllTagsRequest request, CancellationToken cancellationToken)
         {
-            var tags = await _tagRepository.FindTopTagsAsync();
-            var topTags = tags.GroupBy(t => t.Name).Select(t => t.FirstOrDefault()).OrderByDescending(t => t.UsesByUser).Take(10);
+            var tags = await _tagRepository.FindAllTagsAsync();
+            var allTags = tags.GroupBy(t => t.Name).Select(t => t.FirstOrDefault()).OrderBy(t => t.Name);
 
             var tagDTO = new List<TagMainDTO> { };
 
-            foreach (var tag in topTags)
+            foreach (var tag in allTags)
             {
                 tagDTO.Add(_mapper.Map<TagMainDTO>(tag));
             }

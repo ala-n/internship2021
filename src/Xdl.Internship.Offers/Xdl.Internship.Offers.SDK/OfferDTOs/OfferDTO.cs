@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using MongoDB.Bson;
 
 namespace Xdl.Internship.Offers.SDK.OfferDTOs
@@ -29,7 +30,7 @@ namespace Xdl.Internship.Offers.SDK.OfferDTOs
 
         public DateTime DateEnd { get; set; }
 
-        public ObjectId VendorId { get; set; }
+        public ICollection<string> VendorEntitiesId { get; set; }
 
         public ObjectId[] Tags { get; set; }
 
