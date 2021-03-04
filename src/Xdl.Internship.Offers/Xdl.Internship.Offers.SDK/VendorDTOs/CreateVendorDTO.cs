@@ -13,5 +13,7 @@ namespace Xdl.Internship.Offers.SDK.VendorDTOs
         public string Website { get; set; }
 
         public string Description { get; set; }
+
+        public bool IsActive { get; set; }
     }
 }

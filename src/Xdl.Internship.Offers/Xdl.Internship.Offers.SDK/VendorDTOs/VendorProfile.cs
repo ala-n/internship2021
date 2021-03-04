@@ -9,6 +9,8 @@ namespace Xdl.Internship.Offers.SDK.VendorDTOs
     {
         public VendorProfile()
         {
+            CreateMap<Vendor, VendorDTO>();
+
             CreateMap<Vendor, VendorMainDTO>();
 
             CreateMap<Vendor, VendorWithEntitiesDTO>();

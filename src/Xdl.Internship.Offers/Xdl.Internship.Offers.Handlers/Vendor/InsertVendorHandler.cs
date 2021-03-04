@@ -7,7 +7,7 @@ using Xdl.Internship.Offers.SDK.VendorDTOs;
 
 namespace Xdl.Internship.Offers.Handlers.Vendor
 {
-    public class InsertVendorHandler : IRequestHandler<InsertVendorRequest, VendorMainDTO>
+    public class InsertVendorHandler : IRequestHandler<InsertVendorRequest, VendorDTO>
     {
         private readonly IVendorRepository _vendorRepository;
         private readonly IMapper _mapper;
@@ -18,7 +18,7 @@ namespace Xdl.Internship.Offers.Handlers.Vendor
             _mapper = mapper;
         }
 
-        public async Task<VendorMainDTO> Handle(InsertVendorRequest request, CancellationToken cancellationToken)
+        public async Task<VendorDTO> Handle(InsertVendorRequest request, CancellationToken cancellationToken)
         {
             var vendor = _mapper.Map<Models.Vendor>(request.VendorDTO);
 
@@ -28,7 +28,7 @@ namespace Xdl.Internship.Offers.Handlers.Vendor
 
             await _vendorRepository.InsertOneAsync(vendor);
 
-            return _mapper.Map<VendorMainDTO>(await _vendorRepository.FindByIdAsync(vendor.Id));
+            return _mapper.Map<VendorDTO>(await _vendorRepository.FindByIdAsync(vendor.Id));
         }
     }
 }

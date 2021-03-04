@@ -4,7 +4,7 @@ using Xdl.Internship.Offers.SDK.VendorDTOs;
 
 namespace Xdl.Internship.Offers.Handlers.Vendor
 {
-    public class InsertVendorRequest : IRequest<VendorMainDTO>
+    public class InsertVendorRequest : IRequest<VendorDTO>
     {
         public CreateVendorDTO VendorDTO { get; }
 
