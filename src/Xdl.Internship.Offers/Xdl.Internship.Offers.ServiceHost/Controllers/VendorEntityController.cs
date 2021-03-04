@@ -21,7 +21,7 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
 
         [HttpGet]
         [Route("api/vendorEntities/{id}")]
-        public async Task<ActionResult<IEnumerable<VendorDTO>>> GetVendorEntitiesById([FromRoute] string id)
+        public async Task<ActionResult<IEnumerable<VendorForAdminDTO>>> GetVendorEntitiesById([FromRoute] string id)
         {
             if (!ObjectId.TryParse(id, out var parsedId))
             {

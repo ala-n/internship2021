@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Xdl.Internship.Offers.SDK.VendorDTOs
 {
-    public class VendorAdminPanel
+    public class VendorForAdminDTO
     {
         public string Id { get; set; }
 

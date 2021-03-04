@@ -9,7 +9,7 @@ namespace Xdl.Internship.Offers.SDK.VendorDTOs
     {
         public VendorProfile()
         {
-            CreateMap<Vendor, VendorDTO>();
+            CreateMap<Vendor, VendorForAdminDTO>();
 
             CreateMap<Vendor, VendorWithEntitiesDTO>();
             CreateMap<VendorEntity, VendorWithEntitiesDTO>()
@@ -18,7 +18,7 @@ namespace Xdl.Internship.Offers.SDK.VendorDTOs
             CreateMap<CreateVendorDTO, Vendor>()
                 .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(src => DateTimeOffset.Now));
 
-            CreateMap<Vendor, VendorAdminPanel>()
+            CreateMap<Vendor, VendorForAdminDTO>()
                 .ForMember(x => x.Id, x => x.MapFrom(x => x.Id.ToString()))
                 .ForMember(x => x.Name, x => x.MapFrom(x => x.Name))
                 .ForMember(x => x.Website, x => x.MapFrom(x => x.Website))
