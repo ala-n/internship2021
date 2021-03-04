@@ -20,6 +20,9 @@ namespace Xdl.Internship.Offers.SDK.VendorDTOs
             CreateMap<CreateVendorDTO, Vendor>()
                 .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(src => DateTimeOffset.Now));
 
+            CreateMap<UpdateVendorDTO, Vendor>()
+                .ForMember(dest => dest.UpdatedAt, opt => opt.MapFrom(src => DateTimeOffset.Now));
+
             CreateMap<Vendor, VendorForAdminDTO>()
                 .ForMember(x => x.Id, x => x.MapFrom(x => x.Id.ToString()))
                 .ForMember(x => x.Name, x => x.MapFrom(x => x.Name))
