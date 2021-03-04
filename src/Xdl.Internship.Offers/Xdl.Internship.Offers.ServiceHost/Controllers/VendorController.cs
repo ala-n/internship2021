@@ -61,8 +61,20 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
             return Ok(await _mediator.Send(new FindAllVendorsForAdminRequest()));
         }
 
+        [HttpGet]
+        [Route("${id}/admin")]
+        public async Task<ActionResult<VendorMainDTO>> GetVendorByIdForAdmin([FromRoute] string id)
+        {
+            if (!ObjectId.TryParse(id, out var parsedId))
+            {
+                return BadRequest($"{nameof(id)} is not valid");
+            }
+
+            return Ok(await _mediator.Send(new FindVendorByIdForAdminRequest(parsedId)));
+        }
+
         [HttpPost]
-        public async Task<ActionResult<VendorForAdminDTO>> CreateVendor([FromBody] CreateVendorDTO vendorDTO)
+        public async Task<ActionResult<VendorMainDTO>> CreateVendor([FromBody] CreateVendorDTO vendorDTO)
         {
             return Ok(await _mediator.Send(new InsertVendorRequest(vendorDTO)));
         }

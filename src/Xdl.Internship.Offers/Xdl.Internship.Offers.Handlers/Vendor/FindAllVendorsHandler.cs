@@ -8,7 +8,7 @@ using Xdl.Internship.Offers.SDK.VendorDTOs;
 
 namespace Xdl.Internship.Offers.Handlers.Vendor
 {
-    public class FindAllVendorsHandler : IRequestHandler<FindAllVendorsRequest, ICollection<VendorForAdminDTO>>
+    public class FindAllVendorsHandler : IRequestHandler<FindAllVendorsRequest, ICollection<VendorMainDTO>>
     {
         private readonly IVendorRepository _vendorRepository;
         private readonly IMapper _mapper;
@@ -19,14 +19,14 @@ namespace Xdl.Internship.Offers.Handlers.Vendor
             _mapper = mapper;
         }
 
-        public async Task<ICollection<VendorForAdminDTO>> Handle(FindAllVendorsRequest request, CancellationToken cancellationToken)
+        public async Task<ICollection<VendorMainDTO>> Handle(FindAllVendorsRequest request, CancellationToken cancellationToken)
         {
             var vendors = await _vendorRepository.FindAsync(request.IncludeInactive);
-            var vendorDTO = new List<VendorForAdminDTO> { };
+            var vendorDTO = new List<VendorMainDTO> { };
 
             foreach (var vendor in vendors)
             {
-                vendorDTO.Add(_mapper.Map<VendorForAdminDTO>(vendor));
+                vendorDTO.Add(_mapper.Map<VendorMainDTO>(vendor));
             }
 
             return vendorDTO;
