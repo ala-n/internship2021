@@ -10,6 +10,7 @@ using Xdl.Internship.Offers.SDK.VendorEntityDTOs;
 namespace Xdl.Internship.Offers.ServiceHost.Controllers
 {
     [Controller]
+    [Route("api/vendorEntities")]
     public class VendorEntityController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -20,7 +21,7 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
         }
 
         [HttpGet]
-        [Route("api/vendorEntities/{id}")]
+        [Route("{id}")]
         public async Task<ActionResult<IEnumerable<VendorMainDTO>>> GetVendorEntitiesById([FromRoute] string id)
         {
             if (!ObjectId.TryParse(id, out var parsedId))
@@ -31,9 +32,16 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
             return Ok(await _mediator.Send(new FindVendorEntityByIdRequest(parsedId)));
         }
 
+        [HttpGet]
+        [Route("admin")]
+        public async Task<ActionResult<ICollection<VendorForAdminDTO>>> GetAllVendorEntitiesForAdmin()
+        {
+            return Ok(await _mediator.Send(new FindAllVendorEntitiesForAdminRequest()));
+        }
+
         // offerId -> list of vendorEntities
         [HttpPost]
-        [Route("api/vendorEntities/vendor/{vendorId}")]
+        [Route("vendor/{vendorId}")]
         public async Task<ActionResult<VendorEntityDTO>> CreateVendorEntity([FromRoute] string vendorId, [FromBody] CreateVendorEntityDTO vendorEntity)
         {
             if (!ObjectId.TryParse(vendorId, out var parsedId))
@@ -45,7 +53,7 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
         }
 
         [HttpPut]
-        [Route("api/vendorEntities/{id}")]
+        [Route("{id}")]
         public async Task<ActionResult<VendorEntityDTO>> UpdateVendorEntity([FromRoute] string id, [FromBody] UpdateVendorEntityDTO vendorEntity)
         {
             if (!ObjectId.TryParse(id, out var parsedId))
@@ -57,7 +65,7 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
         }
 
         [HttpDelete]
-        [Route("api/vendorEntities/{id}")]
+        [Route("{id}")]
         public async Task<ActionResult> DeleteVendorEntity([FromRoute] string id)
         {
             if (!ObjectId.TryParse(id, out var parsedId))

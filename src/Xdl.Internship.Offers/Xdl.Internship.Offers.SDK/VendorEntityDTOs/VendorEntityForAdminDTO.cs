@@ -1,7 +1,6 @@
 ﻿namespace Xdl.Internship.Offers.SDK.VendorEntityDTOs
 {
-    // for OfferMainDTO
-    public class VendorEntityMainDTO
+    public class VendorEntityForAdminDTO
     {
         public string Id { get; set; }
 
@@ -15,12 +14,10 @@
 
         public string Room { get; set; }
 
-        public string Phone { get; set; }
-
         public string Email { get; set; }
 
-        public double X { get; set; }
+        public string VendorId { get; set; }
 
-        public double Y { get; set; }
+        public bool IsActive { get; set; }
     }
 }
