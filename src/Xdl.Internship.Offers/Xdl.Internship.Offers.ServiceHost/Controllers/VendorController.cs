@@ -31,7 +31,7 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
         }
 
         [HttpGet]
-        [Route("{vendorId}")]
+        [Route("{id}")]
         public async Task<ActionResult<VendorWithEntitiesDTO>> GetVendorByIdWithEntities([FromRoute] string id, [FromQuery] bool includeEntities = false)
         {
             if (!ObjectId.TryParse(id, out var parsedId))
@@ -77,6 +77,30 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
         public async Task<ActionResult<VendorDTO>> CreateVendor([FromBody] CreateVendorDTO vendorDTO)
         {
             return Ok(await _mediator.Send(new InsertVendorRequest(vendorDTO)));
+        }
+
+        [HttpPut]
+        [Route("{id}")]
+        public async Task<ActionResult<VendorDTO>> UpdateVendor([FromRoute] string id, [FromBody] UpdateVendorDTO vendorDTO)
+        {
+            if (!ObjectId.TryParse(id, out var parsedId))
+            {
+                return BadRequest($"{nameof(id)} is not valid");
+            }
+
+            return Ok(await _mediator.Send(new ReplaceVendorRequest(parsedId, vendorDTO)));
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<ActionResult> DeleteVendor([FromRoute] string id)
+        {
+            if (!ObjectId.TryParse(id, out var parsedId))
+            {
+                return BadRequest($"{nameof(id)} is not valid");
+            }
+
+            return Ok(await _mediator.Send(new DeleteVendorRequest(parsedId)));
         }
     }
 }
