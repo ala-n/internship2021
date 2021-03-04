@@ -13,6 +13,7 @@ using Quartz.Impl;
 using Serilog;
 using Xdl.Internship.Scheduler.Core.Jobs;
 using Xdl.Internship.Scheduler.Handlers.CheckExpiredOffers;
+using Xdl.Internship.Scheduler.Handlers.CheckExpiredOffersFromController;
 using Xdl.Internship.Scheduler.Jobs.CheckExpiredOffers;
 
 namespace Xdl.Internship.Scheduler.ServiceHost
@@ -35,6 +36,9 @@ namespace Xdl.Internship.Scheduler.ServiceHost
 
             services.AddMediatR(typeof(CheckExpiredOffersRequest).GetTypeInfo().Assembly);
             services.AddMediatR(typeof(CheckExpiredOffersHandler).GetTypeInfo().Assembly);
+
+            services.AddMediatR(typeof(CheckExpiredOffersFromControllerRequest).GetTypeInfo().Assembly);
+            services.AddMediatR(typeof(CheckExpiredOffersFromControllerHandler).GetTypeInfo().Assembly);
 
             services.AddSingleton<ISchedulerFactory, StdSchedulerFactory>();
 
