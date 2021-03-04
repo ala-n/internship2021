@@ -27,6 +27,9 @@ namespace Xdl.Internship.Offers.Handlers.VendorEntity
             entity.Id = request.Id;
             entity.CreatedBy = oldEntity.CreatedBy;
             entity.CreatedAt = oldEntity.CreatedAt;
+            entity.IsActive = oldEntity.IsActive;
+            entity.Rate = oldEntity.Rate;
+            entity.VendorId = oldEntity.VendorId;
 
             await _vendorEntityRepository.ReplaceOneAsync(entity);
 
