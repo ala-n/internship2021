@@ -19,6 +19,11 @@ namespace Xdl.Internship.Authentication.DataAccess
         {
         }
 
+        public async Task<Models.User> FindOneUsersAsync(Expression<Func<Models.User, bool>> filterExpression, CancellationToken cancellationToken = default)
+        {
+            return await FindOneAsync(filterExpression, cancellationToken);
+        }
+
         public async Task<Models.User> FindUserByIdAsync(ObjectId id, CancellationToken cancellationToken = default)
         {
             return await FindByIdAsync(id, default);

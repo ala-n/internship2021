@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Xdl.Internship.Authentication.DTOs;
@@ -37,6 +39,29 @@ namespace Xdl.Internship.Authentication.ServiceHost.Controllers
             }
 
             return Ok(authInfo);
+        }
+
+        [HttpGet("verify")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> VerifyToken()
+        {
+            var username = User
+                .Claims
+                .SingleOrDefault();
+
+            if (username == null)
+            {
+                return Unauthorized();
+            }
+
+            var userExists = await _mediator.Send(username);
+
+            if (userExists == null)
+            {
+                return Unauthorized();
+            }
+
+            return NoContent();
         }
     }
 }
