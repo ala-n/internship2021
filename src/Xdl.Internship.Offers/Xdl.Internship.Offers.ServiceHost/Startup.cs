@@ -50,6 +50,7 @@ namespace Xdl.Internship.Offers.ServiceHost
 
             services.AddSingleton<TagRepository>();
             services.AddSingleton<OfferRepository>();
+            services.AddSingleton<FeedbackRepository>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

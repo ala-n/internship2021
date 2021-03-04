@@ -20,5 +20,6 @@
 
   <ItemGroup>
     <Folder Include="Tag\" />
+    <Folder Include="Feedback\" />
   </ItemGroup>
 </Project>

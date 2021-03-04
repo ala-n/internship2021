@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <Folder Include="TagDTOs\" />
+    <Folder Include="FeedbackDTOs\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Xdl.Internship.Offers.Models\Xdl.Internship.Offers.Models.csproj" />

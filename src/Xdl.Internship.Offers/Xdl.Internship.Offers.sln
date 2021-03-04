@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xdl.Internship.Offers.Models", "Xdl.Internship.Offers.Models\Xdl.Internship.Offers.Models.csproj", "{2EC6CB45-B893-4EA7-AD82-12F461E8C282}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xdl.Internship.Offers.Models", "Xdl.Internship.Offers.Models\Xdl.Internship.Offers.Models.csproj", "{6001EA94-D7AD-458B-8CED-047C511D3C2A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xdl.Internship.Offers.DataAccess", "Xdl.Internship.Offers.DataAccess\Xdl.Internship.Offers.DataAccess.csproj", "{794A2668-6282-4B2A-A096-95CACD4C6AA0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xdl.Internship.Offers.DataAccess", "Xdl.Internship.Offers.DataAccess\Xdl.Internship.Offers.DataAccess.csproj", "{BE98358E-23B1-4604-9319-63D81F95B059}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xdl.Internship.Offers.Handlers", "Xdl.Internship.Offers.Handlers\Xdl.Internship.Offers.Handlers.csproj", "{425BCA54-9075-4082-89F8-3C0067F2AAE3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xdl.Internship.Offers.Handlers", "Xdl.Internship.Offers.Handlers\Xdl.Internship.Offers.Handlers.csproj", "{5C5E86B3-3E5D-4A09-9A99-6FD4AC0FD9B5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xdl.Internship.Offers.ServiceHost", "Xdl.Internship.Offers.ServiceHost\Xdl.Internship.Offers.ServiceHost.csproj", "{6ED72477-B89E-410E-9315-5F805AEE646E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xdl.Internship.Offers.ServiceHost", "Xdl.Internship.Offers.ServiceHost\Xdl.Internship.Offers.ServiceHost.csproj", "{59D3C5C0-7651-4FF4-A211-B06FDC11A7D7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xdl.Internship.Offers.SDK", "Xdl.Internship.Offers.SDK\Xdl.Internship.Offers.SDK.csproj", "{6EEDB43D-0ACD-4F47-9F87-53DB23A7B9CB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xdl.Internship.Offers.SDK", "Xdl.Internship.Offers.SDK\Xdl.Internship.Offers.SDK.csproj", "{8CE5285F-E1E6-4AF4-9A2A-1642BE203FDF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,26 +19,26 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2EC6CB45-B893-4EA7-AD82-12F461E8C282}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2EC6CB45-B893-4EA7-AD82-12F461E8C282}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2EC6CB45-B893-4EA7-AD82-12F461E8C282}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2EC6CB45-B893-4EA7-AD82-12F461E8C282}.Release|Any CPU.Build.0 = Release|Any CPU
-		{794A2668-6282-4B2A-A096-95CACD4C6AA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{794A2668-6282-4B2A-A096-95CACD4C6AA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{794A2668-6282-4B2A-A096-95CACD4C6AA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{794A2668-6282-4B2A-A096-95CACD4C6AA0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{425BCA54-9075-4082-89F8-3C0067F2AAE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{425BCA54-9075-4082-89F8-3C0067F2AAE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{425BCA54-9075-4082-89F8-3C0067F2AAE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{425BCA54-9075-4082-89F8-3C0067F2AAE3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6ED72477-B89E-410E-9315-5F805AEE646E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6ED72477-B89E-410E-9315-5F805AEE646E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6ED72477-B89E-410E-9315-5F805AEE646E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6ED72477-B89E-410E-9315-5F805AEE646E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6EEDB43D-0ACD-4F47-9F87-53DB23A7B9CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6EEDB43D-0ACD-4F47-9F87-53DB23A7B9CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6EEDB43D-0ACD-4F47-9F87-53DB23A7B9CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6EEDB43D-0ACD-4F47-9F87-53DB23A7B9CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6001EA94-D7AD-458B-8CED-047C511D3C2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6001EA94-D7AD-458B-8CED-047C511D3C2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6001EA94-D7AD-458B-8CED-047C511D3C2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6001EA94-D7AD-458B-8CED-047C511D3C2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE98358E-23B1-4604-9319-63D81F95B059}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE98358E-23B1-4604-9319-63D81F95B059}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE98358E-23B1-4604-9319-63D81F95B059}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE98358E-23B1-4604-9319-63D81F95B059}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C5E86B3-3E5D-4A09-9A99-6FD4AC0FD9B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C5E86B3-3E5D-4A09-9A99-6FD4AC0FD9B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C5E86B3-3E5D-4A09-9A99-6FD4AC0FD9B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C5E86B3-3E5D-4A09-9A99-6FD4AC0FD9B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59D3C5C0-7651-4FF4-A211-B06FDC11A7D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59D3C5C0-7651-4FF4-A211-B06FDC11A7D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59D3C5C0-7651-4FF4-A211-B06FDC11A7D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59D3C5C0-7651-4FF4-A211-B06FDC11A7D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CE5285F-E1E6-4AF4-9A2A-1642BE203FDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CE5285F-E1E6-4AF4-9A2A-1642BE203FDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CE5285F-E1E6-4AF4-9A2A-1642BE203FDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CE5285F-E1E6-4AF4-9A2A-1642BE203FDF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
