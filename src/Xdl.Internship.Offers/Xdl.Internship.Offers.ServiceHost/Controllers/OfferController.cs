@@ -75,6 +75,12 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
             return Ok(await _mediator.Send(new FindOfferByVendorEntityIdRequest(id)));
         }
 
+        [HttpPost]
+        public async Task<ActionResult<OfferMainDTO>> CreateOffer([FromBody] CreateOfferDTO offerDTO)
+        {
+            return Ok(await _mediator.Send(new InsertOfferRequest(offerDTO)));
+        }
+
         [HttpPut]
         [Route("{id}")]
         public async Task<ActionResult<OfferMainDTO>> UpdateOffer([FromRoute] string id, [FromBody] UpdateOfferDTO offerDTO)
