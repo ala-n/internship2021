@@ -17,7 +17,7 @@ namespace Xdl.Internship.Authentication.Models
 
         public bool IsActive { get; set; }
 
-        public string City { get; set; }
+        public string CityId { get; set; }
 
         public Role Role { get; set; }
 
