@@ -5,7 +5,7 @@ using Xdl.Internship.Offers.SDK.VendorDTOs;
 
 namespace Xdl.Internship.Offers.Handlers.Vendor
 {
-    public class FindAllVendorsRequest : IRequest<ICollection<VendorMainDTO>>
+    public class FindAllVendorsRequest : IRequest<ICollection<VendorDTO>>
     {
         public bool IncludeInactive { get; }
 

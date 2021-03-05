@@ -14,20 +14,20 @@ using Xdl.Internship.Offers.SDK.VendorEntityDTOs;
 
 namespace Xdl.Internship.Offers.Handlers.Vendor
 {
-    public class FindVendorsWithEntitiesHandler : IRequestHandler<FindVendorsWithEntitiesRequest, ICollection<VendorWithEntitiesDTO>>
+    public class FindVendorsByCityIdWithEntitiesHandler : IRequestHandler<FindVendorsByCityIdWithEntitiesRequest, ICollection<VendorWithEntitiesDTO>>
     {
         private readonly IVendorRepository _vendorRepository;
         private readonly IVendorEntityRepository _vendorEntityRepository;
         private readonly IMapper _mapper;
 
-        public FindVendorsWithEntitiesHandler(IVendorRepository vendorRepository, IVendorEntityRepository vendorEntityRepository, IMapper mapper)
+        public FindVendorsByCityIdWithEntitiesHandler(IVendorRepository vendorRepository, IVendorEntityRepository vendorEntityRepository, IMapper mapper)
         {
             _vendorRepository = vendorRepository;
             _vendorEntityRepository = vendorEntityRepository;
             _mapper = mapper;
         }
 
-        public async Task<ICollection<VendorWithEntitiesDTO>> Handle(FindVendorsWithEntitiesRequest request, CancellationToken cancellationToken)
+        public async Task<ICollection<VendorWithEntitiesDTO>> Handle(FindVendorsByCityIdWithEntitiesRequest request, CancellationToken cancellationToken)
         {
             // Getting all Entitties
             var entities = await _vendorEntityRepository.FindByCityAsync(request.CityId, request.OnlyActive);

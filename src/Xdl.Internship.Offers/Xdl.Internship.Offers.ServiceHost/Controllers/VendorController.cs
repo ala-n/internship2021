@@ -51,26 +51,7 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
                 return BadRequest($"{nameof(cityId)} is not valid");
             }
 
-            return Ok(await _mediator.Send(new FindVendorsWithEntitiesRequest(id, !includeInactive)));
-        }
-
-        [HttpGet]
-        [Route("admin")]
-        public async Task<ActionResult<ICollection<VendorForAdminDTO>>> GetAllVendorsForAdmin()
-        {
-            return Ok(await _mediator.Send(new FindAllVendorsForAdminRequest()));
-        }
-
-        [HttpGet]
-        [Route("${id}/admin")]
-        public async Task<ActionResult<VendorMainDTO>> GetVendorByIdForAdmin([FromRoute] string id)
-        {
-            if (!ObjectId.TryParse(id, out var parsedId))
-            {
-                return BadRequest($"{nameof(id)} is not valid");
-            }
-
-            return Ok(await _mediator.Send(new FindVendorByIdForAdminRequest(parsedId)));
+            return Ok(await _mediator.Send(new FindVendorsByCityIdWithEntitiesRequest(id, !includeInactive)));
         }
 
         [HttpPost]
