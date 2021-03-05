@@ -23,17 +23,11 @@ namespace Xdl.Internship.Offers.Handlers.VendorEntity
             // Getting old value to copy audit fields
             var oldEntity = await _vendorEntityRepository.FindByIdAsync(request.Id);
 
-            var entity = _mapper.Map<Models.VendorEntity>(request.VendorEntityDTO);
-            entity.Id = request.Id;
-            entity.CreatedBy = oldEntity.CreatedBy;
-            entity.CreatedAt = oldEntity.CreatedAt;
-            entity.IsActive = oldEntity.IsActive;
-            entity.Rate = oldEntity.Rate;
-            entity.VendorId = oldEntity.VendorId;
+            var entity = _mapper.Map(request.VendorEntityDTO, oldEntity);
 
             await _vendorEntityRepository.ReplaceOneAsync(entity);
 
-            return _mapper.Map<VendorEntityDTO>(await _vendorEntityRepository.FindByIdAsync(request.Id));
+            return _mapper.Map<VendorEntityDTO>(entity);
         }
     }
 }

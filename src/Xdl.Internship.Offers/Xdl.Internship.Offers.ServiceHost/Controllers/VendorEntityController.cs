@@ -22,7 +22,7 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        public async Task<ActionResult<IEnumerable<VendorMainDTO>>> GetVendorEntitiesById([FromRoute] string id)
+        public async Task<ActionResult<IEnumerable<VendorDTO>>> GetVendorEntitiesById([FromRoute] string id)
         {
             if (!ObjectId.TryParse(id, out var parsedId))
             {
@@ -34,14 +34,14 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
 
         [HttpGet]
         [Route("admin")]
-        public async Task<ActionResult<ICollection<VendorForAdminDTO>>> GetAllVendorEntitiesForAdmin()
+        public async Task<ActionResult<ICollection<VendorDTO>>> GetAllVendorEntitiesForAdmin()
         {
-            return Ok(await _mediator.Send(new FindAllVendorEntitiesForAdminRequest()));
+            return Ok(await _mediator.Send(new FindVendorEntitiesByVendorIdRequest()));
         }
 
         // offerId -> list of vendorEntities
         [HttpPost]
-        [Route("vendor/{vendorId}")]
+        [Route("vendors/{vendorId}/vendorEntities")]
         public async Task<ActionResult<VendorEntityDTO>> CreateVendorEntity([FromRoute] string vendorId, [FromBody] CreateVendorEntityDTO vendorEntity)
         {
             if (!ObjectId.TryParse(vendorId, out var parsedId))

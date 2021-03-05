@@ -10,6 +10,12 @@ namespace Xdl.Internship.Offers.SDK.VendorEntityDTOs
         {
             CreateMap<VendorEntity, VendorEntityDTO>();
 
+            CreateMap<VendorEntity, VendorEntityForAdminDTO>()
+                .ForMember(dest => dest.Country, opt => opt.MapFrom(src => src.Adress.Country))
+                .ForMember(dest => dest.Street, opt => opt.MapFrom(src => src.Adress.Street))
+                .ForMember(dest => dest.House, opt => opt.MapFrom(src => src.Adress.House))
+                .ForMember(dest => dest.Room, opt => opt.MapFrom(src => src.Adress.Room));
+
             CreateMap<CreateVendorEntityDTO, VendorEntity>()
                 .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(src => DateTimeOffset.Now));
 
