@@ -2,17 +2,19 @@
 using System.Linq;
 using System.Threading.Tasks;
 using MediatR;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Net.Http.Headers;
+using Xdl.Internship.Authentication.DataAccess;
 using Xdl.Internship.Authentication.DTOs;
+using Xdl.Internship.Authentication.Handlers.GetUser;
 using Xdl.Internship.Authentication.Handlers.Login;
 
 namespace Xdl.Internship.Authentication.ServiceHost.Controllers
 {
     [Authorize]
     [ApiController]
-    [Route("api/users")]
+    [Route("auth/users")]
     public class UsersController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -42,7 +44,6 @@ namespace Xdl.Internship.Authentication.ServiceHost.Controllers
         }
 
         [HttpGet("verify")]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<IActionResult> VerifyToken()
         {
             var username = User
@@ -62,6 +63,24 @@ namespace Xdl.Internship.Authentication.ServiceHost.Controllers
             }
 
             return NoContent();
+        }
+
+        [AllowAnonymous]
+        [HttpGet("getUser")]
+        public async Task<ActionResult<DTOs.User>> GetUser()
+        {
+            /*remove try catch after add Barrer*/
+            try
+            {
+                var token = Request.Headers[HeaderNames.Authorization].ToString().Replace("Bearer ", string.Empty);
+                var tokeinInfo = new GetTokenInfo();
+                var result = await _mediator.Send(new GetUserRequest(tokeinInfo.TokenData(token)["id"]));
+                return result;
+            }
+            catch
+            {
+                return BadRequest("Error");
+            }
         }
     }
 }
