@@ -25,7 +25,7 @@ namespace Xdl.Internship.Offers.Handlers.Offer
 
         public async Task<ICollection<OfferMainDTO>> Handle(FindOffersByVendorIdRequest request, CancellationToken cancellationToken)
         {
-            var entities = await _vendorEntityRepository.FindByVendorId(request.VendorId);
+            var entities = await _vendorEntityRepository.FindByVendorIdAsync(request.VendorId, true);
             var result = new List<OfferMainDTO> { };
             foreach (var en in entities)
             {

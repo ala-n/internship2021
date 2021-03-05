@@ -32,7 +32,7 @@ namespace Xdl.Internship.Offers.Handlers.Vendor
 
             if (request.IncludeEntites)
             {
-                var entities = await _vendorEntityRepository.FindByVendorId(request.Id);
+                var entities = await _vendorEntityRepository.FindByVendorIdAsync(request.Id, false);
                 result.VendorEntities = _mapper.Map<ICollection<VendorEntityDTO>>(entities);
             }
 

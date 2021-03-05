@@ -69,7 +69,8 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
                 return BadRequest($"{nameof(id)} is not valid");
             }
 
-            return Ok(await _mediator.Send(new ReplaceVendorRequest(parsedId, vendorDTO)));
+            await _mediator.Publish(new ReplaceVendorRequest(parsedId, vendorDTO));
+            return Ok();
         }
 
         [HttpDelete]

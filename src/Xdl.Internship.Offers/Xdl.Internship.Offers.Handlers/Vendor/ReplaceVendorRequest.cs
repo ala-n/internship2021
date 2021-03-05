@@ -4,7 +4,7 @@ using Xdl.Internship.Offers.SDK.VendorDTOs;
 
 namespace Xdl.Internship.Offers.Handlers.Vendor
 {
-    public class ReplaceVendorRequest : IRequest<VendorDTO>
+    public class ReplaceVendorRequest : INotification
     {
         public ObjectId Id { get; }
 

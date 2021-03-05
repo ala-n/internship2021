@@ -16,6 +16,6 @@ namespace Xdl.Internship.Offers.DataAccess.Interfaces
 
         Task<ICollection<VendorEntity>> FindByCityAsync(ObjectId cityId, bool onlyActive, CancellationToken cancellationToken = default);
 
-        Task<ICollection<VendorEntity>> FindByVendorId(ObjectId vendorId, CancellationToken cancellationToken = default);
+        Task<ICollection<VendorEntity>> FindByVendorIdAsync(ObjectId vendorId, bool onlyActive, CancellationToken cancellationToken = default);
     }
 }

@@ -3,11 +3,10 @@ using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using Xdl.Internship.Offers.DataAccess.Interfaces;
-using Xdl.Internship.Offers.SDK.VendorDTOs;
 
 namespace Xdl.Internship.Offers.Handlers.Vendor
 {
-    public class ReplaceVendorHandler : IRequestHandler<ReplaceVendorRequest, VendorDTO>
+    public class ReplaceVendorHandler : INotificationHandler<ReplaceVendorRequest>
     {
         private readonly IVendorRepository _vendorRepository;
         private readonly IMapper _mapper;
@@ -18,21 +17,14 @@ namespace Xdl.Internship.Offers.Handlers.Vendor
             _mapper = mapper;
         }
 
-        public async Task<VendorDTO> Handle(ReplaceVendorRequest request, CancellationToken cancellationToken)
+        public async Task Handle(ReplaceVendorRequest request, CancellationToken cancellationToken)
         {
             // Getting old value to copy audit fields
             var oldVendor = await _vendorRepository.FindByIdAsync(request.Id);
 
-            var vendor = _mapper.Map<Models.Vendor>(request.VendorDTO);
-            vendor.Id = request.Id;
-            vendor.CreatedAt = oldVendor.CreatedAt;
-            vendor.CreatedBy = oldVendor.CreatedBy;
-            vendor.IsActive = oldVendor.IsActive;
-            vendor.Rate = oldVendor.Rate;
+            var vendor = _mapper.Map(request.VendorDTO, oldVendor);
 
             await _vendorRepository.ReplaceOneAsync(vendor);
-
-            return _mapper.Map<VendorDTO>(await _vendorRepository.FindByIdAsync(vendor.Id));
         }
     }
 }
