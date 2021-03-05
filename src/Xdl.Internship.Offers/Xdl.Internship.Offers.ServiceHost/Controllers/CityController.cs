@@ -29,7 +29,7 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
         [Route("{id}")]
         public async Task<ActionResult<CityDTO>> GetCityById([FromRoute] string id)
         {
-            if (ObjectId.TryParse(id, out var parseId))
+            if (!ObjectId.TryParse(id, out var parseId))
             {
                 return BadRequest($"{nameof(id)} is not valid");
             }
@@ -38,7 +38,6 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
         }
 
         [HttpPost]
-        [Route("{id}")]
         public async Task<ActionResult<CityDTO>> CreateCity([FromBody] CreateCityDTO cityDTO)
         {
             return Ok(await _mediator.Send(new InsertCityRequest(cityDTO)));
