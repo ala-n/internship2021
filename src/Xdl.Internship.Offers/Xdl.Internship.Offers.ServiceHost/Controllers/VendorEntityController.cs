@@ -31,7 +31,18 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
             return Ok(await _mediator.Send(new FindVendorEntityByIdRequest(parsedId)));
         }
 
-        // offerId -> list of vendorEntities
+        [HttpGet]
+        [Route("api/vendorEntities/offer/{offerId}")]
+        public async Task<ActionResult<IEnumerable<VendorEntityMainDTO>>> GetVendorEntitiesByOfferId([FromRoute] string offerId)
+        {
+            if (!ObjectId.TryParse(offerId, out var parsedId))
+            {
+                return BadRequest($"{nameof(offerId)} is not valid");
+            }
+
+            return Ok(await _mediator.Send(new GetVendorEntitiesByOfferIdRequest(parsedId)));
+        }
+
         [HttpPost]
         [Route("api/vendors/{vendorId}/vendorEntities")]
         public async Task<ActionResult<VendorEntityDTO>> CreateVendorEntity([FromRoute] string vendorId, [FromBody] CreateVendorEntityDTO vendorEntity)
