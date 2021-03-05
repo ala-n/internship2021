@@ -19,7 +19,7 @@ namespace Xdl.Internship.Offers.Handlers.Offer
         private readonly IVendorRepository _vendorRepository;
         private readonly IMapper _mapper;
 
-        public GetVendorInfoByOfferIdHandler(OfferRepository offerRepository, VendorEntityRepository vendorEntityRepository, VendorRepository vendorRepository,
+        public GetVendorInfoByOfferIdHandler(IOfferRepository offerRepository, IVendorEntityRepository vendorEntityRepository, IVendorRepository vendorRepository,
             IMapper mapper)
         {
             _offerRepository = offerRepository;
