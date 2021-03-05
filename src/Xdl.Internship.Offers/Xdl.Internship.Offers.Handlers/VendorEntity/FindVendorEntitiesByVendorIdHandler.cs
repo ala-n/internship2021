@@ -11,7 +11,7 @@ using Xdl.Internship.Offers.SDK.VendorEntityDTOs;
 
 namespace Xdl.Internship.Offers.Handlers.VendorEntity
 {
-    public class FindVendorEntitiesByVendorIdHandler : IRequestHandler<FindVendorEntitiesByVendorIdRequest, ICollection<VendorEntityForAdminDTO>>
+    public class FindVendorEntitiesByVendorIdHandler : IRequestHandler<FindVendorEntitiesByVendorIdRequest, ICollection<VendorEntityDTO>>
     {
         private readonly IVendorEntityRepository _vendorEntityRepository;
         private readonly ICityRepository _cityRepository;
@@ -24,35 +24,9 @@ namespace Xdl.Internship.Offers.Handlers.VendorEntity
             _mapper = mapper;
         }
 
-        public async Task<ICollection<VendorEntityForAdminDTO>> Handle(FindVendorEntitiesByVendorIdRequest request, CancellationToken cancellationToken)
+        public async Task<ICollection<VendorEntityDTO>> Handle(FindVendorEntitiesByVendorIdRequest request, CancellationToken cancellationToken)
         {
-            // What with Inactive CITIES
-            var entities = await _vendorEntityRepository.FindByVendorIdAsync(request.VendorId, !request.IncludeInactive);
-            var cities = await _cityRepository.FindAsync(true);
-
-            var citiesByIdMap = cities.ToDictionary(c => c.Id);
-
-            ICollection<VendorEntityForAdminDTO> result = new List<VendorEntityForAdminDTO>();
-            foreach (var entity in entities)
-            {
-                var entityDTO = _mapper.Map<VendorEntityForAdminDTO>(entity);
-
-                if (entity.Adress == null || entity.Adress.CityId == null)
-                {
-                    // TO-DO: log
-                }
-                else
-                {
-                    if (citiesByIdMap.TryGetValue(entity.Adress.CityId, out var city))
-                    {
-                        entityDTO.City = city.Name;
-                    }
-                }
-
-                result.Add(entityDTO);
-            }
-
-            return result;
+            return _mapper.Map<ICollection<VendorEntityDTO>>(await _vendorEntityRepository.FindByVendorIdAsync(request.VendorId, !request.IncludeInactive));
         }
     }
 }

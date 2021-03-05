@@ -7,7 +7,7 @@ using Xdl.Internship.Offers.SDK.VendorEntityDTOs;
 
 namespace Xdl.Internship.Offers.Handlers.VendorEntity
 {
-    public class ReplaceVendorEntityHandler : IRequestHandler<ReplaceVendorEntityRequest, VendorEntityDTO>
+    public class ReplaceVendorEntityHandler : INotificationHandler<ReplaceVendorEntityRequest>
     {
         private readonly IVendorEntityRepository _vendorEntityRepository;
         private readonly IMapper _mapper;
@@ -18,7 +18,7 @@ namespace Xdl.Internship.Offers.Handlers.VendorEntity
             _mapper = mapper;
         }
 
-        public async Task<VendorEntityDTO> Handle(ReplaceVendorEntityRequest request, CancellationToken cancellationToken)
+        public async Task Handle(ReplaceVendorEntityRequest request, CancellationToken cancellationToken)
         {
             // Getting old value to copy audit fields
             var oldEntity = await _vendorEntityRepository.FindByIdAsync(request.Id);
@@ -27,7 +27,7 @@ namespace Xdl.Internship.Offers.Handlers.VendorEntity
 
             await _vendorEntityRepository.ReplaceOneAsync(entity);
 
-            return _mapper.Map<VendorEntityDTO>(entity);
+            // return _mapper.Map<VendorEntityDTO>(entity);
         }
     }
 }

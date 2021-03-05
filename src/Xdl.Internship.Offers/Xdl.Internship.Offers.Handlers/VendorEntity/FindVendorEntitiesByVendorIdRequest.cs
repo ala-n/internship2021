@@ -5,7 +5,7 @@ using Xdl.Internship.Offers.SDK.VendorEntityDTOs;
 
 namespace Xdl.Internship.Offers.Handlers.VendorEntity
 {
-    public class FindVendorEntitiesByVendorIdRequest : IRequest<ICollection<VendorEntityForAdminDTO>>
+    public class FindVendorEntitiesByVendorIdRequest : IRequest<ICollection<VendorEntityDTO>>
     {
         public ObjectId VendorId { get; }
 

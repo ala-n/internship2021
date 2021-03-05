@@ -58,14 +58,15 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
 
         [HttpPut]
         [Route("api/vendorEntities/{id}")]
-        public async Task<ActionResult<VendorEntityDTO>> UpdateVendorEntity([FromRoute] string id, [FromBody] UpdateVendorEntityDTO vendorEntity)
+        public async Task<ActionResult> UpdateVendorEntity([FromRoute] string id, [FromBody] UpdateVendorEntityDTO vendorEntity)
         {
             if (!ObjectId.TryParse(id, out var parsedId))
             {
                 return BadRequest($"{nameof(id)} is not valid");
             }
 
-            return Ok(await _mediator.Send(new ReplaceVendorEntityRequest(parsedId, vendorEntity)));
+            await _mediator.Publish(new ReplaceVendorEntityRequest(parsedId, vendorEntity));
+            return Ok();
         }
 
         [HttpDelete]

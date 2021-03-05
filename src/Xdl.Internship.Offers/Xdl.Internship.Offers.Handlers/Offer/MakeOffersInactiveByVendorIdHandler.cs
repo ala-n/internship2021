@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
@@ -35,6 +36,8 @@ namespace Xdl.Internship.Offers.Handlers.Offer
                 foreach (var offer in offers)
                 {
                     offer.IsActive = false;
+                    offer.UpdatedAt = DateTimeOffset.Now;
+
                     await _offerRepository.ReplaceOneAsync(offer);
                 }
             }
