@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using MongoDB.Bson;
 
 namespace Xdl.Internship.Offers.SDK.OfferDTOs
 {
@@ -32,7 +31,7 @@ namespace Xdl.Internship.Offers.SDK.OfferDTOs
 
         public ICollection<string> VendorEntitiesId { get; set; }
 
-        public ObjectId[] Tags { get; set; }
+        public string[] Tags { get; set; }
 
         public int NumberOfUses { get; set; }
 

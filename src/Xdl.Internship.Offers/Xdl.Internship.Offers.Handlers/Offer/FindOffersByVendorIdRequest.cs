@@ -9,11 +9,14 @@ namespace Xdl.Internship.Offers.Handlers.Offer
 {
     public class FindOffersByVendorIdRequest : IRequest<ICollection<OfferMainDTO>>
     {
-        public FindOffersByVendorIdRequest(ObjectId vendorId)
+        public FindOffersByVendorIdRequest(ObjectId vendorId, bool includeInactive)
         {
             VendorId = vendorId;
+            IncludeInactive = includeInactive;
         }
 
         public ObjectId VendorId { get; set; }
+
+        public bool IncludeInactive { get; }
     }
 }

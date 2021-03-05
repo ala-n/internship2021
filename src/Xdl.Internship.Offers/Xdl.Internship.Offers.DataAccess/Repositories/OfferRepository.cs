@@ -20,7 +20,7 @@ namespace Xdl.Internship.Offers.DataAccess.Repositories
 
         public async Task<ICollection<Offer>> FindAsync(bool includeInactive, CancellationToken cancellationToken = default)
         {
-            Expression<Func<Offer, bool>> filter = (v) => includeInactive || v.IsActive == true;
+            Expression<Func<Offer, bool>> filter = (v) => includeInactive || v.IsActive;
             return await FindAsync(filter);
         }
 
@@ -31,9 +31,9 @@ namespace Xdl.Internship.Offers.DataAccess.Repositories
             return FindAsync(filter);
         }
 
-        public Task<ICollection<Offer>> FindByVendorEntityIdAsync(ObjectId vendorEntityId, CancellationToken cancellationToken = default)
+        public Task<ICollection<Offer>> FindByVendorEntityIdAsync(ObjectId vendorEntityId, bool includeInactive = false, CancellationToken cancellationToken = default)
         {
-            Expression<Func<Offer, bool>> filter = (o) => o.VendorEntitiesId.Contains(vendorEntityId) && o.IsActive;
+            Expression<Func<Offer, bool>> filter = (o) => o.VendorEntitiesId.Contains(vendorEntityId) && (includeInactive || o.IsActive);
 
             return FindAsync(filter);
         }

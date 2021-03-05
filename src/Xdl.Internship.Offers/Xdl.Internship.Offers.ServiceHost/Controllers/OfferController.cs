@@ -53,14 +53,14 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
 
         [HttpGet]
         [Route("vendor/{vendorId}")]
-        public async Task<ActionResult<IEnumerable<OfferMainDTO>>> FindOffersByVendorId([FromRoute] string vendorId)
+        public async Task<ActionResult<IEnumerable<OfferMainDTO>>> FindOffersByVendorId([FromRoute] string vendorId, [FromQuery] bool includeInactive = false)
         {
             if (!ObjectId.TryParse(vendorId, out var id))
             {
                 return BadRequest($"{nameof(vendorId)} is not valid");
             }
 
-            return Ok(await _mediator.Send(new FindOffersByVendorIdRequest(id)));
+            return Ok(await _mediator.Send(new FindOffersByVendorIdRequest(id, includeInactive)));
         }
 
         [HttpGet]
@@ -73,6 +73,18 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
             }
 
             return Ok(await _mediator.Send(new FindOfferByVendorEntityIdRequest(id)));
+        }
+
+        [HttpPut]
+        [Route("{id}")]
+        public async Task<ActionResult<OfferMainDTO>> UpdateOffer([FromRoute] string id, [FromBody] UpdateOfferDTO offerDTO)
+        {
+            if (!ObjectId.TryParse(id, out var parsedId))
+            {
+                return BadRequest($"{nameof(id)} is not valid");
+            }
+
+            return Ok(await _mediator.Send(new ReplaceOfferRequest(parsedId, offerDTO)));
         }
     }
 }

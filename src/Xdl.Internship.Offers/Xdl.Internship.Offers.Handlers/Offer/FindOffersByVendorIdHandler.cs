@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -25,18 +26,26 @@ namespace Xdl.Internship.Offers.Handlers.Offer
 
         public async Task<ICollection<OfferMainDTO>> Handle(FindOffersByVendorIdRequest request, CancellationToken cancellationToken)
         {
-            var entities = await _vendorEntityRepository.FindByVendorIdAsync(request.VendorId, true);
-            var result = new List<OfferMainDTO> { };
+            var entities = await _vendorEntityRepository.FindByVendorIdAsync(request.VendorId, false);
+            var duplicateOffers = new List<OfferMainDTO> { };
             foreach (var en in entities)
             {
-                var entity = await _offerRepository.FindByVendorEntityIdAsync(en.Id);
-                if (entity.Count != 0)
+                var offers = await _offerRepository.FindByVendorEntityIdAsync(en.Id);
+                if (offers.Count != 0)
                 {
-                    foreach (var e in entity)
+                    foreach (var e in offers)
                     {
-                        result.Add(_mapper.Map<OfferMainDTO>(e));
+                        duplicateOffers.Add(_mapper.Map<OfferMainDTO>(e));
                     }
                 }
+            }
+
+            // Filters only unique offers
+            var offersByIdMap = duplicateOffers.GroupBy(o => o.Id);
+            var result = new List<OfferMainDTO> { };
+            foreach (var offer in offersByIdMap)
+            {
+                result.Add(offer.First());
             }
 
             return result;
