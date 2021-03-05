@@ -32,6 +32,18 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
         }
 
         [HttpGet]
+        [Route("api/vendorEntities/offer/{offerId}")]
+        public async Task<ActionResult<IEnumerable<VendorEntityMainDTO>>> GetVendorEntitiesByOfferId([FromRoute] string offerId)
+        {
+            if (!ObjectId.TryParse(offerId, out var parsedId))
+            {
+                return BadRequest($"{nameof(offerId)} is not valid");
+            }
+
+            return Ok(await _mediator.Send(new GetVendorEntitiesByOfferIdRequest(parsedId)));
+        }
+
+        [HttpGet]
         [Route("api/vendorEntities/vendor/{vendorId}")]
         public async Task<ActionResult<ICollection<VendorDTO>>> GetEntitiesByVendorId([FromRoute]string vendorId, bool includeInactive = false)
         {

@@ -31,7 +31,7 @@ namespace Xdl.Internship.Offers.Handlers.Offer
         public async Task<VendorInfoForOfferDTO> Handle(GetVendorInfoByOfferIdRequest request, CancellationToken cancellationToken)
         {
             var result = new List<VendorInfoForOfferDTO>();
-            var offer = await _offerRepository.FindOfferById(request.OfferId);
+            var offer = await _offerRepository.FindByIdAsync(request.OfferId);
             var entity = await _vendorEntityRepository.FindByIdAsync(offer.VendorEntitiesId.First());
             var vendor = await _vendorRepository.FindByIdAsync(entity.VendorId);
             return _mapper.Map<VendorInfoForOfferDTO>(vendor);
