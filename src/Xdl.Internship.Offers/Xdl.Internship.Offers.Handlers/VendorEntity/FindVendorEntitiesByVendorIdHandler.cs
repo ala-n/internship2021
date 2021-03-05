@@ -27,7 +27,7 @@ namespace Xdl.Internship.Offers.Handlers.VendorEntity
         public async Task<ICollection<VendorEntityForAdminDTO>> Handle(FindVendorEntitiesByVendorIdRequest request, CancellationToken cancellationToken)
         {
             // What with Inactive CITIES
-            var entities = await _vendorEntityRepository.FindAsync(true);
+            var entities = await _vendorEntityRepository.FindByVendorIdAsync(request.VendorId, !request.IncludeInactive);
             var cities = await _cityRepository.FindAsync(true);
 
             var citiesByIdMap = cities.ToDictionary(c => c.Id);
