@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 using Xdl.Internship.Offers.Handlers.Offer;
 using Xdl.Internship.Offers.SDK.OfferDTOs;
+using Xdl.Internship.Offers.SDK.VendorDTOs;
 
 namespace Xdl.Internship.Offers.ServiceHost.Controllers
 {
@@ -37,6 +38,18 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
             }
 
             return Ok(await _mediator.Send(new FindOffersByCityIdRequest(id, true)));
+        }
+
+        [HttpGet]
+        [Route("vendorInfo/{offerId}")]
+        public async Task<ActionResult<IEnumerable<VendorInfoForOfferDTO>>> GetVendorInfoByOfferById([FromRoute] string offerId)
+        {
+            if (!ObjectId.TryParse(offerId, out var id))
+            {
+                return BadRequest($"{nameof(offerId)} is not valid");
+            }
+
+            return Ok(await _mediator.Send(new GetVendorInfoByOfferIdRequest(id)));
         }
 
         [HttpGet]

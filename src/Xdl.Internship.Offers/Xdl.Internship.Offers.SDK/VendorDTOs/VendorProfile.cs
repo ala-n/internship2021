@@ -31,6 +31,9 @@ namespace Xdl.Internship.Offers.SDK.VendorDTOs
                 .ForMember(x => x.UpdatedAt, x => x.MapFrom(x => x.UpdatedAt));
 
             CreateMap<Vendor, VendorByIdAdminPanel>();
+
+            CreateMap<Vendor, VendorInfoForOfferDTO>()
+                .ForPath(x => x.VendorId, x => x.MapFrom(x => x.Id));
         }
     }
 }
