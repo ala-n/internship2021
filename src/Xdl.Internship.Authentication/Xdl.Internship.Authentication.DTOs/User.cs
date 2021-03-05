@@ -15,7 +15,7 @@ namespace Xdl.Internship.Authentication.DTOs
 
         public bool IsActive { get; set; }
 
-        public string City { get; set; }
+        public string CityId { get; set; }
 
         public string Role { get; set; }
 
