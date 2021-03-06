@@ -68,6 +68,8 @@ namespace Xdl.Internship.Offers.ServiceHost
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Xdl.Internship.Offers.ServiceHost v1"));
             }
 
+            app.UseCors(builder => builder.AllowAnyOrigin());
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
