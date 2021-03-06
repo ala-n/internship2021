@@ -42,7 +42,7 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
 
         [HttpGet]
         [Route("city/{cityId}")]
-        public async Task<ActionResult<IEnumerable<OfferForListDTO>>> FindOffersByCityId([FromRoute]string cityId)
+        public async Task<ActionResult<IEnumerable<OfferWithVendorInfoDTO>>> FindOffersByCityId([FromRoute]string cityId)
         {
             if (!ObjectId.TryParse(cityId, out var id))
             {

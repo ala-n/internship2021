@@ -7,7 +7,7 @@ using Xdl.Internship.Offers.SDK.OfferDTOs;
 
 namespace Xdl.Internship.Offers.Handlers.Offer
 {
-    public class FindOffersByCityIdRequest : IRequest<ICollection<OfferForListDTO>>
+    public class FindOffersByCityIdRequest : IRequest<ICollection<OfferWithVendorInfoDTO>>
     {
         public FindOffersByCityIdRequest(ObjectId cityId, bool onlyActive)
         {

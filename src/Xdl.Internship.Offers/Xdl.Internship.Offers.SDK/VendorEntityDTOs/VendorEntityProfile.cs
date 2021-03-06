@@ -28,6 +28,7 @@ namespace Xdl.Internship.Offers.SDK.VendorEntityDTOs
                 .ForMember(dest => dest.UpdatedAt, opt => opt.MapFrom(src => DateTimeOffset.Now));
 
             CreateMap<VendorEntityMainDTO, VendorEntity>()
+               .ForPath(dest => dest.Address.Country, opt => opt.MapFrom(src => src.Country))
                .ForPath(dest => dest.Address.CityId, opt => opt.MapFrom(src => src.City))
                .ForPath(dest => dest.Address.Street, opt => opt.MapFrom(src => src.Street))
                .ForPath(dest => dest.Address.House, opt => opt.MapFrom(src => src.House))
