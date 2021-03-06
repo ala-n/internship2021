@@ -29,6 +29,13 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
         }
 
         [HttpGet]
+        [Route("vendorInfo")]
+        public async Task<ActionResult<IEnumerable<OfferWithVendorInfoDTO>>> GetAllWithVendorInfo([FromQuery] bool includeInactive)
+        {
+            return Ok(await _mediator.Send(new FindAllOffersWithVendorInfoRequest(includeInactive)));
+        }
+
+        [HttpGet]
         [Route("vendorInfo/{offerId}")]
         public async Task<ActionResult<IEnumerable<VendorInfoForOfferDTO>>> GetVendorInfoByOfferById([FromRoute] string offerId)
         {
@@ -65,6 +72,18 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
         }
 
         [HttpGet]
+        [Route("{id}/vendorInfo")]
+        public async Task<ActionResult<OfferWithVendorInfoDTO>> GetOfferByIdWithVendorInfo([FromRoute] string id)
+        {
+            if (!ObjectId.TryParse(id, out var parsedId))
+            {
+                return BadRequest($"{nameof(id)} is not valid");
+            }
+
+            return Ok(await _mediator.Send(new FindOfferByIdWithVendorInfoRequest(parsedId)));
+        }
+
+        [HttpGet]
         [Route("vendor/{vendorId}")]
         public async Task<ActionResult<IEnumerable<OfferMainDTO>>> FindOffersByVendorId([FromRoute] string vendorId, [FromQuery] bool includeInactive = false)
         {
@@ -74,6 +93,18 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
             }
 
             return Ok(await _mediator.Send(new FindOffersByVendorIdRequest(id, includeInactive)));
+        }
+
+        [HttpGet]
+        [Route("vendor/{vendorId}/vendorInfo")]
+        public async Task<ActionResult<IEnumerable<OfferWithVendorInfoDTO>>> GetOffersByVendorIdWithVendorInfo([FromRoute] string vendorId, [FromQuery] bool includeInactive = false)
+        {
+            if (!ObjectId.TryParse(vendorId, out var id))
+            {
+                return BadRequest($"{nameof(vendorId)} is not valid");
+            }
+
+            return Ok(await _mediator.Send(new FindOffersByVendorIdWithVendorInfoRequest(id, includeInactive)));
         }
 
         [HttpGet]

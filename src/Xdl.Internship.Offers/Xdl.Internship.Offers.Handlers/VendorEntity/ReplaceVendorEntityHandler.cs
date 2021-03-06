@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
@@ -24,6 +25,7 @@ namespace Xdl.Internship.Offers.Handlers.VendorEntity
             var oldEntity = await _vendorEntityRepository.FindByIdAsync(request.Id);
 
             var entity = _mapper.Map(request.VendorEntityDTO, oldEntity);
+            Console.WriteLine(entity.Address.CityId);
 
             await _vendorEntityRepository.ReplaceOneAsync(entity);
 

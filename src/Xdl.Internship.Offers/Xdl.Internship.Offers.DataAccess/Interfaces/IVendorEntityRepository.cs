@@ -12,6 +12,8 @@ namespace Xdl.Internship.Offers.DataAccess.Interfaces
         // READ
         Task<VendorEntity> FindOneByLocationAsync(double[] location, CancellationToken cancellationToken = default);
 
+        Task<ICollection<VendorEntity>> FindByIdsAsync(ICollection<ObjectId> ids, CancellationToken cancellationToken = default);
+
         Task<ICollection<VendorEntity>> FindAsync(bool includeInactive, CancellationToken cancellationToken = default);
 
         Task<ICollection<VendorEntity>> FindByCityAsync(ObjectId cityId, bool onlyActive, CancellationToken cancellationToken = default);
