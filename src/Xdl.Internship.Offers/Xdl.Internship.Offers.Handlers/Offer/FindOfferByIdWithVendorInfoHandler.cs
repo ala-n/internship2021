@@ -35,7 +35,7 @@ namespace Xdl.Internship.Offers.Handlers.Offer
             {
                 var entity = await _vendorEntityRepository.FindByIdAsync(offer.VendorEntitiesId.First());
                 var vendor = await _vendorRepository.FindByIdAsync(entity.VendorId);
-                result = _mapper.Map<OfferWithVendorNameDTO>(vendor);
+                result = _mapper.Map(vendor, result);
             }
 
             return result;
