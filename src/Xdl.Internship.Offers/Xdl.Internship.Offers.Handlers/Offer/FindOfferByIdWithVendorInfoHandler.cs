@@ -11,7 +11,7 @@ using Xdl.Internship.Offers.SDK.OfferDTOs;
 
 namespace Xdl.Internship.Offers.Handlers.Offer
 {
-    public class FindOfferByIdWithVendorInfoHandler : IRequestHandler<FindOfferByIdWithVendorInfoRequest, OfferWithVendorInfoDTO>
+    public class FindOfferByIdWithVendorInfoHandler : IRequestHandler<FindOfferByIdWithVendorInfoRequest, OfferWithVendorNameDTO>
     {
         private readonly IOfferRepository _offerRepository;
         private readonly IVendorEntityRepository _vendorEntityRepository;
@@ -26,16 +26,16 @@ namespace Xdl.Internship.Offers.Handlers.Offer
             _mapper = mapper;
         }
 
-        public async Task<OfferWithVendorInfoDTO> Handle(FindOfferByIdWithVendorInfoRequest request, CancellationToken cancellationToken)
+        public async Task<OfferWithVendorNameDTO> Handle(FindOfferByIdWithVendorInfoRequest request, CancellationToken cancellationToken)
         {
             var offer = await _offerRepository.FindByIdAsync(request.Id);
 
-            var result = _mapper.Map<OfferWithVendorInfoDTO>(offer);
+            var result = _mapper.Map<OfferWithVendorNameDTO>(offer);
             if (offer.VendorEntitiesId.Count >= 1)
             {
                 var entity = await _vendorEntityRepository.FindByIdAsync(offer.VendorEntitiesId.First());
                 var vendor = await _vendorRepository.FindByIdAsync(entity.VendorId);
-                result = _mapper.Map<OfferWithVendorInfoDTO>(vendor);
+                result = _mapper.Map<OfferWithVendorNameDTO>(vendor);
             }
 
             return result;

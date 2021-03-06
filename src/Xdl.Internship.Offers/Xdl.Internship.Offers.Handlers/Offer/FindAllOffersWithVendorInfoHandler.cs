@@ -11,7 +11,7 @@ using Xdl.Internship.Offers.SDK.OfferDTOs;
 
 namespace Xdl.Internship.Offers.Handlers.Offer
 {
-    public class FindAllOffersWithVendorInfoHandler : IRequestHandler<FindAllOffersWithVendorInfoRequest, ICollection<OfferWithVendorInfoDTO>>
+    public class FindAllOffersWithVendorInfoHandler : IRequestHandler<FindAllOffersWithVendorInfoRequest, ICollection<OfferWithVendorNameDTO>>
     {
         private readonly IOfferRepository _offerRepository;
         private readonly IVendorEntityRepository _vendorEntityRepository;
@@ -26,7 +26,7 @@ namespace Xdl.Internship.Offers.Handlers.Offer
             _mapper = mapper;
         }
 
-        public async Task<ICollection<OfferWithVendorInfoDTO>> Handle(FindAllOffersWithVendorInfoRequest request, CancellationToken cancellationToken)
+        public async Task<ICollection<OfferWithVendorNameDTO>> Handle(FindAllOffersWithVendorInfoRequest request, CancellationToken cancellationToken)
         {
             var offers = await _offerRepository.FindAsync(request.IncludeInactive);
             var entityIds = offers.Select(o => o.VendorEntitiesId).SelectMany(e => e).Distinct().ToList();
@@ -38,10 +38,10 @@ namespace Xdl.Internship.Offers.Handlers.Offer
             var vendors = await _vendorRepository.FindByIdsAsync(vendorIds);
             var vendorById = vendors.ToDictionary(e => e.Id);
 
-            ICollection<OfferWithVendorInfoDTO> result = new List<OfferWithVendorInfoDTO>();
+            ICollection<OfferWithVendorNameDTO> result = new List<OfferWithVendorNameDTO>();
             foreach (var offer in offers)
             {
-                var offerDTO = _mapper.Map<OfferWithVendorInfoDTO>(offer);
+                var offerDTO = _mapper.Map<OfferWithVendorNameDTO>(offer);
                 if (entitiesById.TryGetValue(offer.VendorEntitiesId.FirstOrDefault(), out var entity))
                 {
                     if (vendorById.TryGetValue(entity.VendorId, out var vendor))

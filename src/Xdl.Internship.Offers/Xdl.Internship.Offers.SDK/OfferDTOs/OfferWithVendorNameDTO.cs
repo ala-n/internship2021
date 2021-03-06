@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Xdl.Internship.Offers.SDK.OfferDTOs
 {
-    public class OfferWithVendorInfoDTO
+    public class OfferWithVendorNameDTO
     {
         public string Id { get; set; }
 

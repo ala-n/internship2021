@@ -30,7 +30,7 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
 
         [HttpGet]
         [Route("vendorInfo")]
-        public async Task<ActionResult<IEnumerable<OfferWithVendorInfoDTO>>> GetAllWithVendorInfo([FromQuery] bool includeInactive)
+        public async Task<ActionResult<IEnumerable<OfferWithVendorNameDTO>>> GetAllWithVendorInfo([FromQuery] bool includeInactive)
         {
             return Ok(await _mediator.Send(new FindAllOffersWithVendorInfoRequest(includeInactive)));
         }
@@ -73,7 +73,7 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
 
         [HttpGet]
         [Route("{id}/vendorInfo")]
-        public async Task<ActionResult<OfferWithVendorInfoDTO>> GetOfferByIdWithVendorInfo([FromRoute] string id)
+        public async Task<ActionResult<OfferWithVendorNameDTO>> GetOfferByIdWithVendorInfo([FromRoute] string id)
         {
             if (!ObjectId.TryParse(id, out var parsedId))
             {
@@ -97,7 +97,7 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
 
         [HttpGet]
         [Route("vendor/{vendorId}/vendorInfo")]
-        public async Task<ActionResult<IEnumerable<OfferWithVendorInfoDTO>>> GetOffersByVendorIdWithVendorInfo([FromRoute] string vendorId, [FromQuery] bool includeInactive = false)
+        public async Task<ActionResult<IEnumerable<OfferWithVendorNameDTO>>> GetOffersByVendorIdWithVendorInfo([FromRoute] string vendorId, [FromQuery] bool includeInactive = false)
         {
             if (!ObjectId.TryParse(vendorId, out var id))
             {

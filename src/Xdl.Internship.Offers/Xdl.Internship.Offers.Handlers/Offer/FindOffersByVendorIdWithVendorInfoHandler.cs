@@ -11,7 +11,7 @@ using Xdl.Internship.Offers.SDK.OfferDTOs;
 
 namespace Xdl.Internship.Offers.Handlers.Offer
 {
-    public class FindOffersByVendorIdWithVendorInfoHandler : IRequestHandler<FindOffersByVendorIdWithVendorInfoRequest, ICollection<OfferWithVendorInfoDTO>>
+    public class FindOffersByVendorIdWithVendorInfoHandler : IRequestHandler<FindOffersByVendorIdWithVendorInfoRequest, ICollection<OfferWithVendorNameDTO>>
     {
         private readonly IOfferRepository _offerRepository;
         private readonly IVendorEntityRepository _vendorEntityRepository;
@@ -26,7 +26,7 @@ namespace Xdl.Internship.Offers.Handlers.Offer
             _mapper = mapper;
         }
 
-        public async Task<ICollection<OfferWithVendorInfoDTO>> Handle(FindOffersByVendorIdWithVendorInfoRequest request, CancellationToken cancellationToken)
+        public async Task<ICollection<OfferWithVendorNameDTO>> Handle(FindOffersByVendorIdWithVendorInfoRequest request, CancellationToken cancellationToken)
         {
             // TO-DO: optimize
             var vendor = await _vendorRepository.FindByIdAsync(request.VendorId);
@@ -42,10 +42,10 @@ namespace Xdl.Internship.Offers.Handlers.Offer
             var offersRaw = await Task.WhenAll(offersTask);
             ICollection<Models.Offer> offers = offersRaw.SelectMany(o => o).Distinct().ToList();
 
-            ICollection<OfferWithVendorInfoDTO> result = new List<OfferWithVendorInfoDTO>();
+            ICollection<OfferWithVendorNameDTO> result = new List<OfferWithVendorNameDTO>();
             foreach (var offer in offers)
             {
-                var offerDTO = _mapper.Map<OfferWithVendorInfoDTO>(offer);
+                var offerDTO = _mapper.Map<OfferWithVendorNameDTO>(offer);
                 result.Add(_mapper.Map(vendor, offerDTO));
             }
 

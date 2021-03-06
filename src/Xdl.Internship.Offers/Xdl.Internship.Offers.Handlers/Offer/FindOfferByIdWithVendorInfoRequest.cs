@@ -7,7 +7,7 @@ using Xdl.Internship.Offers.SDK.OfferDTOs;
 
 namespace Xdl.Internship.Offers.Handlers.Offer
 {
-    public class FindOfferByIdWithVendorInfoRequest : IRequest<OfferWithVendorInfoDTO>
+    public class FindOfferByIdWithVendorInfoRequest : IRequest<OfferWithVendorNameDTO>
     {
         public ObjectId Id { get; set; }
 

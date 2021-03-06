@@ -7,7 +7,7 @@ using Xdl.Internship.Offers.SDK.OfferDTOs;
 
 namespace Xdl.Internship.Offers.Handlers.Offer
 {
-    public class FindAllOffersWithVendorInfoRequest : IRequest<ICollection<OfferWithVendorInfoDTO>>
+    public class FindAllOffersWithVendorInfoRequest : IRequest<ICollection<OfferWithVendorNameDTO>>
     {
         public bool IncludeInactive { get; set; }
 
