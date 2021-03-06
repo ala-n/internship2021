@@ -22,8 +22,6 @@ namespace Xdl.Internship.Scheduler.Jobs.CheckExpiredOffers
 
         public Task RunAsync(IJobExecutionContext context, CancellationToken cancellationToken = default)
         {
-             Console.WriteLine("Job execute");
-
              return _mediator.Send(new CheckExpiredOffersRequest(), cancellationToken);
         }
     }

@@ -11,6 +11,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="Xdl.Internship.Core.RabbitMQ" Version="1.0.1" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Jobs\" />

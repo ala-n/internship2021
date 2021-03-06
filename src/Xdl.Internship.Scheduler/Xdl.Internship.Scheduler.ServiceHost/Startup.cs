@@ -11,6 +11,7 @@ using Microsoft.OpenApi.Models;
 using Quartz;
 using Quartz.Impl;
 using Serilog;
+using Xdl.Internship.Core.RabbitMQ;
 using Xdl.Internship.Scheduler.Core.Jobs;
 using Xdl.Internship.Scheduler.Handlers.CheckExpiredOffers;
 using Xdl.Internship.Scheduler.Handlers.CheckExpiredOffersFromController;
@@ -46,6 +47,12 @@ namespace Xdl.Internship.Scheduler.ServiceHost
 
             services.AddTransient<CheckExpiredOffersWorker>();
             services.AddTransient<IJobSetup, CheckExpiredOffersJobSetup>();
+
+            services.AddOptions();
+
+            services.Configure<RabbitMqConfiguration>(Configuration.GetSection("RabbitMq"));
+            services.AddSingleton<IRabbitMqPublisher, MessagePublisher>();
+            services.AddSingleton<IMessageSender<MessageDTO>, MessageSender>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

@@ -3,6 +3,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Xdl.Internship.Core.RabbitMQ;
+using Xdl.Internship.Scheduler.Handlers.CheckExpiredOffers;
 using Xdl.Internship.Scheduler.Handlers.CheckExpiredOffersFromController;
 
 namespace Xdl.Internship.Scheduler.ServiceHost.Controllers
@@ -11,15 +13,17 @@ namespace Xdl.Internship.Scheduler.ServiceHost.Controllers
     public class CheckExpiredOffersController : ControllerBase
     {
         private readonly IMediator _mediator;
+        private readonly IMessageSender<MessageDTO> _messageSender;
 
-        public CheckExpiredOffersController(IMediator mediator)
+        public CheckExpiredOffersController(IMessageSender<MessageDTO> messageSender, IMediator mediator)
         {
+            _messageSender = messageSender;
             _mediator = mediator;
         }
 
         [HttpGet]
-        [Route("checkExpiredOffers")]
-        public Task RunAsync(CancellationToken cancellationToken = default)
+        [Route("checkExpiredOffersFromRequest")]
+        public Task CallRabbit(CancellationToken cancellationToken)
         {
             return _mediator.Send(new CheckExpiredOffersFromControllerRequest(), cancellationToken);
         }
