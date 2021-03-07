@@ -43,13 +43,6 @@ namespace Xdl.Internship.Authentication.ServiceHost.Controllers
             return Ok(authInfo);
         }
 
-        [Authorize(Roles ="Admin")]
-        [HttpGet("verify")]
-        public async Task<string> VerifyToken()
-        {
-            return "work";
-        }
-
         [HttpGet("getUser")]
         public async Task<ActionResult<DTOs.User>> GetUser()
         {
