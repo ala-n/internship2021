@@ -2,7 +2,7 @@
 
 namespace Xdl.Internship.Offers.Models
 {
-    public class Adress
+    public class Address
     {
         public string Country { get; set; }
 

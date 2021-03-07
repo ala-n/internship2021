@@ -23,28 +23,21 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<OfferDTO>> GetAll([FromQuery] bool includeInactive = false)
-        {
-            return await _mediator.Send(new FindAllOffersRequest(includeInactive));
-        }
-
-        [HttpGet]
-        [Route("vendorInfo")]
         public async Task<ActionResult<IEnumerable<OfferWithVendorNameDTO>>> GetAllWithVendorInfo([FromQuery] bool includeInactive)
         {
             return Ok(await _mediator.Send(new FindAllOffersWithVendorInfoRequest(includeInactive)));
         }
 
         [HttpGet]
-        [Route("offer/{offerId}")]
-        public async Task<ActionResult<OfferWithAllInfoDTO>> GetOfferInfoByOfferId([FromRoute] string offerId)
+        [Route("{id}")]
+        public async Task<ActionResult<OfferWithAllInfoDTO>> GetOfferInfoByOfferId([FromRoute] string id)
         {
-            if (!ObjectId.TryParse(offerId, out var id))
+            if (!ObjectId.TryParse(id, out var parsedId))
             {
-                return BadRequest($"{nameof(offerId)} is not valid");
+                return BadRequest($"{nameof(id)} is not valid");
             }
 
-            return Ok(await _mediator.Send(new GetOfferInfoByOfferIdRequest(id)));
+            return Ok(await _mediator.Send(new FindOfferByIdWithVendorInfoRequest(parsedId)));
         }
 
         [HttpGet]
@@ -57,30 +50,6 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
             }
 
             return Ok(await _mediator.Send(new FindOffersByCityIdRequest(id, true)));
-        }
-
-        [HttpGet]
-        [Route("{offerId}")]
-        public async Task<ActionResult<IEnumerable<OfferMainDTO>>> FindOfferById([FromRoute] string offerId)
-        {
-            if (!ObjectId.TryParse(offerId, out var id))
-            {
-                return BadRequest($"{nameof(offerId)} is not valid");
-            }
-
-            return Ok(await _mediator.Send(new FindOfferByIdRequest(id)));
-        }
-
-        [HttpGet]
-        [Route("{id}/vendorInfo")]
-        public async Task<ActionResult<OfferWithVendorNameDTO>> GetOfferByIdWithVendorInfo([FromRoute] string id)
-        {
-            if (!ObjectId.TryParse(id, out var parsedId))
-            {
-                return BadRequest($"{nameof(id)} is not valid");
-            }
-
-            return Ok(await _mediator.Send(new FindOfferByIdWithVendorInfoRequest(parsedId)));
         }
 
         [HttpGet]

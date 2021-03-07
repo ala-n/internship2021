@@ -7,7 +7,7 @@ namespace Xdl.Internship.Offers.SDK.AddressDTOs
     {
         public AddressProfile()
         {
-            CreateMap<Adress, AddressDTO>();
+            CreateMap<Address, AddressDTO>();
         }
     }
 }

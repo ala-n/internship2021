@@ -7,7 +7,7 @@ namespace Xdl.Internship.Offers.Models
     {
         public double[] Location { get; set; }
 
-        public Adress Address { get; set; }
+        public Address Address { get; set; }
 
         public string Phone { get; set; }
 

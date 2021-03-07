@@ -8,10 +8,11 @@ using AutoMapper;
 using MediatR;
 using Xdl.Internship.Offers.DataAccess.Interfaces;
 using Xdl.Internship.Offers.SDK.OfferDTOs;
+using Xdl.Internship.Offers.SDK.VendorEntityDTOs;
 
 namespace Xdl.Internship.Offers.Handlers.Offer
 {
-    public class FindOfferByIdWithVendorInfoHandler : IRequestHandler<FindOfferByIdWithVendorInfoRequest, OfferWithVendorNameDTO>
+    public class FindOfferByIdWithVendorInfoHandler : IRequestHandler<FindOfferByIdWithVendorInfoRequest, OfferWithAllInfoDTO>
     {
         private readonly IOfferRepository _offerRepository;
         private readonly IVendorEntityRepository _vendorEntityRepository;
@@ -26,16 +27,21 @@ namespace Xdl.Internship.Offers.Handlers.Offer
             _mapper = mapper;
         }
 
-        public async Task<OfferWithVendorNameDTO> Handle(FindOfferByIdWithVendorInfoRequest request, CancellationToken cancellationToken)
+        public async Task<OfferWithAllInfoDTO> Handle(FindOfferByIdWithVendorInfoRequest request, CancellationToken cancellationToken)
         {
             var offer = await _offerRepository.FindByIdAsync(request.Id);
 
-            var result = _mapper.Map<OfferWithVendorNameDTO>(offer);
+            var result = _mapper.Map<OfferWithAllInfoDTO>(offer);
             if (offer != null && offer.VendorEntitiesId.Count >= 1)
             {
-                var entity = await _vendorEntityRepository.FindByIdAsync(offer.VendorEntitiesId.First());
-                var vendor = await _vendorRepository.FindByIdAsync(entity.VendorId);
-                result = _mapper.Map(vendor, result);
+                var entities = await _vendorEntityRepository.FindByIdsAsync(offer.VendorEntitiesId);
+                result.VendorEntities = _mapper.Map<ICollection<VendorEntityMainDTO>>(entities);
+
+                if (entities.Count > 0)
+                {
+                    var vendor = await _vendorRepository.FindByIdAsync(entities.First().VendorId);
+                    result = _mapper.Map(vendor, result);
+                }
             }
 
             return result;
