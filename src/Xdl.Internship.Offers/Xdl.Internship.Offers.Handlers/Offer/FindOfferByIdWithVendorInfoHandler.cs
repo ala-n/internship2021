@@ -31,7 +31,7 @@ namespace Xdl.Internship.Offers.Handlers.Offer
             var offer = await _offerRepository.FindByIdAsync(request.Id);
 
             var result = _mapper.Map<OfferWithVendorNameDTO>(offer);
-            if (offer.VendorEntitiesId.Count >= 1)
+            if (offer != null && offer.VendorEntitiesId.Count >= 1)
             {
                 var entity = await _vendorEntityRepository.FindByIdAsync(offer.VendorEntitiesId.First());
                 var vendor = await _vendorRepository.FindByIdAsync(entity.VendorId);
