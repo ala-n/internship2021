@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 using Xdl.Internship.Offers.Handlers.City;
@@ -8,6 +9,7 @@ using Xdl.Internship.Offers.SDK.CityDTOs;
 
 namespace Xdl.Internship.Offers.ServiceHost.Controllers
 {
+    [Authorize]
     [Controller]
     [Route("api/cities/")]
     public class CityController : ControllerBase
