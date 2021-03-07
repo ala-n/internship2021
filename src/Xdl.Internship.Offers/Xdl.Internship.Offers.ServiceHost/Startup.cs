@@ -71,6 +71,7 @@ namespace Xdl.Internship.Offers.ServiceHost
                     IssuerSigningKey = new SymmetricSecurityKey(secretKey),
                     ValidateIssuer = false,
                     ValidateAudience = false,
+                    ValidateLifetime = true,
                 };
             });
             services.AddControllers();
