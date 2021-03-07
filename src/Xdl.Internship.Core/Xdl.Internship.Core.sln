@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xdl.Internship.Core.Models.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xdl.Internship.Core.DataAccess.MongoDB", "Xdl.Internship.Core.DataAccess.MongoDB\Xdl.Internship.Core.DataAccess.MongoDB.csproj", "{32654822-423E-417F-B1D4-D6DB8FAAB722}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RabbitMQ", "RabbitMQ", "{EBB62781-76EF-4983-8926-1A9BE09382BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xdl.Internsip.Core.RabbitMQ", "Xdl.Internsip.Core.RabbitMQ\Xdl.Internsip.Core.RabbitMQ.csproj", "{B214BE0E-70FD-41DF-9D97-A084B6CAAA85}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,11 +25,18 @@ Global
 		{32654822-423E-417F-B1D4-D6DB8FAAB722}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32654822-423E-417F-B1D4-D6DB8FAAB722}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32654822-423E-417F-B1D4-D6DB8FAAB722}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B214BE0E-70FD-41DF-9D97-A084B6CAAA85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B214BE0E-70FD-41DF-9D97-A084B6CAAA85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B214BE0E-70FD-41DF-9D97-A084B6CAAA85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B214BE0E-70FD-41DF-9D97-A084B6CAAA85}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1D8435B8-6159-49B1-92FD-6490DF33EABC}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B214BE0E-70FD-41DF-9D97-A084B6CAAA85} = {EBB62781-76EF-4983-8926-1A9BE09382BE}
 	EndGlobalSection
 EndGlobal
