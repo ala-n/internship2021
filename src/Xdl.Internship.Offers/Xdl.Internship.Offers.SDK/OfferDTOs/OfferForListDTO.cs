@@ -4,14 +4,12 @@ using System.Text;
 
 namespace Xdl.Internship.Offers.SDK.OfferDTOs
 {
-    // getOffers
     public class OfferForListDTO
     {
         public string Id { get; set; }
 
         public string Title { get; set; }
 
-        // public string VendorName { get; set; }
         public int NumberOfViews { get; set; }
 
         public int NumberOfUses { get; set; }

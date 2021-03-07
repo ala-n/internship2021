@@ -28,6 +28,8 @@ namespace Xdl.Internship.Offers.SDK.OfferDTOs
 
         public string VendorName { get; set; }
 
+        public ICollection<string> Tags { get; set; }
+
         public ICollection<VendorEntityMainDTO> VendorEntities { get; set; }
     }
 }

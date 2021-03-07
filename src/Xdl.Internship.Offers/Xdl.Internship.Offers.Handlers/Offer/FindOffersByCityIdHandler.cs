@@ -48,14 +48,26 @@ namespace Xdl.Internship.Offers.Handlers.Offer
                             listOfEntities.Add(_mapper.Map<VendorEntityMainDTO>(await _vendorEntityRepository.FindByIdAsync(id)));
                         }
 
+                        ICollection<string> listOfTags = new List<string>();
+                        foreach (var id in offer.Tags)
+                        {
+                            listOfTags.Add(id.ToString());
+                        }
+
                         result.Add(new OfferWithVendorInfoDTO
                         {
-                            Id = offer.Id.ToString(), Title = offer.Title, NumberOfViews = offer.NumberOfViews,
-                            NumberOfUses = offer.NumberOfUses, Discount = offer.Discount, Rate = offer.Rate, UpdatedAt = offer.UpdatedAt.ToString(),
+                            Id = offer.Id.ToString(),
+                            Title = offer.Title,
+                            NumberOfViews = offer.NumberOfViews,
+                            NumberOfUses = offer.NumberOfUses,
+                            Discount = offer.Discount,
+                            Rate = offer.Rate,
+                            UpdatedAt = offer.UpdatedAt.ToString(),
                             PhotoUrl = offer.PhotoUrl,
                             VendorId = vendor.Id.ToString(),
                             VendorName = vendor.Name,
                             VendorEntities = listOfEntities,
+                            Tags = listOfTags,
                         });
                     }
                 }
