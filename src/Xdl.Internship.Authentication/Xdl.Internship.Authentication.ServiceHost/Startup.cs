@@ -1,4 +1,5 @@
-using System;
+﻿using System;
+using System.Text;
 using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -10,6 +11,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Xdl.Internship.Authentication.DataAccess;
 using Xdl.Internship.Authentication.DataAccess.Interfaces;
+using Xdl.Internship.Authentication.DTOs;
 using Xdl.Internship.Authentication.Handlers;
 using Xdl.Internship.Core.DataAccess.MongoDB.CollectionProviders;
 using Xdl.Internship.Core.DataAccess.MongoDB.ConnectionFactories;
@@ -28,25 +30,29 @@ namespace Xdl.Internship.Authentication.ServiceHost
 
         public void ConfigureServices(IServiceCollection services)
         {
+            IConfigurationSection appSettingsSection = Configuration.GetSection("AppSettings");
+            AppSettings appSettings = appSettingsSection.Get<AppSettings>();
+            services.Configure<AppSettings>(appSettingsSection);
+            services.Configure<MongoDBSetting>(Configuration.GetSection("MongoDBSettings"));
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddAuthHandlers();
+            var secretKey = Encoding.ASCII.GetBytes(appSettings.SecretKey);
             services.AddAuthentication(x =>
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             }).AddJwtBearer(x =>
             {
-                x.RequireHttpsMetadata = false;
+                x.RequireHttpsMetadata = true;
                 x.SaveToken = true;
                 x.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(secretKey),
                     ValidateIssuer = false,
                     ValidateAudience = false,
                 };
             });
-
-            services.Configure<MongoDBSetting>(Configuration.GetSection("MongoDBSettings"));
-            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-            services.AddAuthHandlers();
 
             services.AddSingleton<ICollectionProvider, DefaultCollectionProvider>();
             services.AddSingleton<IConnectionFactory, DefaultConnectionFactory>();

@@ -43,44 +43,20 @@ namespace Xdl.Internship.Authentication.ServiceHost.Controllers
             return Ok(authInfo);
         }
 
+        [Authorize(Roles ="Admin")]
         [HttpGet("verify")]
-        public async Task<IActionResult> VerifyToken()
+        public async Task<string> VerifyToken()
         {
-            var username = User
-                .Claims
-                .SingleOrDefault();
-
-            if (username == null)
-            {
-                return Unauthorized();
-            }
-
-            var userExists = await _mediator.Send(username);
-
-            if (userExists == null)
-            {
-                return Unauthorized();
-            }
-
-            return NoContent();
+            return "work";
         }
 
-        [AllowAnonymous]
         [HttpGet("getUser")]
         public async Task<ActionResult<DTOs.User>> GetUser()
         {
-            /*remove try catch after add Barrer*/
-            try
-            {
                 var token = Request.Headers[HeaderNames.Authorization].ToString().Replace("Bearer ", string.Empty);
                 var tokeinInfo = new GetTokenInfo();
                 var result = await _mediator.Send(new GetUserRequest(tokeinInfo.TokenData(token)["id"]));
                 return result;
-            }
-            catch
-            {
-                return BadRequest("Error");
-            }
         }
     }
 }
