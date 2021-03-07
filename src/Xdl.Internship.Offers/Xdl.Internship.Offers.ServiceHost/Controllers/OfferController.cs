@@ -54,18 +54,6 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
 
         [HttpGet]
         [Route("vendor/{vendorId}")]
-        public async Task<ActionResult<IEnumerable<OfferMainDTO>>> FindOffersByVendorId([FromRoute] string vendorId, [FromQuery] bool includeInactive = false)
-        {
-            if (!ObjectId.TryParse(vendorId, out var id))
-            {
-                return BadRequest($"{nameof(vendorId)} is not valid");
-            }
-
-            return Ok(await _mediator.Send(new FindOffersByVendorIdRequest(id, includeInactive)));
-        }
-
-        [HttpGet]
-        [Route("vendor/{vendorId}/vendorInfo")]
         public async Task<ActionResult<IEnumerable<OfferWithVendorNameDTO>>> GetOffersByVendorIdWithVendorInfo([FromRoute] string vendorId, [FromQuery] bool includeInactive = false)
         {
             if (!ObjectId.TryParse(vendorId, out var id))
