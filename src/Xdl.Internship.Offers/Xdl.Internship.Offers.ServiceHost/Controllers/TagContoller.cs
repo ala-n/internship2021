@@ -23,9 +23,9 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
 
         [HttpGet]
         [Route("topTags")]
-        public async Task<IEnumerable<TagMainDTO>> GeTopTags()
+        public async Task<IEnumerable<TagMainDTO>> GetTopTags()
         {
-            return await _mediator.Send(new FindTopTagsRequest());
+            return await _mediator.Send(new FindTopTagsRequest(false));
         }
 
         [HttpGet]
@@ -48,9 +48,9 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
 
         [HttpGet]
         [Route("statistics")]
-        public async Task<IEnumerable<TagStatisticsDTO>> GeAllTagsStatistics()
+        public async Task<IEnumerable<TagStatisticsDTO>> GeAllTagsStatistics([FromQuery] bool includeInactive = false)
         {
-            return await _mediator.Send(new FindAllTagsStatisticsRequest());
+            return await _mediator.Send(new FindAllTagsStatisticsRequest(includeInactive));
         }
 
         [HttpPost]
