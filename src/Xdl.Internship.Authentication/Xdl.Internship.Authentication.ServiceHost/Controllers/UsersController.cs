@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -46,10 +47,15 @@ namespace Xdl.Internship.Authentication.ServiceHost.Controllers
         [HttpGet("getUser")]
         public async Task<ActionResult<DTOs.User>> GetUser()
         {
-                var token = Request.Headers[HeaderNames.Authorization].ToString().Replace("Bearer ", string.Empty);
-                var tokeinInfo = new GetTokenInfo();
-                var result = await _mediator.Send(new GetUserRequest(tokeinInfo.TokenData(token)["id"]));
-                return result;
+            try
+            {
+                var result = await _mediator.Send(new GetUserRequest(User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value));
+                return Ok(result);
+            }
+            catch (NullReferenceException ex)
+            {
+                return BadRequest();
+            }
         }
     }
 }
