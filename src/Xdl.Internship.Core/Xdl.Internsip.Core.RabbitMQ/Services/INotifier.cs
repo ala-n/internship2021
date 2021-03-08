@@ -4,7 +4,8 @@ using System.Text;
 
 namespace Xdl.Internsip.Core.RabbitMQ.Services
 {
-    interface INotifier
+    public interface INotifier<TMsg>
     {
+        void SendAsync(TMsg notification);
     }
 }

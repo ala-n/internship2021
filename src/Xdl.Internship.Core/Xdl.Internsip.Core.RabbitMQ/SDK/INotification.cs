@@ -4,7 +4,8 @@ using System.Text;
 
 namespace Xdl.Internsip.Core.RabbitMQ.SDK
 {
-    interface INotification
+    public interface INotification
     {
+        string Id { get; set; }
     }
 }
