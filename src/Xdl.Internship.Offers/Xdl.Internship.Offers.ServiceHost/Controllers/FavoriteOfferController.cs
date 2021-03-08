@@ -11,8 +11,7 @@ using Xdl.Internship.Offers.SDK.FavoriteOfferDTOs;
 
 namespace Xdl.Internship.Offers.ServiceHost.Controllers
 {
-    [Route("api/favoriteO" +
-        "ffer")]
+    [Route("api/favoriteOffer")]
     [ApiController]
     public class FavoriteOfferController : ControllerBase
     {
