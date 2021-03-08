@@ -5,7 +5,7 @@ using Xdl.Internship.Offers.SDK.TagDTOs;
 
 namespace Xdl.Internship.Offers.Handlers.Tag
 {
-    public class FindAllTagsStatisticsRequest : IRequest<ICollection<TagStatisticsDTO>>
+    public class FindAllTagsStatisticsRequest : IRequest<ICollection<TagDTO>>
     {
         public bool IncludeInactive { get; }
 
