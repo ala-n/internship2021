@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 using Xdl.Internship.Offers.Handlers.Offer;
+using Xdl.Internship.Offers.SDK.Identity;
 using Xdl.Internship.Offers.SDK.OfferDTOs;
 using Xdl.Internship.Offers.SDK.VendorDTOs;
 
@@ -82,7 +84,13 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
         [HttpPost]
         public async Task<ActionResult<OfferMainDTO>> CreateOffer([FromBody] CreateOfferDTO offerDTO)
         {
-            return Ok(await _mediator.Send(new InsertOfferRequest(offerDTO)));
+            var identity = new CreateIdentity()
+            {
+                FirstName = User.Claims.FirstOrDefault(u => u.Type == ClaimTypes.GivenName).Value,
+                LastName = User.Claims.FirstOrDefault(u => u.Type == ClaimTypes.Name).Value,
+            };
+
+            return Ok(await _mediator.Send(new InsertOfferRequest(offerDTO, identity)));
         }
 
         [Authorize(Roles = "Admin")]
@@ -95,7 +103,13 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
                 return BadRequest($"{nameof(id)} is not valid");
             }
 
-            return Ok(await _mediator.Send(new ReplaceOfferRequest(parsedId, offerDTO)));
+            var identity = new UpdateIdentity()
+            {
+                FirstName = User.Claims.FirstOrDefault(u => u.Type == ClaimTypes.GivenName).Value,
+                LastName = User.Claims.FirstOrDefault(u => u.Type == ClaimTypes.Name).Value,
+            };
+
+            return Ok(await _mediator.Send(new ReplaceOfferRequest(parsedId, offerDTO, identity)));
         }
     }
 }

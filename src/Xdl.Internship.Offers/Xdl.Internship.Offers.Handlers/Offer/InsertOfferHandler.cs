@@ -27,6 +27,7 @@ namespace Xdl.Internship.Offers.Handlers.Offer
         public async Task<OfferMainDTO> Handle(InsertOfferRequest request, CancellationToken cancellationToken)
         {
             var offer = _mapper.Map<Models.Offer>(request.OfferDTO);
+            offer = _mapper.Map(request.Identity, offer);
 
             // TO-DO: validate EntitiesID and TagsId, through foreach?
             await _offerRepository.InsertOneAsync(offer);

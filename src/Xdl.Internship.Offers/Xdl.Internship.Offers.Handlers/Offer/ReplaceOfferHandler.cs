@@ -23,6 +23,8 @@ namespace Xdl.Internship.Offers.Handlers.Offer
             var oldOffer = await _offerRepository.FindByIdAsync(request.Id);
 
             var offer = _mapper.Map(request.OfferDTO, oldOffer);
+            offer = _mapper.Map(request.Identity, offer);
+
             await _offerRepository.ReplaceOneAsync(offer);
 
             return _mapper.Map<OfferMainDTO>(offer);

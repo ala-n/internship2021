@@ -3,6 +3,7 @@ using System.Linq;
 using AutoMapper;
 using MongoDB.Bson;
 using Xdl.Internship.Offers.Models;
+using Xdl.Internship.Offers.SDK.Identity;
 
 namespace Xdl.Internship.Offers.SDK.OfferDTOs
 {
@@ -42,6 +43,7 @@ namespace Xdl.Internship.Offers.SDK.OfferDTOs
                 .ForMember(dest => dest.VendorName, opt => opt.MapFrom(src => src.Name))
                 .ForAllOtherMembers(opt => opt.Ignore());
 
+            // Create
             CreateMap<CreateOfferDTO, Offer>()
                 .ForMember(dest => dest.Rate, opt => opt.MapFrom(src => 0))
                 .ForMember(dest => dest.NumberOfUses, opt => opt.MapFrom(src => 0))
@@ -51,10 +53,18 @@ namespace Xdl.Internship.Offers.SDK.OfferDTOs
                 .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(src => DateTimeOffset.Now))
                 .ForMember(dest => dest.UpdatedAt, opt => opt.MapFrom(src => DateTimeOffset.Now));
 
+            CreateMap<CreateIdentity, Offer>()
+                .ForMember(dest => dest.CreatedBy, opt => opt.MapFrom(src => src.GetValue()))
+                .ForMember(dest => dest.UpdatedBy, opt => opt.MapFrom(src => src.GetValue()));
+
+            // Update
             CreateMap<UpdateOfferDTO, Offer>()
                .ForMember(dest => dest.VendorEntitiesId, opt => opt.MapFrom(src => src.VendorEntitiesId.Select(el => ObjectId.Parse(el))))
                .ForMember(dest => dest.Tags, opt => opt.MapFrom(src => src.Tags.Select(el => ObjectId.Parse(el))))
                .ForMember(dest => dest.UpdatedAt, opt => opt.MapFrom(src => DateTimeOffset.Now));
+
+            CreateMap<UpdateIdentity, Offer>()
+                .ForMember(dest => dest.UpdatedBy, opt => opt.MapFrom(src => src.GetValue()));
         }
     }
 }
