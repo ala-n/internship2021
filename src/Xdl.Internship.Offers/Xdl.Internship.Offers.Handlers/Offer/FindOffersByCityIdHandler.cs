@@ -31,46 +31,56 @@ namespace Xdl.Internship.Offers.Handlers.Offer
         public async Task<ICollection<OfferWithVendorInfoDTO>> Handle(FindOffersByCityIdRequest request, CancellationToken cancellationToken)
         {
             var entities = await _vendorEntityRepository.FindByCityAsync(request.CityId, request.OnlyActive);
-            var result = new List<OfferWithVendorInfoDTO>();
+
+            var vendorIds = entities.Select(e => e.VendorId).Distinct().ToList();
+            var vendors = await _vendorRepository.FindByIdsAsync(vendorIds);
+
+            var duplicateOffers = new List<Models.Offer> { };
             foreach (var en in entities)
             {
-                var offers = await _offerRepository.FindByVendorEntityIdAsync(en.Id);
-                if (offers.Count != 0)
+                var offerResults = await _offerRepository.FindByVendorEntityIdAsync(en.Id);
+                if (offerResults.Count != 0)
                 {
-                    foreach (var offer in offers)
+                    foreach (var e in offerResults)
                     {
-                        var entity = await _vendorEntityRepository.FindByIdAsync(offer.VendorEntitiesId.First());
-                        var vendor = await _vendorRepository.FindByIdAsync(entity.VendorId);
-
-                        var listOfEntities = new List<VendorEntityMainDTO>();
-                        foreach (var id in offer.VendorEntitiesId)
-                        {
-                            listOfEntities.Add(_mapper.Map<VendorEntityMainDTO>(await _vendorEntityRepository.FindByIdAsync(id)));
-                        }
-
-                        ICollection<string> listOfTags = new List<string>();
-                        foreach (var id in offer.Tags)
-                        {
-                            listOfTags.Add(id.ToString());
-                        }
-
-                        result.Add(new OfferWithVendorInfoDTO
-                        {
-                            Id = offer.Id.ToString(),
-                            Title = offer.Title,
-                            NumberOfViews = offer.NumberOfViews,
-                            NumberOfUses = offer.NumberOfUses,
-                            Discount = offer.Discount,
-                            Rate = offer.Rate,
-                            UpdatedAt = offer.UpdatedAt.ToString(),
-                            PhotoUrl = offer.PhotoUrl,
-                            VendorId = vendor.Id.ToString(),
-                            VendorName = vendor.Name,
-                            VendorEntities = listOfEntities,
-                            Tags = listOfTags,
-                        });
+                        duplicateOffers.Add(e);
                     }
                 }
+            }
+
+            // Filters only unique offers
+            var offers = duplicateOffers.GroupBy(o => o.Id);
+            var vendorsByIdMap = vendors.ToDictionary(v => v.Id);
+            var entitiesByIdMap = entities.ToDictionary(e => e.Id);
+
+            var result = new List<OfferWithVendorInfoDTO> { };
+            foreach (var offer in offers)
+            {
+                var offerDTO = _mapper.Map<OfferWithVendorInfoDTO>(offer.First());
+
+                var offerEntities = new List<VendorEntityMainDTO>();
+                Models.Vendor vendor = null;
+                foreach (var id in offer.First().VendorEntitiesId)
+                {
+                    entitiesByIdMap.TryGetValue(id, out var entity);
+                    if (entity == null)
+                    {
+                        continue;
+                    }
+
+                    offerEntities.Add(_mapper.Map<VendorEntityMainDTO>(entity));
+
+                    // Get Vendor Info
+                    if (vendor == null)
+                    {
+                        vendor = vendorsByIdMap.GetValueOrDefault(entity.VendorId);
+                    }
+                }
+
+                offerDTO.VendorEntities = offerEntities;
+                offerDTO = _mapper.Map(vendor, offerDTO);
+
+                result.Add(offerDTO);
             }
 
             return result;

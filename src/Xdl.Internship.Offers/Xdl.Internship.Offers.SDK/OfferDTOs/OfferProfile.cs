@@ -26,6 +26,14 @@ namespace Xdl.Internship.Offers.SDK.OfferDTOs
                 .ForMember(dest => dest.VendorName, opt => opt.MapFrom(src => src.Name))
                 .ForAllOtherMembers(opt => opt.Ignore());
 
+            CreateMap<Offer, OfferWithVendorInfoDTO>()
+               .ReverseMap();
+
+            CreateMap<Vendor, OfferWithVendorInfoDTO>()
+                .ForMember(dest => dest.VendorId, opt => opt.MapFrom(src => src.Id))
+                .ForMember(dest => dest.VendorName, opt => opt.MapFrom(src => src.Name))
+                .ForAllOtherMembers(opt => opt.Ignore());
+
             CreateMap<Offer, OfferWithVendorNameDTO>()
                .ReverseMap();
 
