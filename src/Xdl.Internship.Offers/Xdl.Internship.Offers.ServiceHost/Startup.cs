@@ -53,6 +53,7 @@ namespace Xdl.Internship.Offers.ServiceHost
             services.AddSingleton<ITagRepository, TagRepository>();
             services.AddSingleton<IOfferRepository, OfferRepository>();
             services.AddSingleton<ICityRepository, CityRepository>();
+            services.AddSingleton<IFavoriteOfferRepository, FavoriteOfferRepository>();
 
             IConfigurationSection appSettingsSection = Configuration.GetSection("AppSettings");
             AppSettings appSettings = appSettingsSection.Get<AppSettings>();

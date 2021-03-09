@@ -11,7 +11,7 @@ using Xdl.Internship.Offers.SDK.TagDTOs;
 
 namespace Xdl.Internship.Offers.Handlers.Tag
 {
-    public class FindAllTagsStatisticsHandler : IRequestHandler<FindAllTagsStatisticsRequest, ICollection<TagStatisticsDTO>>
+    public class FindAllTagsStatisticsHandler : IRequestHandler<FindAllTagsStatisticsRequest, ICollection<TagDTO>>
     {
         private readonly ITagRepository _tagRepository;
         private readonly IMapper _mapper;
@@ -22,16 +22,16 @@ namespace Xdl.Internship.Offers.Handlers.Tag
             _mapper = mapper;
         }
 
-        public async Task<ICollection<TagStatisticsDTO>> Handle(FindAllTagsStatisticsRequest request, CancellationToken cancellationToken)
+        public async Task<ICollection<TagDTO>> Handle(FindAllTagsStatisticsRequest request, CancellationToken cancellationToken)
         {
-            var tags = await _tagRepository.FindAsync(false);
+            var tags = await _tagRepository.FindAsync(request.IncludeInactive);
             var allTags = tags.GroupBy(t => t.Name).Select(t => t.FirstOrDefault()).OrderBy(t => t.Name);
 
-            var tagDTO = new List<TagStatisticsDTO> { };
+            var tagDTO = new List<TagDTO> { };
 
             foreach (var tag in allTags)
             {
-                tagDTO.Add(_mapper.Map<TagStatisticsDTO>(tag));
+                tagDTO.Add(_mapper.Map<TagDTO>(tag));
             }
 
             return tagDTO;

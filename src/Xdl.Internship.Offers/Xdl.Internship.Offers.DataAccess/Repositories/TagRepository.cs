@@ -21,15 +21,8 @@ namespace Xdl.Internship.Offers.DataAccess.Repositories
 
         public Task<ICollection<Tag>> FindAsync(bool includeInactive, CancellationToken cancellationToken = default)
         {
-            Expression<Func<Tag, bool>> filter = (v) => includeInactive || v.IsDeleted == false;
+            Expression<Func<Tag, bool>> filter = (v) => (includeInactive || v.IsDeleted == false) && v.Name.Length > 0;
             return FindAsync(filter, cancellationToken = default);
-        }
-
-        public async Task<ICollection<Tag>> FindTopTagsAsync()
-        {
-            Expression<Func<Tag, bool>> filter = (tag) => tag.Name.Length > 0;
-
-            return await FindAsync(filter);
         }
     }
 }

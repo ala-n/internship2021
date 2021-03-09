@@ -1,0 +1,43 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('rm old one') {
+            steps{
+                dir ('/var/jenkins_home/BE'){
+                    sh 'rm -r internship2021 || true'
+                }       
+            }
+        }
+        stage('clone') {
+            steps {
+                dir('/var/jenkins_home/BE/internship2021'){
+                                 
+                    git branch: 'offers/feature', url: 'https://github.com/ala-n/internship2021'
+                }
+		    }
+        }
+        stage('copy files') {
+        	steps{
+        		sh 'cp -f /var/jenkins_home/BE/NuGet.Config /var/jenkins_home/BE/internship2021/src/Xdl.Internship.Offers/Xdl.Internship.Offers.ServiceHost'
+                sh 'cp -f /var/jenkins_home/BE/appsettings.json /var/jenkins_home/BE/internship2021/src/Xdl.Internship.Offers/Xdl.Internship.Offers.ServiceHost'          
+           	}
+        }
+        stage('build') {
+        	steps {
+                dir('/var/jenkins_home/BE/internship2021/src/Xdl.Internship.Offers'){
+                    sh 'docker-compose build'
+                }
+        	}
+        }
+        stage('start') {
+        	steps{
+                dir('/var/jenkins_home/BE/internship2021/src/Xdl.Internship.Offers'){
+                    sh 'docker-compose down || true'
+                    sh 'docker-compose up -d'
+                }
+
+        	}
+        }
+    }
+}

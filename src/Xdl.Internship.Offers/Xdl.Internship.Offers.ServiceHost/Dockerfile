@@ -10,9 +10,11 @@ WORKDIR /src
 COPY ["Xdl.Internship.Offers.ServiceHost/Xdl.Internship.Offers.ServiceHost.csproj", "Xdl.Internship.Offers.ServiceHost/"]
 COPY ["Xdl.Internship.Offers.Handlers/Xdl.Internship.Offers.Handlers.csproj", "Xdl.Internship.Offers.Handlers/"]
 COPY ["Xdl.Internship.Offers.DataAccess/Xdl.Internship.Offers.DataAccess.csproj", "Xdl.Internship.Offers.DataAccess/"]
-COPY ["Xdl.Internship.Offers.DTOs/Xdl.Internship.Offers.DTOs.csproj", "Xdl.Internship.Offers.DTOs/"]
-COPY ["Xdl.Internship.Offers.Models/Xdl.Internship.Offers.Models.csproj", "Xdl.Internship.Offers.Models/"]
 COPY ["Xdl.Internship.Offers.SDK/Xdl.Internship.Offers.SDK.csproj", "Xdl.Internship.Offers.SDK/"]
+COPY ["Xdl.Internship.Offers.Models/Xdl.Internship.Offers.Models.csproj", "Xdl.Internship.Offers.Models/"]
+
+COPY Xdl.Internship.Offers.ServiceHost/NuGet.Config /
+
 RUN dotnet restore "Xdl.Internship.Offers.ServiceHost/Xdl.Internship.Offers.ServiceHost.csproj"
 COPY . .
 WORKDIR "/src/Xdl.Internship.Offers.ServiceHost"
