@@ -21,10 +21,7 @@ namespace Xdl.Internship.Offers.Handlers.Vendor
         public async Task<VendorDTO> Handle(InsertVendorRequest request, CancellationToken cancellationToken)
         {
             var vendor = _mapper.Map<Models.Vendor>(request.VendorDTO);
-
-            // TO-DO: fill "createdBy" field
-            vendor.Rate = 0;
-            vendor.IsActive = true;
+            vendor = _mapper.Map(request.Identity, vendor);
 
             await _vendorRepository.InsertOneAsync(vendor);
 

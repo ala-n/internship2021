@@ -23,6 +23,7 @@ namespace Xdl.Internship.Offers.Handlers.Vendor
             var oldVendor = await _vendorRepository.FindByIdAsync(request.Id);
 
             var vendor = _mapper.Map(request.VendorDTO, oldVendor);
+            vendor = _mapper.Map(request.Identity, vendor);
 
             await _vendorRepository.ReplaceOneAsync(vendor);
         }

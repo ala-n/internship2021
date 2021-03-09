@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using MongoDB.Bson;
+using Xdl.Internship.Offers.SDK.Identity;
 using Xdl.Internship.Offers.SDK.VendorDTOs;
 
 namespace Xdl.Internship.Offers.Handlers.Vendor
@@ -8,9 +9,12 @@ namespace Xdl.Internship.Offers.Handlers.Vendor
     {
         public CreateVendorDTO VendorDTO { get; }
 
-        public InsertVendorRequest(CreateVendorDTO vendorDTO)
+        public CreateIdentity Identity;
+
+        public InsertVendorRequest(CreateVendorDTO vendorDTO, CreateIdentity identity)
         {
             VendorDTO = vendorDTO;
+            Identity = identity;
         }
     }
 }

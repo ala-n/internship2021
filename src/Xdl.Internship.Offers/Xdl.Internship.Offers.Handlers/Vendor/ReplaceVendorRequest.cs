@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using MongoDB.Bson;
+using Xdl.Internship.Offers.SDK.Identity;
 using Xdl.Internship.Offers.SDK.VendorDTOs;
 
 namespace Xdl.Internship.Offers.Handlers.Vendor
@@ -10,11 +11,13 @@ namespace Xdl.Internship.Offers.Handlers.Vendor
 
         public UpdateVendorDTO VendorDTO;
 
-        public ReplaceVendorRequest(ObjectId id, UpdateVendorDTO vendorDTO)
+        public UpdateIdentity Identity;
+
+        public ReplaceVendorRequest(ObjectId id, UpdateVendorDTO vendorDTO, UpdateIdentity identity)
         {
             Id = id;
-
             VendorDTO = vendorDTO;
+            Identity = identity;
         }
     }
 }

@@ -25,7 +25,7 @@ namespace Xdl.Internship.Offers.Handlers.VendorEntity
             var entity = await _vendorEntityRepository.FindByIdAsync(request.Id);
 
             var result = _mapper.Map<VendorEntityWithVendorNameDTO>(entity);
-            if (entity.VendorId != null)
+            if (entity != null && entity.VendorId != null)
             {
                 var vendor = await _vendorRepository.FindByIdAsync(entity.VendorId);
                 result = _mapper.Map(vendor, result);
