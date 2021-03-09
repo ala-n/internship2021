@@ -1,5 +1,6 @@
 ﻿using System;
 using MediatR;
+using Xdl.Internship.Offers.SDK.Identity;
 using Xdl.Internship.Offers.SDK.TagDTOs;
 
 namespace Xdl.Internship.Offers.Handlers.Tag
@@ -8,9 +9,12 @@ namespace Xdl.Internship.Offers.Handlers.Tag
     {
         public CreateTagDTO TagDTO { get; }
 
-        public InsertTagRequest(CreateTagDTO tagDTO)
+        public CreateIdentity Identity;
+
+        public InsertTagRequest(CreateTagDTO tagDTO, CreateIdentity identity)
         {
             TagDTO = tagDTO;
+            Identity = identity;
         }
     }
 }

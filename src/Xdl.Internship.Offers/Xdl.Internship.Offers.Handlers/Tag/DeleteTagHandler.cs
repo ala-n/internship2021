@@ -23,6 +23,7 @@ namespace Xdl.Internship.Offers.Handlers.Tag
         {
             var tag = await _tagRepository.FindByIdAsync(request.Id);
             tag.IsDeleted = true;
+            tag = _mapper.Map(request.Identity, tag);
 
             await _tagRepository.ReplaceOneAsync(tag);
 

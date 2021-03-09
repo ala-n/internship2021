@@ -1,6 +1,7 @@
 ﻿using System;
 using MediatR;
 using MongoDB.Bson;
+using Xdl.Internship.Offers.SDK.Identity;
 
 namespace Xdl.Internship.Offers.Handlers.Tag
 {
@@ -8,9 +9,12 @@ namespace Xdl.Internship.Offers.Handlers.Tag
     {
         public ObjectId Id { get; }
 
-        public DeleteTagRequest(ObjectId id)
+        public UpdateIdentity Identity;
+
+        public DeleteTagRequest(ObjectId id, UpdateIdentity identity)
         {
             Id = id;
+            Identity = identity;
         }
     }
 }

@@ -23,6 +23,7 @@ namespace Xdl.Internship.Offers.Handlers.Tag
         public async Task<TagDTO> Handle(InsertTagRequest request, CancellationToken cancellationToken)
         {
             var tag = _mapper.Map<Models.Tag>(request.TagDTO);
+            tag = _mapper.Map(request.Identity, tag);
 
             await _tagRepository.InsertOneAsync(tag);
 

@@ -1,15 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 using Xdl.Internship.Offers.Handlers.Tag;
+using Xdl.Internship.Offers.SDK.Identity;
 using Xdl.Internship.Offers.SDK.TagDTOs;
 
 namespace Xdl.Internship.Offers.ServiceHost.Controllers
 {
+    [Authorize]
     [Controller]
     [Route("api/tags")]
     public class TagController : ControllerBase
@@ -53,12 +57,20 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
             return await _mediator.Send(new FindAllTagsStatisticsRequest(includeInactive));
         }
 
+        [Authorize(Roles = "Admin,Moderator")]
         [HttpPost]
         public async Task<ActionResult<TagDTO>> CreateTag([FromBody] CreateTagDTO tag)
         {
-            return Ok(await _mediator.Send(new InsertTagRequest(tag)));
+            var identity = new CreateIdentity()
+            {
+                FirstName = User.Claims.FirstOrDefault(u => u.Type == ClaimTypes.GivenName).Value,
+                LastName = User.Claims.FirstOrDefault(u => u.Type == ClaimTypes.Name).Value,
+            };
+
+            return Ok(await _mediator.Send(new InsertTagRequest(tag, identity)));
         }
 
+        [Authorize(Roles = "Admin,Moderator")]
         [HttpDelete]
         [Route("{tagId}")]
         public async Task DeleteTagById([FromRoute] string tagId)
@@ -68,7 +80,13 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
                 BadRequest($"{nameof(tagId)} is not valid");
             }
 
-            await _mediator.Send(new DeleteTagRequest(id));
+            var identity = new UpdateIdentity()
+            {
+                FirstName = User.Claims.FirstOrDefault(u => u.Type == ClaimTypes.GivenName).Value,
+                LastName = User.Claims.FirstOrDefault(u => u.Type == ClaimTypes.Name).Value,
+            };
+
+            await _mediator.Send(new DeleteTagRequest(id, identity));
         }
     }
 }
