@@ -1,0 +1,9 @@
+version: '3.4'
+
+services:
+  xdl.internship.offers.servicehost:
+    image: ${DOCKER_REGISTRY-}xdlinternshipoffersservicehost
+    build:
+      context: .
+      dockerfile: Xdl.Internship.Offers.ServiceHost/Dockerfile
+

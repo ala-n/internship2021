@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  xdl.internship.offers.servicehost:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - 49001:80
+      
