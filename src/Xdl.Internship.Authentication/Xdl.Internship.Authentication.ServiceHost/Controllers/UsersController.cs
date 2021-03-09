@@ -52,7 +52,7 @@ namespace Xdl.Internship.Authentication.ServiceHost.Controllers
                 var result = await _mediator.Send(new GetUserRequest(User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value));
                 return Ok(result);
             }
-            catch (NullReferenceException ex)
+            catch (NullReferenceException)
             {
                 return BadRequest();
             }
