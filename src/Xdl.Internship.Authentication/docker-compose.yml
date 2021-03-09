@@ -1,0 +1,9 @@
+version: '3.4'
+
+services:
+  xdl.internship.authentication.servicehost:
+    image: ${DOCKER_REGISTRY-}xdlinternshipauthenticationservicehost
+    build:
+      context: .
+      dockerfile: Xdl.Internship.Authentication.ServiceHost/Dockerfile
+

@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  xdl.internship.authentication.servicehost:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - 800:80
+
