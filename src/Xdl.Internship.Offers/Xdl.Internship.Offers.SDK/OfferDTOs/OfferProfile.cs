@@ -48,7 +48,8 @@ namespace Xdl.Internship.Offers.SDK.OfferDTOs
                 .ForMember(dest => dest.NumberOfViews, opt => opt.MapFrom(src => 0))
                 .ForMember(dest => dest.VendorEntitiesId, opt => opt.MapFrom(src => src.VendorEntitiesId.Select(el => ObjectId.Parse(el))))
                 .ForMember(dest => dest.Tags, opt => opt.MapFrom(src => src.Tags.Select(el => ObjectId.Parse(el))))
-                .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(src => DateTimeOffset.Now));
+                .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(src => DateTimeOffset.Now))
+                .ForMember(dest => dest.UpdatedAt, opt => opt.MapFrom(src => DateTimeOffset.Now));
 
             CreateMap<UpdateOfferDTO, Offer>()
                .ForMember(dest => dest.VendorEntitiesId, opt => opt.MapFrom(src => src.VendorEntitiesId.Select(el => ObjectId.Parse(el))))
