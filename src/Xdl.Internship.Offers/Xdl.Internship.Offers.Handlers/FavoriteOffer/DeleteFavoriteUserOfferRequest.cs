@@ -1,17 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using MediatR;
-using Xdl.Internship.Offers.SDK.FavoriteOfferDTOs;
 
 namespace Xdl.Internship.Offers.Handlers.FavoriteOffer
 {
-    public class GetAllFavoriteUserOffersRequest : IRequest<ICollection<FavoriteOfferDTO>>
+    public class DeleteFavoriteUserOfferRequest : IRequest
     {
-        public GetAllFavoriteUserOffersRequest(string userId)
+        public DeleteFavoriteUserOfferRequest(string offerId, string userId)
         {
+            OfferId = offerId;
             UserId = userId;
         }
+
+        public string OfferId { get; }
 
         public string UserId { get; }
     }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Xdl.Internship.Offers.Handlers.FavoriteOffer;
@@ -11,6 +12,7 @@ using Xdl.Internship.Offers.SDK.FavoriteOfferDTOs;
 
 namespace Xdl.Internship.Offers.ServiceHost.Controllers
 {
+    [Authorize]
     [Route("api/favoriteOffer")]
     [ApiController]
     public class FavoriteOfferController : ControllerBase
@@ -22,25 +24,33 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
             _mediator = mediator;
         }
 
-        [HttpPost("{offerId}")]
+        [HttpPost("add/{offerId}")]
         public async Task<ActionResult<FavoriteOfferDTO>> AddFavoriteUserOffers([FromRoute] string offerId)
         {
-            throw new Exception(); /*return Ok(await _mediator.Send());*/
+            try
+            {
+                return Ok(await _mediator.Send(new AddFavoriteUserOfferRequest(offerId,
+                                User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value)));
+            }
+            catch (NullReferenceException)
+            {
+                return BadRequest();
+            }
         }
 
         [HttpGet("{offerId}")]
         public async Task<ActionResult<FavoriteOfferDTO>> GetFavoriteUserOffers([FromRoute] string offerId)
         {
-            throw new Exception(); /*return Ok(await _mediator.Send());*/
+            return Ok(await _mediator.Send(new GetFavoriteUserOffersRequest(offerId,
+                            User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value)));
         }
 
-        [HttpGet("all/{offerId}")]
-        public async Task<ActionResult<ICollection<FavoriteOfferDTO>>> GetAllFavoriteUserOffers([FromRoute] string offerId)
+        [HttpGet("all")]
+        public async Task<ActionResult<ICollection<FavoriteOfferDTO>>> GetAllFavoriteUserOffers()
         {
             try
             {
                 return Ok(await _mediator.Send(new GetAllFavoriteUserOffersRequest(
-                            offerId,
                             User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value)));
             }
             catch (NullReferenceException)
@@ -50,9 +60,17 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
         }
 
         [HttpDelete("{offerId}")]
-        public async Task DeleteFavoriteUserOffer([FromRoute] string offerId)
+        public async Task<IActionResult> DeleteFavoriteUserOffer([FromRoute] string offerId)
         {
-             throw new Exception(); /*return Ok(await _mediator.Send());*/
+            try
+            {
+                return Ok(await _mediator.Send(new DeleteFavoriteUserOfferRequest(offerId,
+                     User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value)));
+            }
+            catch (NullReferenceException)
+            {
+                return BadRequest();
+            }
         }
     }
 }

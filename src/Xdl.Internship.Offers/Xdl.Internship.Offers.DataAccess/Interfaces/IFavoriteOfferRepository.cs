@@ -10,6 +10,10 @@ namespace Xdl.Internship.Offers.DataAccess.Interfaces
 {
     public interface IFavoriteOfferRepository : IMongoRepository<FavoriteOffer>
     {
-        public Task<ICollection<FavoriteOffer>> FindAllFavoriteUserOffersAsync(string offerId, string userId, CancellationToken cancellationToken = default);
+        public Task<ICollection<FavoriteOffer>> FindAllFavoriteUserOffersAsync(string userId, CancellationToken cancellationToken = default);
+
+        public Task<FavoriteOffer> FindOneFavoriteUserOfferAsync(string offerId, string userId, CancellationToken cancellationToken = default);
+
+        public Task RemoveFavoriteUserOfferAsync(string offerId, string userId, CancellationToken cancellationToken = default);
     }
 }

@@ -6,12 +6,15 @@ using Xdl.Internship.Offers.SDK.FavoriteOfferDTOs;
 
 namespace Xdl.Internship.Offers.Handlers.FavoriteOffer
 {
-    public class GetAllFavoriteUserOffersRequest : IRequest<ICollection<FavoriteOfferDTO>>
+    public class AddFavoriteUserOfferRequest : IRequest<FavoriteOfferDTO>
     {
-        public GetAllFavoriteUserOffersRequest(string userId)
+        public AddFavoriteUserOfferRequest(string offerId, string userId)
         {
+            OfferId = offerId;
             UserId = userId;
         }
+
+        public string OfferId { get; }
 
         public string UserId { get; }
     }
