@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 using Xdl.Internship.Offers.Handlers.Offer;
@@ -11,6 +12,7 @@ using Xdl.Internship.Offers.SDK.VendorDTOs;
 
 namespace Xdl.Internship.Offers.ServiceHost.Controllers
 {
+    [Authorize]
     [Controller]
     [Route("api/offers")]
     public class OfferController : ControllerBase
@@ -76,12 +78,14 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
             return Ok(await _mediator.Send(new FindOfferByVendorEntityIdRequest(id)));
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<ActionResult<OfferMainDTO>> CreateOffer([FromBody] CreateOfferDTO offerDTO)
         {
             return Ok(await _mediator.Send(new InsertOfferRequest(offerDTO)));
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPut]
         [Route("{id}")]
         public async Task<ActionResult<OfferMainDTO>> UpdateOffer([FromRoute] string id, [FromBody] UpdateOfferDTO offerDTO)
