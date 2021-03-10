@@ -27,6 +27,8 @@ namespace Xdl.Internship.Offers.SDK.TagDTOs
 
             CreateMap<UpdateIdentity, Tag>()
                 .ForMember(d => d.UpdatedBy, opt => opt.MapFrom(s => s.GetValue()));
+
+            CreateMap<RestoreTagDTO, Tag>();
         }
     }
 }

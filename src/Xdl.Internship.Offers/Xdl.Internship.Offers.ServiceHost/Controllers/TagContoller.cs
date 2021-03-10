@@ -88,5 +88,24 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
 
             await _mediator.Send(new DeleteTagRequest(id, identity));
         }
+
+        [Authorize(Roles = "Admin,Moderator")]
+        [HttpPut]
+        [Route("{id}")]
+        public async Task<ActionResult<RestoreTagDTO>> RestoreTag([FromRoute] string id, [FromBody] RestoreTagDTO tag)
+        {
+            if (!ObjectId.TryParse(id, out var parsedId))
+            {
+                return BadRequest($"{nameof(id)} is not valid");
+            }
+
+            var identity = new CreateIdentity()
+            {
+                FirstName = User.Claims.FirstOrDefault(u => u.Type == ClaimTypes.GivenName).Value,
+                LastName = User.Claims.FirstOrDefault(u => u.Type == ClaimTypes.Name).Value,
+            };
+
+            return Ok(await _mediator.Send(new RestoreTagRequest(parsedId, tag, identity)));
+        }
     }
 }
