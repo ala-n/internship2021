@@ -52,9 +52,9 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
 
         [HttpGet]
         [Route("statistics")]
-        public async Task<IEnumerable<TagDTO>> GeAllTagsStatistics([FromQuery] bool includeInactive = false)
+        public async Task<IEnumerable<TagDTO>> GeAllTagsStatistics()
         {
-            return await _mediator.Send(new FindAllTagsStatisticsRequest(includeInactive));
+            return await _mediator.Send(new FindAllTagsStatisticsRequest());
         }
 
         [Authorize(Roles = "Admin,Moderator")]

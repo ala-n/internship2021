@@ -7,11 +7,5 @@ namespace Xdl.Internship.Offers.Handlers.Tag
 {
     public class FindAllTagsStatisticsRequest : IRequest<ICollection<TagDTO>>
     {
-        public bool IncludeInactive { get; }
-
-        public FindAllTagsStatisticsRequest(bool includeInactive)
-        {
-            IncludeInactive = includeInactive;
-        }
     }
 }
