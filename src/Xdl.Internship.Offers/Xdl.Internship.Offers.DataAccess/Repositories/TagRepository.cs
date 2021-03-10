@@ -24,5 +24,11 @@ namespace Xdl.Internship.Offers.DataAccess.Repositories
             Expression<Func<Tag, bool>> filter = (v) => (includeInactive || v.IsDeleted == false) && v.Name.Length > 0;
             return FindAsync(filter, cancellationToken = default);
         }
+
+        public Task<ICollection<Tag>> FindAllAsync()
+        {
+            Expression<Func<Tag, bool>> filter = (v) => v.Name.Length > 0;
+            return FindAsync(filter);
+        }
     }
 }

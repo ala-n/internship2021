@@ -10,5 +10,7 @@ namespace Xdl.Internship.Offers.DataAccess.Interfaces
     public interface ITagRepository : IMongoRepository<Tag>
     {
         Task<ICollection<Tag>> FindAsync(bool includeInactive, CancellationToken cancellationToken = default);
+
+        Task<ICollection<Tag>> FindAllAsync();
     }
 }

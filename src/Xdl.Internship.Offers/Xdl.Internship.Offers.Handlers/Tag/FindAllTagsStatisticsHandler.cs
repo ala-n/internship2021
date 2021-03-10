@@ -24,7 +24,7 @@ namespace Xdl.Internship.Offers.Handlers.Tag
 
         public async Task<ICollection<TagDTO>> Handle(FindAllTagsStatisticsRequest request, CancellationToken cancellationToken)
         {
-            var tags = await _tagRepository.FindAsync(request.IncludeInactive);
+            var tags = await _tagRepository.FindAllAsync();
             var allTags = tags.GroupBy(t => t.Name).Select(t => t.FirstOrDefault()).OrderBy(t => t.Name);
 
             var tagDTO = new List<TagDTO> { };

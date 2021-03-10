@@ -54,7 +54,7 @@ namespace Xdl.Internship.Offers.ServiceHost
             services.AddSingleton<IOfferRepository, OfferRepository>();
             services.AddSingleton<ICityRepository, CityRepository>();
             services.AddSingleton<IFavoriteOfferRepository, FavoriteOfferRepository>();
-
+            services.AddSingleton<IFeedbackRepository, FeedbackRepository>();
             IConfigurationSection appSettingsSection = Configuration.GetSection("AppSettings");
             AppSettings appSettings = appSettingsSection.Get<AppSettings>();
             var secretKey = Encoding.ASCII.GetBytes(appSettings.SecretKey);
