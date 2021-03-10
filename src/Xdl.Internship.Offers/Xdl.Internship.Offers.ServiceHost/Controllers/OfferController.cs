@@ -70,14 +70,14 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
 
         [HttpGet]
         [Route("vendorEntity/{vendorEntityId}")]
-        public async Task<ActionResult<IEnumerable<OfferMainDTO>>> FindOfferByVendorEntityId([FromRoute] string vendorEntityId)
+        public async Task<ActionResult<IEnumerable<OfferMainDTO>>> FindOfferByVendorEntityId([FromRoute] string vendorEntityId, [FromQuery] bool includeInactive = false)
         {
             if (!ObjectId.TryParse(vendorEntityId, out var id))
             {
                 return BadRequest($"{nameof(vendorEntityId)} is not valid");
             }
 
-            return Ok(await _mediator.Send(new FindOfferByVendorEntityIdRequest(id)));
+            return Ok(await _mediator.Send(new FindOfferByVendorEntityIdRequest(id, includeInactive)));
         }
 
         [Authorize(Roles = "Admin,Moderator")]

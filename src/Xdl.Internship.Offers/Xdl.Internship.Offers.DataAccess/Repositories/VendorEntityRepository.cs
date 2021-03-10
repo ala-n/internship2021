@@ -46,7 +46,7 @@ namespace Xdl.Internship.Offers.DataAccess.Repositories
 
         public Task<ICollection<VendorEntity>> FindByVendorIdAsync(ObjectId vendorId, bool onlyActive, CancellationToken cancellationToken = default)
         {
-            Expression<Func<VendorEntity, bool>> filter = (v) => v.VendorId == vendorId && (!onlyActive || v.IsActive == true);
+            Expression<Func<VendorEntity, bool>> filter = (v) => v.VendorId == vendorId && (!onlyActive || v.IsActive);
             return FindAsync(filter, cancellationToken);
         }
     }
