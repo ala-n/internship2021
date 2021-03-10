@@ -10,7 +10,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 using Xdl.Internship.Offers.Handlers.Feedback;
+using Xdl.Internship.Offers.Handlers.Offer;
 using Xdl.Internship.Offers.SDK.FeedbackDTOs;
+using Xdl.Internship.Offers.SDK.OfferDTOs;
 
 namespace Xdl.Internship.Offers.ServiceHost.Controllers
 {
@@ -74,11 +76,23 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
         }
 
         [HttpGet("all")]
-        public async Task<ActionResult<ICollection<FeedbackDTO>>> GetAllFeedbacks()
+        public async Task<ActionResult<List<OfferWithAllInfoDTO>>> GetAllFeedbacks()
         {
             try
             {
-                return Ok(await _mediator.Send(new GetAllFeedbacksRequest(User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value)));
+                List<OfferWithAllInfoDTO> result = new List<OfferWithAllInfoDTO>();
+                ICollection<FeedbackDTO> feedbacks = await _mediator.Send(new GetAllFeedbacksRequest(
+                    User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value));
+                foreach (var feedback in feedbacks)
+                {
+                    OfferWithAllInfoDTO offer = await _mediator.Send(new FindOfferByIdWithVendorInfoRequest(new ObjectId(feedback.OfferId)));
+                    if (offer != null)
+                    {
+                        result.Add(offer);
+                    }
+                }
+
+                return Ok(result);
             }
             catch (Exception ex)
             {
