@@ -11,9 +11,12 @@ namespace Xdl.Internship.Offers.Handlers.Offer
     {
         public ObjectId Id { get; set; }
 
-        public FindOfferByIdWithVendorInfoRequest(ObjectId id)
+        public bool MetricsView { get; set; }
+
+        public FindOfferByIdWithVendorInfoRequest(ObjectId id, bool metricsView)
         {
             Id = id;
+            MetricsView = metricsView;
         }
     }
 }

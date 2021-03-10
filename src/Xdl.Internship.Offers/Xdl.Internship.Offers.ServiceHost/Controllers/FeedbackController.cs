@@ -85,7 +85,7 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
                     User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value));
                 foreach (var feedback in feedbacks)
                 {
-                    OfferWithAllInfoDTO offer = await _mediator.Send(new FindOfferByIdWithVendorInfoRequest(new ObjectId(feedback.OfferId)));
+                    OfferWithAllInfoDTO offer = await _mediator.Send(new FindOfferByIdWithVendorInfoRequest(new ObjectId(feedback.OfferId), false));
                     if (offer != null)
                     {
                         result.Add(offer);

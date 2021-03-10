@@ -108,7 +108,7 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
 
                 foreach (var favourite in favourites)
                 {
-                    OfferWithAllInfoDTO offer = await _mediator.Send(new FindOfferByIdWithVendorInfoRequest(new ObjectId(favourite.OfferId)));
+                    OfferWithAllInfoDTO offer = await _mediator.Send(new FindOfferByIdWithVendorInfoRequest(new ObjectId(favourite.OfferId), false));
                     if (offer != null)
                     {
                     result.Add(offer);

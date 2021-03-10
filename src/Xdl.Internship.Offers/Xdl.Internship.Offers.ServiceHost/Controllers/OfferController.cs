@@ -34,14 +34,14 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        public async Task<ActionResult<OfferWithAllInfoDTO>> GetOfferInfoByOfferId([FromRoute] string id)
+        public async Task<ActionResult<OfferWithAllInfoDTO>> GetOfferInfoByOfferId([FromRoute] string id, [FromQuery] bool metricsView = false)
         {
             if (!ObjectId.TryParse(id, out var parsedId))
             {
                 return BadRequest($"{nameof(id)} is not valid");
             }
 
-            return Ok(await _mediator.Send(new FindOfferByIdWithVendorInfoRequest(parsedId)));
+            return Ok(await _mediator.Send(new FindOfferByIdWithVendorInfoRequest(parsedId, metricsView)));
         }
 
         [HttpGet]

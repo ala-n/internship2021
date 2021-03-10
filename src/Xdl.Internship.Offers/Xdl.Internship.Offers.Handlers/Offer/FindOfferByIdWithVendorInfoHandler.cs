@@ -31,6 +31,13 @@ namespace Xdl.Internship.Offers.Handlers.Offer
         {
             var offer = await _offerRepository.FindByIdAsync(request.Id);
 
+            // TO-DO: make in separate handler
+            if (request.MetricsView)
+            {
+                offer.NumberOfViews += 1;
+                await _offerRepository.ReplaceOneAsync(offer);
+            }
+
             var result = _mapper.Map<OfferWithAllInfoDTO>(offer);
             if (offer != null && offer.VendorEntitiesId.Count >= 1)
             {
