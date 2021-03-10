@@ -35,17 +35,17 @@ namespace Xdl.Internship.Offers.Handlers.Offer
             var offersTask = new List<Task<ICollection<Models.Offer>>>();
             foreach (var entity in entities)
             {
-                offersTask.Add(_offerRepository.FindByVendorEntityIdAsync(entity.Id));
+                offersTask.Add(_offerRepository.FindByVendorEntityIdAsync(entity.Id, request.IncludeInactive));
             }
 
             // Flattening and filtering to distinct
             var offersRaw = await Task.WhenAll(offersTask);
-            ICollection<Models.Offer> offers = offersRaw.SelectMany(o => o).Distinct().ToList();
+            var offers = offersRaw.SelectMany(o => o).GroupBy(o => o.Id);
 
             ICollection<OfferWithVendorNameDTO> result = new List<OfferWithVendorNameDTO>();
             foreach (var offer in offers)
             {
-                var offerDTO = _mapper.Map<OfferWithVendorNameDTO>(offer);
+                var offerDTO = _mapper.Map<OfferWithVendorNameDTO>(offer.First());
                 result.Add(_mapper.Map(vendor, offerDTO));
             }
 
