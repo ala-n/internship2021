@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using MongoDB.Bson;
+using Xdl.Internship.Offers.SDK.Identity;
 using Xdl.Internship.Offers.SDK.VendorEntityDTOs;
 
 namespace Xdl.Internship.Offers.Handlers.VendorEntity
@@ -10,10 +11,13 @@ namespace Xdl.Internship.Offers.Handlers.VendorEntity
 
         public UpdateVendorEntityDTO VendorEntityDTO { get; }
 
-        public ReplaceVendorEntityRequest(ObjectId id, UpdateVendorEntityDTO vendorEntityDTO)
+        public UpdateIdentity Identity;
+
+        public ReplaceVendorEntityRequest(ObjectId id, UpdateVendorEntityDTO vendorEntityDTO, UpdateIdentity identity)
         {
             Id = id;
             VendorEntityDTO = vendorEntityDTO;
+            Identity = identity;
         }
     }
 }

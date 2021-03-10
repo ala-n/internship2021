@@ -26,6 +26,7 @@ namespace Xdl.Internship.Offers.Handlers.VendorEntity
         {
             var entity = _mapper.Map<Models.VendorEntity>(request.VendorEntityDTO);
             entity.VendorId = request.VendorId;
+            entity = _mapper.Map(request.Identity, entity);
 
             // TO-DO: implement validation check, return error msg
             if (await _vendorRepository.FindByIdAsync(request.VendorId) == null)

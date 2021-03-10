@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using MongoDB.Bson;
+using Xdl.Internship.Offers.SDK.Identity;
 using Xdl.Internship.Offers.SDK.VendorEntityDTOs;
 
 namespace Xdl.Internship.Offers.Handlers.VendorEntity
@@ -10,10 +11,13 @@ namespace Xdl.Internship.Offers.Handlers.VendorEntity
 
         public CreateVendorEntityDTO VendorEntityDTO { get; }
 
-        public InsertVendorEntityRequest(ObjectId vendorId, CreateVendorEntityDTO vendorEntityDTO)
+        public CreateIdentity Identity;
+
+        public InsertVendorEntityRequest(ObjectId vendorId, CreateVendorEntityDTO vendorEntityDTO, CreateIdentity identity)
         {
             VendorEntityDTO = vendorEntityDTO;
             VendorId = vendorId;
+            Identity = identity;
         }
     }
 }

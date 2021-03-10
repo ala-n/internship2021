@@ -25,7 +25,7 @@ namespace Xdl.Internship.Offers.Handlers.VendorEntity
             var oldEntity = await _vendorEntityRepository.FindByIdAsync(request.Id);
 
             var entity = _mapper.Map(request.VendorEntityDTO, oldEntity);
-            Console.WriteLine(entity.Address.CityId);
+            entity = _mapper.Map(request.Identity, entity);
 
             await _vendorEntityRepository.ReplaceOneAsync(entity);
 
