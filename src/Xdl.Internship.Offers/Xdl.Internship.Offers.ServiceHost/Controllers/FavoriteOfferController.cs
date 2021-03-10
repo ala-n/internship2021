@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -32,17 +33,42 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
                 return Ok(await _mediator.Send(new AddFavoriteUserOfferRequest(offerId,
                                 User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value)));
             }
-            catch (NullReferenceException)
+            catch (Exception ex)
             {
-                return BadRequest();
+                if (ex is NullReferenceException)
+                {
+                    return BadRequest("Please enter all necessary field");
+                }
+                else if (ex is IndexOutOfRangeException || ex is FormatException || ex is AutoMapperMappingException)
+                {
+                    return BadRequest("Please enter valid value");
+                }
+
+                throw;
             }
         }
 
         [HttpGet("{offerId}")]
         public async Task<ActionResult<FavoriteOfferDTO>> GetFavoriteUserOffers([FromRoute] string offerId)
         {
-            return Ok(await _mediator.Send(new GetFavoriteUserOffersRequest(offerId,
-                            User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value)));
+            try
+            {
+                return Ok(await _mediator.Send(new GetFavoriteUserOffersRequest(offerId,
+                                User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value)));
+            }
+            catch (Exception ex)
+            {
+                if (ex is NullReferenceException)
+                {
+                    return BadRequest("Please enter all necessary field");
+                }
+                else if (ex is IndexOutOfRangeException || ex is FormatException || ex is AutoMapperMappingException)
+                {
+                    return BadRequest("Please enter valid value");
+                }
+
+                throw;
+            }
         }
 
         [HttpGet("all")]
@@ -53,9 +79,18 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
                 return Ok(await _mediator.Send(new GetAllFavoriteUserOffersRequest(
                             User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value)));
             }
-            catch (NullReferenceException)
+            catch (Exception ex)
             {
-                return BadRequest();
+                if (ex is NullReferenceException)
+                {
+                    return BadRequest("Please enter all necessary field");
+                }
+                else if (ex is IndexOutOfRangeException || ex is FormatException || ex is AutoMapperMappingException)
+                {
+                    return BadRequest("Please enter valid value");
+                }
+
+                throw;
             }
         }
 
@@ -67,9 +102,18 @@ namespace Xdl.Internship.Offers.ServiceHost.Controllers
                 return Ok(await _mediator.Send(new DeleteFavoriteUserOfferRequest(offerId,
                      User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value)));
             }
-            catch (NullReferenceException)
+            catch (Exception ex)
             {
-                return BadRequest();
+                if (ex is NullReferenceException)
+                {
+                    return BadRequest("Please enter all necessary field");
+                }
+                else if (ex is IndexOutOfRangeException || ex is FormatException || ex is AutoMapperMappingException)
+                {
+                    return BadRequest("Please enter valid value");
+                }
+
+                throw;
             }
         }
     }
